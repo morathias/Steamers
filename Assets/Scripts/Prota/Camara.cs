@@ -1,17 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+//==============================================================================================================
 public class Camara : MonoBehaviour {
     public Transform target;
     public float suavizado;
     public float altura;
     public float distancia;
 
+    Vector3 _posicionFinal;
+    //----------------------------------------------------------------------------------------------------------
 	void Update () {
         if (!target)
             return;
 
-        transform.position = Vector3.Lerp(transform.position, target.position, Time.deltaTime * suavizado);
-        transform.position = new Vector3(transform.position.x, altura, transform.position.z);
+        _posicionFinal = new Vector3(target.position.x, altura, target.position.z - distancia);
+        transform.position = Vector3.Lerp(transform.position, _posicionFinal, Time.deltaTime * suavizado);
 	}
+    //----------------------------------------------------------------------------------------------------------
 }
+//==============================================================================================================
