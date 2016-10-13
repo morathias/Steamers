@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{424B821D-88EF-F9D4-5823-20D80AAD9311}") = "Steamers", "Assembly-CSharp.csproj", "{429C5F4C-14A9-E5F0-2DB9-BD0DF7A8D15D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{429C5F4C-14A9-E5F0-2DB9-BD0DF7A8D15D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{429C5F4C-14A9-E5F0-2DB9-BD0DF7A8D15D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{429C5F4C-14A9-E5F0-2DB9-BD0DF7A8D15D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{429C5F4C-14A9-E5F0-2DB9-BD0DF7A8D15D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
