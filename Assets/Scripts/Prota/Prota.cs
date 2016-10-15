@@ -59,7 +59,6 @@ public class Prota : MonoBehaviour {
     }
     //-------------------------------------------------------------------------------------------
     void esquivar() {
-        Debug.Log(_direccion);
         transform.position = Vector3.LerpUnclamped(transform.position, _posicionEsquivar, 
                                                    Time.deltaTime * velocidad);
     }
