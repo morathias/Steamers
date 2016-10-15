@@ -5,8 +5,11 @@ Project("{424B821D-88EF-F9D4-5823-20D80AAD9311}") = "Steamers", "Assembly-CSharp
 EndProject
 Project("{424B821D-88EF-F9D4-5823-20D80AAD9311}") = "Steamers", "Assembly-CSharp.csproj", "{429C5F4C-14A9-E5F0-2DB9-BD0DF7A8D15D}"
 EndProject
+<<<<<<< HEAD
 Project("{424B821D-88EF-F9D4-5823-20D80AAD9311}") = "Steamers", "Assembly-CSharp-Editor-firstpass.csproj", "{1A00A810-0FBC-C490-AC84-A181A6CB8B4B}"
 EndProject
+=======
+>>>>>>> refs/remotes/origin/master
 Project("{424B821D-88EF-F9D4-5823-20D80AAD9311}") = "Steamers", "Assembly-CSharp-Editor.csproj", "{438825BD-84AD-D852-C54E-A439AB9142FD}"
 EndProject
 Global
@@ -23,10 +26,13 @@ Global
 		{429C5F4C-14A9-E5F0-2DB9-BD0DF7A8D15D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{429C5F4C-14A9-E5F0-2DB9-BD0DF7A8D15D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{429C5F4C-14A9-E5F0-2DB9-BD0DF7A8D15D}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
 		{1A00A810-0FBC-C490-AC84-A181A6CB8B4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1A00A810-0FBC-C490-AC84-A181A6CB8B4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A00A810-0FBC-C490-AC84-A181A6CB8B4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A00A810-0FBC-C490-AC84-A181A6CB8B4B}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+>>>>>>> refs/remotes/origin/master
 		{438825BD-84AD-D852-C54E-A439AB9142FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{438825BD-84AD-D852-C54E-A439AB9142FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{438825BD-84AD-D852-C54E-A439AB9142FD}.Release|Any CPU.ActiveCfg = Release|Any CPU

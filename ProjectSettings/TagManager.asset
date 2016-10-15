@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Arma
+<<<<<<< HEAD
+=======
+  - Shield
+>>>>>>> refs/remotes/origin/master
   layers:
   - Default
   - TransparentFX

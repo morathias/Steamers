@@ -15,7 +15,12 @@ public class Prota : MonoBehaviour {
     enum estados {      //para la maquina de estados
         moviendose,
         esquivando,
+<<<<<<< HEAD
         muriendo
+=======
+        muriendo,
+        explosion
+>>>>>>> refs/remotes/origin/master
     }
     estados _estado = estados.moviendose;
 
@@ -48,6 +53,14 @@ public class Prota : MonoBehaviour {
                     _timerEsquivar = 0.5f;
                 }
                 break;
+<<<<<<< HEAD
+=======
+
+            case estados.explosion:
+
+                _estado = estados.moviendose;
+                break;
+>>>>>>> refs/remotes/origin/master
         }
 	}
     //-------------------------------------------------------------------------------------------
@@ -59,6 +72,10 @@ public class Prota : MonoBehaviour {
     }
     //-------------------------------------------------------------------------------------------
     void esquivar() {
+<<<<<<< HEAD
+=======
+        Debug.Log(_direccion);
+>>>>>>> refs/remotes/origin/master
         transform.position = Vector3.LerpUnclamped(transform.position, _posicionEsquivar, 
                                                    Time.deltaTime * velocidad);
     }
@@ -75,5 +92,11 @@ public class Prota : MonoBehaviour {
         _angulo = Mathf.Atan2(_posicionDelMouse.x, _posicionDelMouse.y) * Mathf.Rad2Deg;    //saco el angulo de ese vector
         transform.rotation = Quaternion.Euler(new Vector3(0, _angulo, 0));      //lo roto en eje y
     }
+<<<<<<< HEAD
+=======
+    public void stunE() {
+        _estado = estados.explosion;
+    }
+>>>>>>> refs/remotes/origin/master
 }
 //===============================================================================================
