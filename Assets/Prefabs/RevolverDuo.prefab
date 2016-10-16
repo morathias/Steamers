@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   balas: 14
-  delay: 1
   "da\xF1o": 0
-  duracion: 0
+  distancia: 16
+  balasTxt: {fileID: 0}
+  _bala: {fileID: 198000010647308668, guid: 87438d9753c69d54094825a1dc153de6, type: 2}

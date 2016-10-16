@@ -4,9 +4,8 @@ using UnityEngine.UI;
 //=================================================
 public class Arma : MonoBehaviour {
     public int balas;
-    public float delay;     //lo que tarda en volver a disparar, evita spameo
     public float daño;
-    public float duracion; //tiempo que tarda en destruirse
+    public float distancia; //tiempo que tarda en destruirse
     int health;
 
     public Text balasTxt;
@@ -16,19 +15,19 @@ public class Arma : MonoBehaviour {
     float _rangoRecarga = 1f;    //rango de la barrita;
     float _minPerfecto = 0.40f;
     float _maxPerfecto = 0.60f;
-    int _balasActuales;
-    float _delayActual;
+    protected int _balasActuales;
 
-    enum estados {
+    public ParticleSystem _bala;
+
+    protected enum estados {
         llena,
         vacia,
         recargando
     }
-    estados _estado;
+    protected estados _estado;
     //---------------------------------------------
 	void Start () {
         _balasActuales = balas;
-        _delayActual = delay;
         _estado = estados.llena;
         balasTxt.text = "Balas: " + _balasActuales;
 	}
@@ -36,18 +35,8 @@ public class Arma : MonoBehaviour {
 	void Update () {
         switch (_estado) {
             case estados.llena:
-                if (Input.GetButton("Fire1") && _puedeDisparar) {
-                    _puedeDisparar = false;
-                    if (!disparar())
-                        _estado = estados.vacia;
-                }
-
-                if (!_puedeDisparar)
-                    _delayActual -= Time.deltaTime;
-                if (_delayActual <= 0) {
-                    _delayActual = delay;
-                    _puedeDisparar = true;
-                }
+                if (!disparar())
+                    _estado = estados.vacia;
 
                 //chequea que no este llena, evita recargar estando llena
                 if (Input.GetKeyDown(KeyCode.R) && _balasActuales != balas) 
@@ -68,14 +57,7 @@ public class Arma : MonoBehaviour {
         balasTxt.text = "Balas: " + _balasActuales;
 	}
     //---------------------------------------------
-    bool disparar() {
-        if (_balasActuales <= 0) return false;
-
-        else{
-            _balasActuales--;
-            return true;
-        }
-    }
+    public virtual bool disparar() { return false; }
     //---------------------------------------------
     void recargar() {
         _balasActuales = balas;

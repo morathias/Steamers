@@ -51,7 +51,6 @@ public class Prota : MonoBehaviour {
                 break;
 
             case estados.explosion:
-
                 _estado = estados.moviendose;
                 break;
         }
@@ -61,11 +60,11 @@ public class Prota : MonoBehaviour {
         _direccion = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         _direccion *= velocidad;
 
-        _protaController.Move(_direccion * Time.deltaTime);
+        //_protaController.Move(_direccion * Time.deltaTime);
+        _protaController.SimpleMove(_direccion);
     }
     //-------------------------------------------------------------------------------------------
     void esquivar() {
-        Debug.Log(_direccion);
         transform.position = Vector3.LerpUnclamped(transform.position, _posicionEsquivar, 
                                                    Time.deltaTime * velocidad);
     }

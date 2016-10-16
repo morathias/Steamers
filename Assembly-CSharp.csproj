@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Armas\Arma.cs" />
+     <Compile Include="Assets\Scripts\Armas\DuoRevolver.cs" />
      <Compile Include="Assets\Scripts\Enemigo\CQCMob.cs" />
      <Compile Include="Assets\Scripts\Enemigo\EnemyHealth.cs" />
      <Compile Include="Assets\Scripts\Enemigo\Infantry.cs" />
