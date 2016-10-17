@@ -10,11 +10,10 @@ public class Arma : MonoBehaviour {
 
     public Text balasTxt;
 
-    bool _recargaPerfecta;      //para la barrita que aumenta el daño temporalmente
-    bool _puedeDisparar = true;
-    float _rangoRecarga = 1f;    //rango de la barrita;
-    float _minPerfecto = 0.40f;
-    float _maxPerfecto = 0.60f;
+    //bool _recargaPerfecta;      //para la barrita que aumenta el daño temporalmente
+    //float _rangoRecarga = 1f;    //rango de la barrita;
+    //float _minPerfecto = 0.40f;
+    //float _maxPerfecto = 0.60f;
     protected int _balasActuales;
 
     public ParticleSystem _bala;
