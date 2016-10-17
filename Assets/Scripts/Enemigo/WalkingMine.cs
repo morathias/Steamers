@@ -37,12 +37,16 @@ public class WalkingMine : MonoBehaviour {
         {
 
             Stats healthComponent = collision.gameObject.GetComponent<Stats>();
+            Stats expComponent = collision.gameObject.GetComponent<Stats>();
             Prota stun = collision.gameObject.GetComponent<Prota>();
 
             stun.stunE();
             healthComponent.applyDamage(damage);
+            if (Variables.choose)
+                expComponent.exp += 10;
   
             Destroy(gameObject);
+
         }
     }
   }
