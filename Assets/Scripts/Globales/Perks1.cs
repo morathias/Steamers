@@ -35,24 +35,26 @@ public class Perks1 : MonoBehaviour {
        {
            case 1:
                levelComponent.damage += 2;
-               Variables.choose = true;
-               Variables.limitador = 0;
+               levelComponent.stat--;
                break;
            case 2:
                levelComponent.health += 15;
-               Variables.choose = true;
-               Variables.limitador = 0;
+               levelComponent.vida += 15;
+               levelComponent.stat--;
                break;
            case 3:
                protaComponent.velocidad += 2;
-               Variables.choose = true;
-               Variables.limitador = 0;
+               levelComponent.stat--;
                break;
            case 4:
                levelComponent.atkspeed += 2;
-               Variables.choose = true;
-               Variables.limitador = 0;
+               levelComponent.stat--;
                break;
        }
-    }
+       /*Debug.Log("Damage: " + levelComponent.damage);
+       Debug.Log("Health: " + levelComponent.health);
+       Debug.Log("HealthActual: " + levelComponent.vida);
+       Debug.Log("Speed: " + protaComponent.velocidad);
+       Debug.Log("AtkSpeed: " + levelComponent.atkspeed);*/
+   }
 }

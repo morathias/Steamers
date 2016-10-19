@@ -5,11 +5,12 @@ public class ExpCube : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Wololo1");
         if (collision.gameObject.tag == "Player")
         {
+            Debug.Log("Wololo2");
             Stats expComponent = collision.gameObject.GetComponent<Stats>();
-            if(Variables.choose)
-                expComponent.exp = 100;
+            expComponent.exp = 100;
 
             Destroy(gameObject);
         }

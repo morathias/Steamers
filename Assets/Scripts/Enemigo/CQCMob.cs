@@ -4,7 +4,7 @@ using System.Collections;
 public class CQCMob : MonoBehaviour
 {
 
-    public Transform Target;
+    Transform Target;
     public int RangoLucha;
     public int velocidad;
     public int damage;

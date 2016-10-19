@@ -47,18 +47,22 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Armas\Arma.cs" />
      <Compile Include="Assets\Scripts\Armas\DuoRevolver.cs" />
-     <Compile Include="Assets\Scripts\Canvus.cs" />
      <Compile Include="Assets\Scripts\Enemigo\CQCMob.cs" />
      <Compile Include="Assets\Scripts\Enemigo\EnemyHealth.cs" />
      <Compile Include="Assets\Scripts\Enemigo\Infantry.cs" />
+     <Compile Include="Assets\Scripts\Enemigo\Shield.cs" />
      <Compile Include="Assets\Scripts\Enemigo\WalkingMine.cs" />
-     <Compile Include="Assets\Scripts\ExpCube.cs" />
-     <Compile Include="Assets\Scripts\Perks1.cs" />
-     <Compile Include="Assets\Scripts\Perks2.cs" />
+     <Compile Include="Assets\Scripts\Enemigo\protoScriptAC.cs" />
+     <Compile Include="Assets\Scripts\Globales\Canvus.cs" />
+     <Compile Include="Assets\Scripts\Globales\EsceneManager.cs" />
+     <Compile Include="Assets\Scripts\Globales\Perks1.cs" />
+     <Compile Include="Assets\Scripts\Globales\Perks2.cs" />
+     <Compile Include="Assets\Scripts\Globales\Variables.cs" />
+     <Compile Include="Assets\Scripts\Items\ExpCube.cs" />
+     <Compile Include="Assets\Scripts\Items\Pota.cs" />
      <Compile Include="Assets\Scripts\Prota\Camara.cs" />
      <Compile Include="Assets\Scripts\Prota\Prota.cs" />
      <Compile Include="Assets\Scripts\Prota\Stats.cs" />
-     <Compile Include="Assets\Scripts\Variables.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />

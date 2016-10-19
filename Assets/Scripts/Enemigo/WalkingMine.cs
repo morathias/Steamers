@@ -8,6 +8,9 @@ public class WalkingMine : MonoBehaviour {
     public int velocidad;
     public int damage;
     int timer = 0;
+    bool move = false;
+
+
     void Start()
     {
         GameObject Objetivo = GameObject.FindGameObjectWithTag("Player");
@@ -18,7 +21,8 @@ public class WalkingMine : MonoBehaviour {
     void Update()
     {
         if (Vector3.Distance(transform.position, Target.position) < RangoDeteccion)
-        {
+            move = true;
+        if (move == true){
             transform.LookAt(Target.position);
             transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
         }
@@ -37,16 +41,12 @@ public class WalkingMine : MonoBehaviour {
         {
 
             Stats healthComponent = collision.gameObject.GetComponent<Stats>();
-            Stats expComponent = collision.gameObject.GetComponent<Stats>();
             Prota stun = collision.gameObject.GetComponent<Prota>();
 
             stun.stunE();
             healthComponent.applyDamage(damage);
-            if (Variables.choose)
-                expComponent.exp += 10;
   
             Destroy(gameObject);
-
         }
     }
   }
