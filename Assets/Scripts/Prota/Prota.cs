@@ -35,6 +35,7 @@ public class Prota : MonoBehaviour {
 	}
     //-------------------------------------------------------------------------------------------
 	void Update () {
+        _barraVida.fillAmount = (float)_stats.vida / _stats.health;
         switch (_estado) {
             case estados.moviendose:
                 moverProta();
@@ -51,7 +52,6 @@ public class Prota : MonoBehaviour {
 
             case estados.esquivando:
                 esquivar();
-                perderVidaTest();
                 
                 _timerEsquivar -= Time.deltaTime;
                 if (_timerEsquivar <= 0)
@@ -93,11 +93,6 @@ public class Prota : MonoBehaviour {
     //-------------------------------------------------------------------------------------------
     public void stunE() {
         _estado = estados.explosion;
-    }
-    //-------------------------------------------------------------------------------------------
-    void perderVidaTest() {
-        _stats.health -= 1;
-        _barraVida.fillAmount = _stats.health / 100f;
     }
     //-------------------------------------------------------------------------------------------
     void perderStamina() {

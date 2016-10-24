@@ -118,3 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca770a92b6b896142b6e6460ec0b5cb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Target: {fileID: 4000010121232474, guid: 251b675202aa2344eb3f21b140e61bae, type: 2}
+  RangoDeteccion: 4
+  velocidad: 8

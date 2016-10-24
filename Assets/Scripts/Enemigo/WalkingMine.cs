@@ -44,7 +44,7 @@ public class WalkingMine : MonoBehaviour {
             Prota stun = collision.gameObject.GetComponent<Prota>();
 
             stun.stunE();
-            healthComponent.applyDamage(damage);
+            healthComponent.vida -= 15;
   
             Destroy(gameObject);
         }

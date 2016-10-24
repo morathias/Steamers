@@ -6,26 +6,28 @@ public class Pota : MonoBehaviour {
     public Transform Target;
     public int RangoDeteccion;
     public int velocidad;
+    private Stats levelComponent;
 
-    void Start()
-    {
+    void Start(){
         GameObject Objetivo = GameObject.FindGameObjectWithTag("Player");
         Target = Objetivo.transform;
-
+        levelComponent = GameObject.Find("Prota").gameObject.GetComponent<Stats>();
     }
-    void Update()
-    {
-        if (Vector3.Distance(transform.position, Target.position) < RangoDeteccion)
+    void Update(){
+        if (levelComponent.vida >= levelComponent.health){
+            
+        }
+        if (Vector3.Distance(transform.position, Target.position) < RangoDeteccion && levelComponent.vida < levelComponent.health)
         {
             transform.LookAt(Target.position);
             transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
         }
     }
-	 void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            Stats levelComponent = collision.gameObject.GetComponent<Stats>();
+
+         if (collision.gameObject.tag == "Player" && levelComponent.vida < levelComponent.health)
+         {
 
             levelComponent.vida += 15;
             Debug.Log("Health: " + levelComponent.health);
