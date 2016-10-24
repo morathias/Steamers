@@ -10,17 +10,20 @@ public class Arma : MonoBehaviour {
 
     public Text balasTxt;
 
-    //bool _recargaPerfecta;      //para la barrita que aumenta el daño temporalmente
-    //float _rangoRecarga = 1f;    //rango de la barrita;
-    //float _minPerfecto = 0.40f;
-    //float _maxPerfecto = 0.60f;
+    bool _recargaPerfecta;      //para la barrita que aumenta el daño temporalmente
+    float _rangoRecarga = 0f;    //rango de la barrita;
+    float _minPerfecto = 0.54f;
+    float _maxPerfecto = 0.61f;
     protected int _balasActuales;
 
     public ParticleSystem _bala;
 
+    public Image barraRecarga;
+    public Image barraRecargaVacia;
+    public Image barraRecargaPunto;
+
     protected enum estados {
         llena,
-        vacia,
         recargando
     }
     protected estados _estado;
@@ -29,27 +32,33 @@ public class Arma : MonoBehaviour {
         _balasActuales = balas;
         _estado = estados.llena;
         balasTxt.text = "Balas: " + _balasActuales;
+        barraRecarga.enabled = false;
+        barraRecargaVacia.enabled = false;
+        barraRecargaPunto.enabled = false;
 	}
     //---------------------------------------------
 	void Update () {
         switch (_estado) {
             case estados.llena:
                 if (!disparar())
-                    _estado = estados.vacia;
+                    _estado = estados.recargando;
 
                 //chequea que no este llena, evita recargar estando llena
                 if (Input.GetKeyDown(KeyCode.R) && _balasActuales != balas) 
                     _estado = estados.recargando;
                 break;
 
-            case estados.vacia:
-                if (Input.GetKeyDown(KeyCode.R))
-                    _estado = estados.recargando;
-                break;
-
             case estados.recargando:
-                recargar();
-                _estado = estados.llena;
+                barraRecarga.enabled = true;
+                barraRecargaVacia.enabled = true;
+                barraRecargaPunto.enabled = true;
+
+                if (recargar()){
+                    _estado = estados.llena;
+                    barraRecarga.enabled = false;
+                    barraRecargaVacia.enabled = false;
+                    barraRecargaPunto.enabled = false;
+                }
                 break;
         }
 
@@ -58,8 +67,33 @@ public class Arma : MonoBehaviour {
     //---------------------------------------------
     public virtual bool disparar() { return false; }
     //---------------------------------------------
-    void recargar() {
-        _balasActuales = balas;
+    bool recargar() {
+        _rangoRecarga += 0.01f;
+        barraRecarga.fillAmount = _rangoRecarga;
+
+        if (Input.GetKeyDown(KeyCode.R)){
+            if (_rangoRecarga >= _minPerfecto && _rangoRecarga <= _maxPerfecto)
+            {
+                _rangoRecarga = 0f;
+                barraRecarga.fillAmount = _rangoRecarga;
+                _balasActuales = balas;
+                daño *= 2;
+                return true;
+            }
+            else {
+                _rangoRecarga = 0f;
+                barraRecarga.fillAmount = _rangoRecarga;
+                return false;
+            }
+        }
+
+        if (_rangoRecarga >= 1f){
+            _rangoRecarga = 0f;
+            barraRecarga.fillAmount = _rangoRecarga;
+            _balasActuales = balas;
+            return true;
+        }
+        return false;
     }
     //---------------------------------------------
 }
