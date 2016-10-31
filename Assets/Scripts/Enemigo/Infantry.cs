@@ -13,6 +13,7 @@ public class Infantry : MonoBehaviour
     Transform capitanPos;
     public ParticleSystem _balaE;
     Quaternion neededRotation;
+    private int ordenPos;
     
     Vector3 _posicionLider;
 
@@ -22,7 +23,7 @@ public class Infantry : MonoBehaviour
         bajoOrdenes
     }
 
-    estados _estado = estados.bajoOrdenes;
+    estados _estado = estados.normal;
 
     void Start()
     {
@@ -45,14 +46,41 @@ public class Infantry : MonoBehaviour
 
             case estados.bajoOrdenes:
 
-                _posicionLider = new Vector3(capitanPos.transform.position.x, capitanPos.transform.position.y, capitanPos.transform.position.z)-(capitanPos.forward*3);
+            switch (ordenPos) {
+                case 0:
+                     _posicionLider = new Vector3(capitanPos.transform.position.x, capitanPos.transform.position.y, capitanPos.transform.position.z)-(capitanPos.forward*3);
+                     break;
+                case 1:
+                     _posicionLider = new Vector3(capitanPos.transform.position.x, capitanPos.transform.position.y, capitanPos.transform.position.z) - (capitanPos.forward * 3) - (capitanPos.right * 3);
 
-                transform.position = Vector3.MoveTowards(transform.position, _posicionLider , 5 * Time.deltaTime);
+                     break;
+                case 2:
+                     _posicionLider = new Vector3(capitanPos.transform.position.x, capitanPos.transform.position.y, capitanPos.transform.position.z) - (capitanPos.forward * 3) - (capitanPos.right * -3);
+
+                     break;
+                case 3:
+                     _posicionLider = new Vector3(capitanPos.transform.position.x, capitanPos.transform.position.y, capitanPos.transform.position.z) - (capitanPos.forward * 6);
+
+                     break;
+                case 4:
+                     _posicionLider = new Vector3(capitanPos.transform.position.x, capitanPos.transform.position.y, capitanPos.transform.position.z) - (capitanPos.forward * 6) - (capitanPos.right * 3);
+
+                     break;
+                case 5:
+                     _posicionLider = new Vector3(capitanPos.transform.position.x, capitanPos.transform.position.y, capitanPos.transform.position.z) - (capitanPos.forward * 6) - (capitanPos.right * -3);                     
+                     break;
+
+            }
+
+            transform.position = Vector3.MoveTowards(transform.position, _posicionLider, 5 * Time.deltaTime);
+
                 limite++;
+
                 if (Vector3.Distance(transform.position, fichador.position) < Rango)
                 {
                     neededRotation = Quaternion.LookRotation(fichador.transform.position - transform.position);
-
+                    neededRotation.x = 0;
+                    neededRotation.z = 0;
                     transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 0.9f);
                 }
 
@@ -69,22 +97,19 @@ public class Infantry : MonoBehaviour
     void fire()
     {
         _balaE.startLifetime = Rango / _balaE.startSpeed;
-        RaycastHit Bang;
+
         _balaE.transform.position = transform.position;
-        _balaE.Emit(1);
-        if (Physics.Raycast(transform.position, transform.forward, out Bang, 15))
-        {
-            if (Bang.transform.tag == "Player")
-            {
-
-                Debug.Log("Can you feel eet?!");
-
-                Stats healthComponent = Bang.collider.gameObject.GetComponent<Stats>();
-
-                healthComponent.applyDamage(5);
-            }
-        }
+        _balaE.Emit(30);
+        
         limite = 0;
     }
 
+    public void timeToHaulYoArses(int pos)
+    {
+        if (pos < 6)
+        {
+            ordenPos = pos;
+            _estado = estados.bajoOrdenes;
+        }
+    }
 }

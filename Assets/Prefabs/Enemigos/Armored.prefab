@@ -22,9 +22,9 @@ GameObject:
   - 33: {fileID: 33000013024617516}
   - 65: {fileID: 65000012333118774}
   - 23: {fileID: 23000010241102246}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Shield
-  m_TagString: Untagged
+  m_TagString: Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,9 +41,9 @@ GameObject:
   - 136: {fileID: 136000012019442208}
   - 23: {fileID: 23000012361398582}
   - 114: {fileID: 114000013744252034}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Armored
-  m_TagString: Untagged
+  m_TagString: ArmoredE
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,7 +68,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010848185788}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.08, y: 1.03, z: 0.72}
+  m_LocalPosition: {x: -4.180806, y: 1, z: -12.293481}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:

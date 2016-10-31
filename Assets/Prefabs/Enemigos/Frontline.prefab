@@ -119,7 +119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98b6228220058864c9897147f23629b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
   RangoLucha: 20
   velocidad: 1
   damage: 0
