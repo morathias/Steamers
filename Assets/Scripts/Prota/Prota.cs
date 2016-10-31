@@ -118,5 +118,10 @@ public class Prota : MonoBehaviour {
     public void terminoDeHablar() {
         _estado = estados.moviendose;
     }
+
+    public void fear()
+    {
+
+    }
 }
 //===============================================================================================

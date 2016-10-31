@@ -12,6 +12,7 @@ public class Shield : MonoBehaviour
     int cool = 0;
     Transform capitanPos;
     Quaternion neededRotation;
+    int ordenPos;
 
     Vector3 _posicionLider;
 
@@ -21,7 +22,7 @@ public class Shield : MonoBehaviour
         bajoOrdenes
     }
 
-    estados _estado = estados.bajoOrdenes;
+    estados _estado = estados.normal;
 
     void Start()
     {
@@ -47,11 +48,30 @@ public class Shield : MonoBehaviour
 
                 _posicionLider = new Vector3(capitanPos.transform.position.x, capitanPos.transform.position.y, capitanPos.transform.position.z)-(capitanPos.right*3);
 
+                switch (ordenPos)
+                {
+                    case 0:
+                        _posicionLider = new Vector3(capitanPos.transform.position.x, capitanPos.transform.position.y, capitanPos.transform.position.z) - (capitanPos.right * 3);
+                        break;
+                    case 1:
+                        _posicionLider = new Vector3(capitanPos.transform.position.x, capitanPos.transform.position.y, capitanPos.transform.position.z) - (capitanPos.right * -3);
+
+                        break;
+
+                }
+
                 transform.position = Vector3.MoveTowards(transform.position, _posicionLider , 5 * Time.deltaTime);
                 transform.rotation = capitanPos.rotation;
                 break;
         }
 
+    }
 
+    public void timeToHaulYoArses(int pos)
+    {
+        if (pos < 2){
+            ordenPos = pos;
+             _estado = estados.bajoOrdenes;
+        }
     }
 }
