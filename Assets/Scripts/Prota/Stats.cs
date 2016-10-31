@@ -13,6 +13,7 @@ public class Stats : MonoBehaviour {
     public int stat = 0;
     public Text stats;
     public Text levelsT;
+    public LevelUp _levelUp;
 
 	public void applyDamage(int damage) {
 		health -= damage;
@@ -33,6 +34,7 @@ public class Stats : MonoBehaviour {
     {
         if (exp == 100){
             level++;
+            _levelUp.activar(true);
             exp = 0;
             Variables.random1 = Random.Range(1, 4);
             Variables.random2 = Random.Range(1, 4);
