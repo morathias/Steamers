@@ -5,12 +5,11 @@ using UnityEngine.UI;
 public class Prota : MonoBehaviour {
     public float velocidad = 5f;
     float _angulo;
-    int _stamina = 100;
+    float _stamina = 100;
 
     Vector3 _direccion = Vector3.zero;
     Vector3 _posicionDelMouse;
     Vector3 _posicionDelPlayer;             //en coordenadas de pantalla
-    Vector3 _posicionEsquivar;
 
     CharacterController _protaController;
 
@@ -23,7 +22,8 @@ public class Prota : MonoBehaviour {
         moviendose,
         esquivando,
         muriendo,
-        explosion
+        explosion,
+        hablando
     }
     estados _estado = estados.moviendose;
 
@@ -41,11 +41,11 @@ public class Prota : MonoBehaviour {
                 moverProta();
                 rotarProta();
 
-                if (Input.GetKeyDown(KeyCode.Space) && _stamina > 0){
+                if (_stamina <= 100)
+                    recuperarStamina();
+
+                if (Input.GetKeyDown(KeyCode.Space) && _stamina > 25 && _estado != estados.hablando){
                     perderStamina();
-                    _posicionEsquivar = new Vector3((_direccion.x * 1.2f) + transform.position.x,
-                                                    transform.position.y, 
-                                                    (_direccion.z * 1.2f) + transform.position.z);
                     _estado = estados.esquivando;
                 }
                 break;
@@ -64,7 +64,12 @@ public class Prota : MonoBehaviour {
             case estados.explosion:
                 _estado = estados.moviendose;
                 break;
+
+            case estados.hablando:
+                //prota: -wololo-;
+                break;
         }
+        //Debug.Log(_estado);
 	}
     //-------------------------------------------------------------------------------------------
     void moverProta() {
@@ -96,8 +101,22 @@ public class Prota : MonoBehaviour {
     }
     //-------------------------------------------------------------------------------------------
     void perderStamina() {
-        _stamina -= 10;
+        _stamina -= 25;
         _barraStamina.fillAmount = _stamina / 100f;
+    }
+    //-------------------------------------------------------------------------------------------
+    void recuperarStamina() {
+        _stamina += 10f * Time.deltaTime;
+        _barraStamina.fillAmount = _stamina / 100f;
+    }
+    //-------------------------------------------------------------------------------------------
+    public void estaHablando(bool hablando) {
+        if (hablando)
+            _estado = estados.hablando;
+    }
+
+    public void terminoDeHablar() {
+        _estado = estados.moviendose;
     }
 }
 //===============================================================================================
