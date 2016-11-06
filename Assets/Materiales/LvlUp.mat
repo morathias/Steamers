@@ -28,4 +28,4 @@ Material:
     m_Colors:
     - first:
         name: _TintColor
-      second: {r: 0, g: 0.95862055, b: 1, a: 0.5}
+      second: {r: 1, g: 0.51724136, b: 0, a: 0.5}

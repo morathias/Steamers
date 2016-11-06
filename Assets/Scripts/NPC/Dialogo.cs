@@ -5,11 +5,12 @@ using UnityEngine.UI;
 public class Dialogo : MonoBehaviour {
     public string[] lineas;
     public Text texto;
-    public Canvas canvas;
+    public Image dialogoBox;
 
     int _indexDialogo = 0;
     //----------------------------------------------------------------------------
 	void Start () {
+        lineas[_indexDialogo] = lineas[_indexDialogo].Replace("/", "\n");
         texto.text = lineas[_indexDialogo];
 	}
     //----------------------------------------------------------------------------
@@ -18,23 +19,24 @@ public class Dialogo : MonoBehaviour {
             texto.text = lineas[_indexDialogo];
         else
         {
-            GameObject.Find("Prota").GetComponent<Prota>().estaHablando(false);
-            canvas.enabled = false;
+            dialogoBox.enabled = false;
+            texto.enabled = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && canvas.enabled)
+        if (Input.GetKeyDown(KeyCode.E) && dialogoBox.enabled)
             _indexDialogo++;
 	}
     //----------------------------------------------------------------------------
     public void setInicioDialogo(int inicio) {
         _indexDialogo = inicio;
     }
-
+    //----------------------------------------------------------------------------
     public bool finDialogo() {
         if (_indexDialogo == lineas.Length)
             return true;
         else
             return false;
     }
+    //----------------------------------------------------------------------------
 }
 //================================================================================

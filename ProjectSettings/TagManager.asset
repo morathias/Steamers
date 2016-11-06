@@ -12,6 +12,8 @@ TagManager:
   - Shield
   - BalaE
   - Shotty
+  - CQC
+  - Rifleman
   layers:
   - Default
   - TransparentFX
@@ -23,7 +25,7 @@ TagManager:
   - 
   - BulletE
   - Shield
-  - 
+  - Prota
   - 
   - 
   - 
