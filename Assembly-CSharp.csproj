@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{429C5F4C-14A9-E5F0-2DB9-BD0DF7A8D15D}</ProjectGuid>
+    <ProjectGuid>{60099AFC-5DCC-82C1-8506-B078D67FE989}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -45,9 +45,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\AinzOoalGown.cs" />
      <Compile Include="Assets\Scripts\Armas\Arma.cs" />
      <Compile Include="Assets\Scripts\Armas\DuoRevolver.cs" />
+     <Compile Include="Assets\Scripts\Enemigo\AinzOolGown.cs" />
      <Compile Include="Assets\Scripts\Enemigo\CQCMob.cs" />
      <Compile Include="Assets\Scripts\Enemigo\EnemyHealth.cs" />
      <Compile Include="Assets\Scripts\Enemigo\Infantry.cs" />
@@ -174,7 +174,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{C63E3953-B534-9F4B-2FD0-25F62ECFCD8F}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{A35F5151-46B1-C3D5-5F5C-CC3EC940B165}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
