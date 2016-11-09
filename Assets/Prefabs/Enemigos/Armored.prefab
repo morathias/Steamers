@@ -41,6 +41,7 @@ GameObject:
   - 136: {fileID: 136000012019442208}
   - 23: {fileID: 23000012361398582}
   - 114: {fileID: 114000013744252034}
+  - 114: {fileID: 114000013166930450}
   - 54: {fileID: 54000013563405174}
   m_Layer: 9
   m_Name: Armored
@@ -175,6 +176,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114000013166930450
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010848185788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f79feaf6fbfa344996955c45e01aaf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!114 &114000013744252034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -187,6 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rango: 50
+  velocidad: 2
 --- !u!136 &136000012019442208
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -23,6 +23,7 @@ GameObject:
   - 136: {fileID: 136000012178243458}
   - 23: {fileID: 23000011772258652}
   - 114: {fileID: 114000010965773464}
+  - 114: {fileID: 114000011128379946}
   - 54: {fileID: 54000010541217062}
   m_Layer: 9
   m_Name: Armored Captain
@@ -187,6 +188,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rango: 50
+--- !u!114 &114000011128379946
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010938902958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f79feaf6fbfa344996955c45e01aaf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 150
 --- !u!136 &136000012178243458
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WalkingMine : MonoBehaviour {
+public class WalkingMine : Overlord {
 
     public Transform Target;
     public int RangoDeteccion;
@@ -11,8 +11,9 @@ public class WalkingMine : MonoBehaviour {
     bool move = false;
 
 
-    void Start()
+    override protected void Start()
     {
+        base.Start();
         GameObject Objetivo = GameObject.FindGameObjectWithTag("Player");
         Target = Objetivo.transform;
 

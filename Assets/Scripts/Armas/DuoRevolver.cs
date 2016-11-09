@@ -5,12 +5,11 @@ public class DuoRevolver : Arma {
     Transform _revolverIzquierdo, _revolverDerecho;
     int _cambiarArma = 0;
 
-    void Start() {
+    override protected void Start() {
         _revolverIzquierdo = transform.FindChild("revolver_Izquierdo");
         _revolverDerecho = transform.FindChild("revolver_Derecho");
-        _balasActuales = balas;
-        _estado = estados.llena;
-        balasTxt.text = "Balas: " + _balasActuales;
+
+        base.Start();
     }
 
     public override bool disparar() {

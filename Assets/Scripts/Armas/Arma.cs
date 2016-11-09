@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class Arma : MonoBehaviour {
     public int balas;
     public float daño;
+    float _daño;
     public float distancia; //tiempo que tarda en destruirse
     int health;
 
@@ -17,6 +18,7 @@ public class Arma : MonoBehaviour {
     protected int _balasActuales;
 
     public ParticleSystem _bala;
+    protected DañoBalas _dañoBala;
 
     public Image barraRecarga;
     public Image barraRecargaVacia;
@@ -28,9 +30,14 @@ public class Arma : MonoBehaviour {
     }
     protected estados _estado;
     //---------------------------------------------
-	void Start () {
+	protected virtual void Start () {
+        _daño = daño;
+        _dañoBala = _bala.GetComponent<DañoBalas>();
+        _dañoBala.setDaño((int)_daño);
+
         _balasActuales = balas;
         _estado = estados.llena;
+
         balasTxt.text = "Balas: " + _balasActuales;
         barraRecarga.enabled = false;
         barraRecargaVacia.enabled = false;
@@ -63,6 +70,12 @@ public class Arma : MonoBehaviour {
         }
 
         balasTxt.text = "Balas: " + _balasActuales;
+
+        if (_recargaPerfecta && _balasActuales <= _balasActuales / 2)
+        {
+            _recargaPerfecta = false;
+            _daño = daño;
+        }
 	}
     //---------------------------------------------
     public virtual bool disparar() { return false; }
@@ -77,7 +90,9 @@ public class Arma : MonoBehaviour {
                 _rangoRecarga = 0f;
                 barraRecarga.fillAmount = _rangoRecarga;
                 _balasActuales = balas;
-                daño *= 2;
+                _daño *= 2;
+                _dañoBala.setDaño((int)_daño);
+                _recargaPerfecta = true;
                 return true;
             }
             else {

@@ -1,21 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CQCMob : MonoBehaviour
+public class CQCMob : Overlord
 {
 
     Transform Target;
     public int RangoLucha;
-    public int velocidad;
+    public int velocidad = 10;
     public int damage;
     bool stayput = false;
     int timer = 0;
 
-    void Start()
+    override protected void Start()
     {
+        base.Start();
         GameObject Objetivo = GameObject.FindGameObjectWithTag("Player");
         Target = Objetivo.transform;
-
     }
 
     void Update()

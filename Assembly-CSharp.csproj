@@ -45,12 +45,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\AinzOoalGown.cs" />
      <Compile Include="Assets\Scripts\Armas\Arma.cs" />
+     <Compile Include="Assets\Scripts\Armas\DañoBalas.cs" />
      <Compile Include="Assets\Scripts\Armas\DuoRevolver.cs" />
      <Compile Include="Assets\Scripts\Enemigo\CQCMob.cs" />
      <Compile Include="Assets\Scripts\Enemigo\EnemyHealth.cs" />
      <Compile Include="Assets\Scripts\Enemigo\Infantry.cs" />
+     <Compile Include="Assets\Scripts\Enemigo\Overlord.cs" />
      <Compile Include="Assets\Scripts\Enemigo\Shield.cs" />
      <Compile Include="Assets\Scripts\Enemigo\WalkingMine.cs" />
      <Compile Include="Assets\Scripts\Enemigo\protoScriptAC.cs" />

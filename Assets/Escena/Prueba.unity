@@ -5595,6 +5595,20 @@ Prefab:
       propertyPath: barraRecargaPunto
       value: 
       objectReference: {fileID: 1998189291}
+    - target: {fileID: 114000012328686802, guid: 251b675202aa2344eb3f21b140e61bae,
+        type: 2}
+      propertyPath: "da\xF1o"
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010916823758, guid: 251b675202aa2344eb3f21b140e61bae, type: 2}
+      propertyPath: m_TagString
+      value: BalaPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000010860066154, guid: 251b675202aa2344eb3f21b140e61bae,
+        type: 2}
+      propertyPath: CollisionModule.collisionMessages
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 251b675202aa2344eb3f21b140e61bae, type: 2}
   m_IsPrefabParent: 0
@@ -5920,6 +5934,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 198000012643834016, guid: e6ba7f40d556a67428dfc42cff4f56e7,
+        type: 2}
+      propertyPath: lengthInSec
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000012643834016, guid: e6ba7f40d556a67428dfc42cff4f56e7,
+        type: 2}
+      propertyPath: EmissionModule.time0
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000012643834016, guid: e6ba7f40d556a67428dfc42cff4f56e7,
+        type: 2}
+      propertyPath: InitialModule.maxNumParticles
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e6ba7f40d556a67428dfc42cff4f56e7, type: 2}
   m_IsPrefabParent: 0
@@ -6076,6 +6105,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1891360026}
   m_RootOrder: 14
+--- !u!1 &1675680064 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000010916823758, guid: 251b675202aa2344eb3f21b140e61bae,
+    type: 2}
+  m_PrefabInternal: {fileID: 1398545184}
+--- !u!114 &1675680068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1675680064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 392578cdb1a0f4540aee77c7838d62cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1715875722
 GameObject:
   m_ObjectHideFlags: 0
