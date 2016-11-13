@@ -28,13 +28,14 @@ public class Infantry : Overlord
     override protected void Start()
     {
         base.Start();
-        _stats.applyDamage(1);
+        
         GameObject objective = GameObject.FindGameObjectWithTag("Player");
         fichador = objective.transform;
 
         GameObject Leader = GameObject.FindGameObjectWithTag("Capitan");
         capitanPos = Leader.transform;
 
+        _balaE.GetComponent<DañoBalas>().setDaño(daño);
     }
     void Update()
     {

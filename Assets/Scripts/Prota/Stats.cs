@@ -15,12 +15,13 @@ public class Stats : MonoBehaviour {
     public Text levelsT;
     public LevelUp _levelUp;
 
-	public void applyDamage(int damage) {
-		health -= damage;
-		if (health <= 0) {
-           // SceneManager.LoadScene("Menu");
-		}
+	public bool applyDamage(int damage) {
+		_vidaActual -= damage;
+        if (_vidaActual <= 0)
+            return true;
+        return false;
 	}
+
     public int vida{
         get{
             return _vidaActual;

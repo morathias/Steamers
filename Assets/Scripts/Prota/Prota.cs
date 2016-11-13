@@ -17,6 +17,7 @@ public class Prota : MonoBehaviour {
 
     public Image _barraVida;
     public Image _barraStamina;
+    public Text hasMuertoTxt;
 
     enum estados {      //para la maquina de estados
         moviendose,
@@ -68,8 +69,12 @@ public class Prota : MonoBehaviour {
             case estados.hablando:
                 //prota: -wololo-;
                 break;
+
+            case estados.muriendo:
+                hasMuertoTxt.enabled = true;
+                this.enabled = false;
+                break;
         }
-        //Debug.Log(_estado);
 	}
     //-------------------------------------------------------------------------------------------
     void moverProta() {
@@ -124,5 +129,15 @@ public class Prota : MonoBehaviour {
 
     }
     //-------------------------------------------------------------------------------------------
+    void OnParticleCollision(GameObject other)
+    {
+        if (other.tag == "BalaE" && _estado != estados.esquivando)
+        {
+            if (_stats.applyDamage(other.GetComponent<DañoBalas>().getDaño()))
+                _estado = estados.muriendo;
+
+            _barraVida.fillAmount = _stats.vida / _stats.health;
+        }
+    }
 }
 //===============================================================================================

@@ -56,7 +56,10 @@
      <Compile Include="Assets\Scripts\Enemigo\WalkingMine.cs" />
      <Compile Include="Assets\Scripts\Enemigo\protoScriptAC.cs" />
      <Compile Include="Assets\Scripts\Globales\Canvus.cs" />
+     <Compile Include="Assets\Scripts\Globales\CualquierTecla.cs" />
      <Compile Include="Assets\Scripts\Globales\EsceneManager.cs" />
+     <Compile Include="Assets\Scripts\Globales\MenuPausa.cs" />
+     <Compile Include="Assets\Scripts\Globales\MisionCompletaFade.cs" />
      <Compile Include="Assets\Scripts\Globales\Perks1.cs" />
      <Compile Include="Assets\Scripts\Globales\Perks2.cs" />
      <Compile Include="Assets\Scripts\Globales\Variables.cs" />

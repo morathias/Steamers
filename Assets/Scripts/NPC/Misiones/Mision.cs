@@ -3,16 +3,18 @@ using System.Collections;
 using UnityEngine.UI;
 //==========================================
 public class Mision : MonoBehaviour {
-    public Text informacion;
+    protected string informacion;
     public Text mensajeMisionCumplida;
-    public Image papel;
+    private Sprite papel;
 
-    bool _activa = false;
+    protected bool _activa = false;
     //--------------------------------------
     protected virtual void Update() {
         if (_activa) {
-            if (condicionCumplida())
+            if (condicionCumplida()){
                 mensajeMisionCumplida.enabled = true;
+                Destroy(gameObject);
+            }
         }
     }
     //--------------------------------------
@@ -20,13 +22,17 @@ public class Mision : MonoBehaviour {
         _activa = true;
     }
     //--------------------------------------
-    public void terminarMision() {
+    public bool misionTerminada() {
         _activa = false;
+        return true;
     }
     //--------------------------------------
     protected virtual bool condicionCumplida() {
         return false;
     }
     //--------------------------------------
+    public string getInformacion() {
+        return informacion;
+    }
 }
 //==========================================

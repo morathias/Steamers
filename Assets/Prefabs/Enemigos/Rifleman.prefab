@@ -21,6 +21,7 @@ GameObject:
   - 4: {fileID: 4000010982357814}
   - 198: {fileID: 198000013944445204}
   - 199: {fileID: 199000013860449098}
+  - 114: {fileID: 114000013934232740}
   m_Layer: 8
   m_Name: BalaE
   m_TagString: BalaE
@@ -150,6 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d530afd82da5a6042beae2a3cac43830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  "da\xF1o": 20
   Rango: 100
   _balaE: {fileID: 198000013944445204}
 --- !u!114 &114000010747732206
@@ -164,6 +166,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
+--- !u!114 &114000013934232740
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012091084796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 392578cdb1a0f4540aee77c7838d62cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198000013944445204
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -1893,7 +1906,7 @@ ParticleSystem:
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:

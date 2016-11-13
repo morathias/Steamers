@@ -23,8 +23,8 @@ GameObject:
   - 135: {fileID: 135000013916504412}
   - 23: {fileID: 23000013636619132}
   - 114: {fileID: 114000012266314538}
-  - 65: {fileID: 65000012952909648}
   - 114: {fileID: 114000014196790678}
+  - 65: {fileID: 65000012952909648}
   - 54: {fileID: 54000014137072666}
   m_Layer: 0
   m_Name: Frontline
@@ -40,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012203602878}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.01, y: 0.48000002, z: -12.57}
+  m_LocalPosition: {x: 0.59726554, y: 0.5, z: -9.572355}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -107,8 +107,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 2.5384145, z: 1}
+  m_Center: {x: 0, y: 0.76920724, z: 0}
 --- !u!114 &114000012266314538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RangoLucha: 20
-  velocidad: 1
+  velocidad: 5
   damage: 0
 --- !u!114 &114000014196790678
 MonoBehaviour:

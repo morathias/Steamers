@@ -42,9 +42,10 @@ GameObject:
   - 4: {fileID: 4000013915500244}
   - 199: {fileID: 199000010557295820}
   - 198: {fileID: 198000012643834016}
+  - 114: {fileID: 114000010547416796}
   m_Layer: 8
   m_Name: Pellets
-  m_TagString: Shotty
+  m_TagString: BalaE
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,6 +140,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114000010547416796
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013487302552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 392578cdb1a0f4540aee77c7838d62cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000011047198332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -162,6 +174,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d530afd82da5a6042beae2a3cac43830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  balas: {fileID: 198000012643834016}
+  "da\xF1o": 1
   Rango: 100
   _balaE: {fileID: 198000012643834016}
 --- !u!198 &198000012643834016
@@ -660,7 +674,7 @@ ParticleSystem:
     cntmax1: 30
     cntmax2: 30
     cntmax3: 30
-    time0: 0
+    time0: 0.1
     time1: 0
     time2: 0
     time3: 0

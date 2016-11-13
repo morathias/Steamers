@@ -6,6 +6,8 @@ public class Overlord : MonoBehaviour {
     protected Prota bla;
     protected EnemyHealth _stats;
     
+    public int daño;
+    
     protected virtual void Start()
     {
         bla = Component.FindObjectOfType<Prota>();

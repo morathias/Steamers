@@ -15,6 +15,7 @@ TagManager:
   - CQC
   - Rifleman
   - BalaPlayer
+  - CazaEnemigos
   layers:
   - Default
   - TransparentFX

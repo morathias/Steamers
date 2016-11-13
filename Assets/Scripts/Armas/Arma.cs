@@ -24,6 +24,8 @@ public class Arma : MonoBehaviour {
     public Image barraRecargaVacia;
     public Image barraRecargaPunto;
 
+    Prota _prota;
+
     protected enum estados {
         llena,
         recargando
@@ -42,31 +44,38 @@ public class Arma : MonoBehaviour {
         barraRecarga.enabled = false;
         barraRecargaVacia.enabled = false;
         barraRecargaPunto.enabled = false;
+
+        _prota = GameObject.Find("Prota").GetComponent<Prota>();
 	}
     //---------------------------------------------
 	void Update () {
-        switch (_estado) {
-            case estados.llena:
-                if (!disparar())
-                    _estado = estados.recargando;
+        if (_prota.enabled)
+        {
+            switch (_estado)
+            {
+                case estados.llena:
+                    if (!disparar())
+                        _estado = estados.recargando;
 
-                //chequea que no este llena, evita recargar estando llena
-                if (Input.GetKeyDown(KeyCode.R) && _balasActuales != balas) 
-                    _estado = estados.recargando;
-                break;
+                    //chequea que no este llena, evita recargar estando llena
+                    if (Input.GetKeyDown(KeyCode.R) && _balasActuales != balas)
+                        _estado = estados.recargando;
+                    break;
 
-            case estados.recargando:
-                barraRecarga.enabled = true;
-                barraRecargaVacia.enabled = true;
-                barraRecargaPunto.enabled = true;
+                case estados.recargando:
+                    barraRecarga.enabled = true;
+                    barraRecargaVacia.enabled = true;
+                    barraRecargaPunto.enabled = true;
 
-                if (recargar()){
-                    _estado = estados.llena;
-                    barraRecarga.enabled = false;
-                    barraRecargaVacia.enabled = false;
-                    barraRecargaPunto.enabled = false;
-                }
-                break;
+                    if (recargar())
+                    {
+                        _estado = estados.llena;
+                        barraRecarga.enabled = false;
+                        barraRecargaVacia.enabled = false;
+                        barraRecargaPunto.enabled = false;
+                    }
+                    break;
+            }
         }
 
         balasTxt.text = "Balas: " + _balasActuales;
