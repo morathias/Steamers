@@ -44,12 +44,7 @@ public class protoScriptAC : Overlord
             fire();
 
         if (onOrder == false)
-        {
             commandTime++;
-        }
-
-
-        moveIt();
     }
 
     void formUp()
@@ -62,14 +57,16 @@ public class protoScriptAC : Overlord
         {
             if (hit.gameObject.tag == "Enemy")
             {
-                Infantry rifleman = hit.GetComponent<Infantry>();
-                rifleman.timeToHaulYoArses(numeroSoldado);
+                GameObject enemy = hit.gameObject;
+                Overlord f = hit.GetComponent<Infantry>().GetComponentInParent<Overlord>();
+                f.hoihoihoihoi(enemy, numeroSoldado);
                 numeroSoldado++;
             }
             if (hit.gameObject.tag == "ArmoredE")
             {
-                Shield armored = hit.GetComponent<Shield>();
-                armored.timeToHaulYoArses(numeroEscudo);
+                GameObject enemy = hit.gameObject;
+                Overlord f = hit.GetComponent<Shield>().GetComponentInParent<Overlord>();
+                f.hoihoihoihoi(enemy, numeroEscudo);
                 numeroEscudo++;
             }
             onOrder = true;

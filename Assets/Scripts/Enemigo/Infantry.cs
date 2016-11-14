@@ -5,25 +5,18 @@ public class Infantry : Overlord
 {
     Transform fichador;
     public int Rango = 50;
-    float intervalo = 0.2f;
-    float prox = 0.0f;
+   // float intervalo = 0.2f;
+    //float prox = 0.0f;
     int limite = 60;
-    int cool = 0;
+   // int cool = 0;
     int move = 0;
     Transform capitanPos;
     public ParticleSystem _balaE;
     Quaternion neededRotation;
-    private int ordenPos;
+  //  private int ordenPos;
 
     Vector3 _posicionLider;
 
-    enum estados
-    {
-        normal,
-        bajoOrdenes
-    }
-
-    estados _estado = estados.normal;
 
     override protected void Start()
     {
@@ -45,7 +38,11 @@ public class Infantry : Overlord
                 if (Vector3.Distance(transform.position, fichador.position) < Rango)
                 {
                     limite++;
-                    transform.LookAt(fichador.position);
+                    neededRotation = Quaternion.LookRotation(fichador.transform.position - transform.position);
+                    neededRotation.x = 0;
+                    neededRotation.z = 0;
+
+                    transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 2.0f);
                     if (limite > 80)
                         fire();
                     moveIt();
@@ -129,12 +126,5 @@ public class Infantry : Overlord
         transform.position = Vector3.MoveTowards(transform.position, _posicionLider, 2 * Time.deltaTime);
 
     }
-    public void timeToHaulYoArses(int pos)
-    {
-        if (pos < 6)
-        {
-            ordenPos = pos;
-            _estado = estados.bajoOrdenes;
-        }
-    }
+
 }

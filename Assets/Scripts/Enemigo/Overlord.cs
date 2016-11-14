@@ -1,39 +1,54 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class Overlord : MonoBehaviour {
-    int totalFggts = 0;
-    protected Prota bla;
+public class Overlord : Formations {
+
+    private int totalF;
+    protected bool holdIt = false;
+    protected Prota gratmos;
     protected EnemyHealth _stats;
-    
-    public int daño;
-    
+    protected List<GameObject> unidades;
+    protected List<List<GameObject>> grupos; //Oh Kelaah... The fuck I'm freestylin' here? Why it works?! CARMACK HELP ME!
+    protected Formations orders;
+
     protected virtual void Start()
     {
-        bla = Component.FindObjectOfType<Prota>();
+        gratmos = Component.FindObjectOfType<Prota>();
         _stats = GetComponent<EnemyHealth>();
+        unidades = new List<GameObject>();
+        grupos = new List<List<GameObject>>();
     }
 
     void Update()
     {
-        if (totalFggts < 0)
+
+        Debug.Log(totalF);
+        Debug.Log("Cantidad");
+        if (holdIt == true)
+            check();
+        
+    }
+
+
+    public void hoihoihoihoi(GameObject troop, int pos)
+    {
+        unidades.Add(troop);
+        troop.gameObject.GetComponent<Formations>().begin(pos);
+        totalF=+1;
+   
+        if (totalF > 1)
         {
-            bla.fear();
+            
+            grupos.Add(unidades);
+            unidades.Clear();
+            holdIt = true;
         }
     }
 
-    public void OhCrapOhCrap()
+    public int getF()
     {
-        totalFggts--;
-    }
-    public void hoihoihoihoi()
-    {
-        totalFggts++;
-    }
-
-    public int getFggts()
-    {
-        return totalFggts;
+        return totalF;
     }
 
     protected virtual void OnParticleCollision(GameObject other)
@@ -41,6 +56,23 @@ public class Overlord : MonoBehaviour {
         if (other.transform.tag == "BalaPlayer")
         {
             _stats.applyDamage(other.GetComponent<DañoBalas>().getDaño());
+        }
+    }
+
+    protected virtual void check()
+    {
+       
+        for (int i = 0; i < grupos.Count; i++)
+        {
+            if (grupos[i].Count < 4)
+            {
+                for (int f = 0; f < grupos[i].Count; f++)
+                {
+                    grupos[i][f].GetComponentInParent<Formations>().reset();
+                    
+                }
+
+            }
         }
     }
 }

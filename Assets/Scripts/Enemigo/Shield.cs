@@ -6,14 +6,14 @@ public class Shield : Overlord
 
     Transform fichador;
     public int Rango = 50;
-    float intervalo = 0.2f;
+   // float intervalo = 0.2f;
     public int velocidad = 2;
-    float prox = 0.0f;
-    int cartucho = 0;
-    int cool = 0;
+   // float prox = 0.0f;
+   // int cartucho = 0;
+  //  int cool = 0;
     Transform capitanPos;
     Quaternion neededRotation;
-    int ordenPos;
+ //   int ordenPos;
     int damage = 5;
     bool stayput = false;
     int timer = 0;
@@ -21,13 +21,6 @@ public class Shield : Overlord
 
     Vector3 _posicionLider;
 
-    enum estados
-    {      //para la maquina de estados
-        normal,
-        bajoOrdenes
-    }
-
-    estados _estado = estados.normal;
 
     override protected void Start()
     {
@@ -49,7 +42,7 @@ public class Shield : Overlord
                 if (Vector3.Distance(transform.position, fichador.position) < Rango)
                 {
                     neededRotation = Quaternion.LookRotation(fichador.transform.position - transform.position);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 0.7f);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 0.75f);
                 }
                 transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
                 if (stayput == true)
@@ -82,6 +75,10 @@ public class Shield : Overlord
 
                         break;
 
+                    default:
+                        _estado = estados.normal;
+                        break;
+
                 }
 
                 transform.position = Vector3.MoveTowards(transform.position, _posicionLider, 5 * Time.deltaTime);
@@ -100,14 +97,6 @@ public class Shield : Overlord
             healthComponent.applyDamage(damage);
 
             stayput = true;
-        }
-    }
-    public void timeToHaulYoArses(int pos)
-    {
-        if (pos < 2)
-        {
-            ordenPos = pos;
-            _estado = estados.bajoOrdenes;
         }
     }
 }
