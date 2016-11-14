@@ -28,14 +28,13 @@ public class Infantry : Overlord
     override protected void Start()
     {
         base.Start();
-        
+        _stats.applyDamage(1);
         GameObject objective = GameObject.FindGameObjectWithTag("Player");
         fichador = objective.transform;
 
         GameObject Leader = GameObject.FindGameObjectWithTag("Capitan");
         capitanPos = Leader.transform;
 
-        _balaE.GetComponent<DañoBalas>().setDaño(daño);
     }
     void Update()
     {
@@ -96,7 +95,7 @@ public class Infantry : Overlord
                     neededRotation.x = 0;
                     neededRotation.z = 0;
                     transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 0.9f);
-                    if (limite > 60)
+                    if (limite > 75)
                         fire();
                 }
 

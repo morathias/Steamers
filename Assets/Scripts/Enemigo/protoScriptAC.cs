@@ -8,9 +8,11 @@ public class protoScriptAC : Overlord
     public int Rango = 50;
     Quaternion neededRotation;
     private int commandTime = 0;
-    private bool onOrder = true;
+    private bool onOrder = false;
     Vector3 _posicionLider;
     int move = 0;
+    int limite = 0;
+    public ParticleSystem _balaE;
 
 
     override protected void Start()
@@ -23,14 +25,11 @@ public class protoScriptAC : Overlord
     }
     void Update()
     {
-        if (getFggts() > 7)
-        {
-            onOrder = true;
-        }
 
         if (commandTime > 90)
         {
             commandTime = 0;
+            onOrder = true;
             formUp();
         }
 
@@ -38,7 +37,11 @@ public class protoScriptAC : Overlord
         neededRotation.x = 0;
         neededRotation.z = 0;
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 0.8f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 0.95f);
+
+        limite++;
+        if (limite > 60)
+            fire();
 
         if (onOrder == false)
         {
@@ -87,5 +90,15 @@ public class protoScriptAC : Overlord
         }
         transform.position = Vector3.MoveTowards(transform.position, _posicionLider, 5 * Time.deltaTime);
 
+    }
+
+    void fire()
+    {
+        _balaE.startLifetime = Rango / _balaE.startSpeed;
+
+        _balaE.transform.position = transform.position;
+        _balaE.Emit(30);
+
+        limite = 0;
     }
 }
