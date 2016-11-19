@@ -67,6 +67,7 @@ public class Prota : MonoBehaviour {
                 break;
 
             case estados.hablando:
+                Debug.Log("wololo");
                 //prota: -wololo-;
                 break;
 
@@ -133,6 +134,7 @@ public class Prota : MonoBehaviour {
     {
         if (other.tag == "BalaE" && _estado != estados.esquivando)
         {
+            Debug.Log("SacoVida");
             if (_stats.applyDamage(other.GetComponent<DañoBalas>().getDaño()))
                 _estado = estados.muriendo;
 

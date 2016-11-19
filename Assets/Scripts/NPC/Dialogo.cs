@@ -16,7 +16,10 @@ public class Dialogo : MonoBehaviour {
     //----------------------------------------------------------------------------
 	void Update () {
         if (_indexDialogo < lineas.Length)
+        {
             texto.text = lineas[_indexDialogo];
+            lineas[_indexDialogo] = lineas[_indexDialogo].Replace("/", "\n");
+        }
         else
         {
             dialogoBox.enabled = false;

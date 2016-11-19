@@ -13,6 +13,7 @@ public class Stats : MonoBehaviour {
     public int stat = 0;
     public Text stats;
     public Text levelsT;
+    public Text levelUpTxt;
     public LevelUp _levelUp;
 
 	public bool applyDamage(int damage) {
@@ -42,9 +43,15 @@ public class Stats : MonoBehaviour {
             stat ++;
         }
         if (stat > 0)
+        {
             stats.text = "" + stat;
+            levelUpTxt.enabled = true;
+        }
         else
+        {
             stats.text = "";
+            levelUpTxt.enabled = false;
+        }
 
         levelsT.text = "Lvl: " + level;
     }

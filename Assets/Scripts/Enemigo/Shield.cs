@@ -6,14 +6,15 @@ public class Shield : Overlord
 
     Transform fichador;
     public int Rango = 50;
-   // float intervalo = 0.2f;
+    // float intervalo = 0.2f;
     public int velocidad = 2;
-   // float prox = 0.0f;
-   // int cartucho = 0;
-  //  int cool = 0;
+    // float prox = 0.0f;
+    // int cartucho = 0;
+    //  int cool = 0;
     Transform capitanPos;
     Quaternion neededRotation;
- //   int ordenPos;
+    GameObject Leader;
+    //   int ordenPos;
     int damage = 5;
     bool stayput = false;
     int timer = 0;
@@ -29,15 +30,17 @@ public class Shield : Overlord
         GameObject objective = GameObject.FindGameObjectWithTag("Player");
         fichador = objective.transform;
 
-        GameObject Leader = GameObject.FindGameObjectWithTag("Capitan");
-        capitanPos = Leader.transform;
-
     }
     void Update()
     {
+
         switch (_estado)
         {
             case estados.normal:
+                if (dead == true)
+                {
+                    Destroy(gameObject);
+                }
 
                 if (Vector3.Distance(transform.position, fichador.position) < Rango)
                 {
@@ -97,6 +100,28 @@ public class Shield : Overlord
             healthComponent.applyDamage(damage);
 
             stayput = true;
+        }
+    }
+
+    public void reset()
+    {
+        _estado = estados.normal;
+    }
+
+    public bool begin(int pos, GameObject PointMan)
+    {
+        if (pos < 2 && _estado != estados.bajoOrdenes)
+        {
+            ordenPos = pos;
+            _estado = estados.bajoOrdenes;
+            Leader = PointMan;
+            capitanPos = Leader.transform;
+            return true;
+        }
+        else
+        {
+            Debug.Log("Bolo");
+            return false;
         }
     }
 }

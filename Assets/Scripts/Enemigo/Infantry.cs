@@ -4,37 +4,39 @@ using System.Collections;
 public class Infantry : Overlord
 {
     Transform fichador;
-    public int Rango = 50;
-   // float intervalo = 0.2f;
+    public int Rango = 5;
+    // float intervalo = 0.2f;
     //float prox = 0.0f;
     int limite = 60;
-   // int cool = 0;
+    // int cool = 0;
     int move = 0;
     Transform capitanPos;
     public ParticleSystem _balaE;
     Quaternion neededRotation;
-  //  private int ordenPos;
-
+    //  private int ordenPos;
+    GameObject Leader;
     Vector3 _posicionLider;
 
 
     override protected void Start()
     {
         base.Start();
-        _stats.applyDamage(1);
+        _balaE.GetComponent<DañoBalas>().setDaño(daño);
         GameObject objective = GameObject.FindGameObjectWithTag("Player");
         fichador = objective.transform;
-
-        GameObject Leader = GameObject.FindGameObjectWithTag("Capitan");
-        capitanPos = Leader.transform;
 
     }
     void Update()
     {
+
         switch (_estado)
         {
             case estados.normal:
 
+                if (dead == true)
+                {
+                    Destroy(gameObject);
+                }
                 if (Vector3.Distance(transform.position, fichador.position) < Rango)
                 {
                     limite++;
@@ -53,7 +55,6 @@ public class Infantry : Overlord
                 break;
 
             case estados.bajoOrdenes:
-
                 switch (ordenPos)
                 {
                     case 0:
@@ -126,5 +127,17 @@ public class Infantry : Overlord
         transform.position = Vector3.MoveTowards(transform.position, _posicionLider, 2 * Time.deltaTime);
 
     }
-
+    public bool begin(int pos, GameObject PointMan)
+    {
+        if (pos < 6 && _estado != estados.bajoOrdenes)
+        {
+            ordenPos = pos;
+            _estado = estados.bajoOrdenes;
+            Leader = PointMan;
+            capitanPos = Leader.transform;
+            return true;
+        }
+        else
+            return false;
+    }
 }

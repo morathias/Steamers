@@ -7,7 +7,7 @@ public class WalkingMine : Overlord {
     public int RangoDeteccion;
     public int velocidad;
     public int damage;
-    //int timer = 0;
+    int timer = 0;
     bool move = false;
 
 

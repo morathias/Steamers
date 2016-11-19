@@ -12,6 +12,7 @@ public class Mision : MonoBehaviour {
     protected virtual void Update() {
         if (_activa) {
             if (condicionCumplida()){
+                Debug.Log("Mision Cumplida");
                 mensajeMisionCumplida.enabled = true;
                 Destroy(gameObject);
             }
