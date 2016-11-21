@@ -5,7 +5,7 @@ public class Shield : Overlord
 {
 
     Transform fichador;
-    public int Rango = 50;
+    public int Rango = 1;
     // float intervalo = 0.2f;
     public int velocidad = 2;
     // float prox = 0.0f;

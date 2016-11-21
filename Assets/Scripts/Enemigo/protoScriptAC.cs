@@ -5,7 +5,7 @@ public class protoScriptAC : Overlord
 {
 
     Transform fichador;
-    public int Rango = 5;
+    public int Rango = 1;
     Quaternion neededRotation;
     private int commandTime = 0;
     private int commandInit;
@@ -45,7 +45,7 @@ public class protoScriptAC : Overlord
                     formUp();
                 }
                 limite++;
-                if (limite > 60)
+                if (limite > 80)
                     fire();
                 commandTime++;
                 moveIt();
@@ -61,7 +61,7 @@ public class protoScriptAC : Overlord
                     }
 
                     limite++;
-                    if (limite > 60)
+                    if (limite > 70)
                         fire();
                     Destroy(gameObject);
                 }

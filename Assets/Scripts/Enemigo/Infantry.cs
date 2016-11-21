@@ -4,10 +4,10 @@ using System.Collections;
 public class Infantry : Overlord
 {
     Transform fichador;
-    public int Rango = 5;
+    public int Rango = 1;
     // float intervalo = 0.2f;
     //float prox = 0.0f;
-    int limite = 60;
+    int limite = 0;
     // int cool = 0;
     int move = 0;
     Transform capitanPos;
@@ -45,7 +45,7 @@ public class Infantry : Overlord
                     neededRotation.z = 0;
 
                     transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 2.0f);
-                    if (limite > 80)
+                    if (limite > 120)
                         fire();
                     moveIt();
 
@@ -93,7 +93,7 @@ public class Infantry : Overlord
                     neededRotation.x = 0;
                     neededRotation.z = 0;
                     transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 0.9f);
-                    if (limite > 75)
+                    if (limite > 80)
                         fire();
                 }
 

@@ -8,7 +8,7 @@ public class Overlord : MonoBehaviour
     protected EnemyHealth _stats;
     protected estados _estado;
     protected int ordenPos;
-    public bool dead;
+    public bool dead = false;
 
     public int daño;
 
@@ -35,6 +35,7 @@ public class Overlord : MonoBehaviour
     {
         _estado = estados.normal;
     }
+
     protected virtual void OnParticleCollision(GameObject other)
     {
         if (other.transform.tag == "BalaPlayer")
