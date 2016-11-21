@@ -137,6 +137,7 @@ public class protoScriptAC : Overlord
     void check()
     {
         Debug.Log(unidades.Count);
+
         count = unidades.Count;
         if (count < 3)
         {
@@ -154,6 +155,7 @@ public class protoScriptAC : Overlord
                 {
                     Destroy(unidades[i]);
                     unidades.RemoveAt(i);
+                    break;
                 }
 
             }
