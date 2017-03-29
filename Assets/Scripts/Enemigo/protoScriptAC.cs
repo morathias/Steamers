@@ -14,7 +14,7 @@ public class protoScriptAC : Overlord
     int move = 0;
     int limite = 0;
     public ParticleSystem _balaE;
-   // Formations f;
+    Formations f;
     private List<GameObject> unidades;
     int count;
     Infantry troop;
@@ -27,12 +27,14 @@ public class protoScriptAC : Overlord
         _stats.applyDamage(1);
         GameObject objective = GameObject.FindGameObjectWithTag("Player");
         fichador = objective.transform;
-     //   f = GetComponent<Formations>();
+        f = GetComponent<Formations>();
         commandInit = Random.Range(120, 500);
 
     }
     void Update()
     {
+        Debug.Log("count = " + count);
+        Debug.Log("oreder = " + onOrder);
         switch (_estado)
         {
             case estados.normal:
@@ -55,24 +57,29 @@ public class protoScriptAC : Overlord
             case estados.bajoOrdenes:
                 if (dead == true)
                 {
-                    for (int i = 0; i < unidades.Count; i++)
+                    count = unidades.Count;
+                    for (int f = 0; f < count; f++)
                     {
-                        unidades[i].GetComponentInParent<Infantry>().reset();
+                        unidades[f].GetComponent<Overlord>().reset();
+                        count = unidades.Count;
                     }
-
-                    limite++;
-                    if (limite > 70)
-                        fire();
                     Destroy(gameObject);
                 }
+                limite++;
+                if (limite > 70)
+                {
+                    fire();
+                }
+
                 check();
                 moveIt();
+
                 break;
         }
     }
     void formUp()
     {
-        Debug.Log("MoveYoArses");
+
         Vector3 explosionPos = transform.position;
         Collider[] colliders = Physics.OverlapSphere(explosionPos, 50);
         int numeroSoldado = 0;
@@ -81,7 +88,7 @@ public class protoScriptAC : Overlord
 
         foreach (Collider hit in colliders)
         {
-            if (hit.gameObject.tag == "Enemy")
+            if (hit.gameObject.tag == "EnemyS")
             {
                 troop = hit.gameObject.GetComponent<Infantry>();
 
@@ -103,9 +110,9 @@ public class protoScriptAC : Overlord
                 }
             }
         }
-       // f.hoihoihoihoi(gameObject);
-        onOrder = true;
 
+        onOrder = true;
+        check();
     }
 
     void moveIt()
@@ -141,9 +148,13 @@ public class protoScriptAC : Overlord
         count = unidades.Count;
         if (count < 3)
         {
-            for (int f = 0; f < unidades.Count; f++)
+            for (int f = 0; f < count; f++)
             {
                 unidades[f].GetComponent<Overlord>().reset();
+                unidades.RemoveAt(f);
+                count = unidades.Count;
+
+                onOrder = false;
             }
             _estado = estados.normal;
         }
@@ -155,10 +166,9 @@ public class protoScriptAC : Overlord
                 {
                     Destroy(unidades[i]);
                     unidades.RemoveAt(i);
+                    count = unidades.Count;
                     break;
                 }
-
             }
-
     }
 }

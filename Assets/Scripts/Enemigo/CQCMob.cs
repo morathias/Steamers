@@ -22,19 +22,15 @@ public class CQCMob : Overlord
     {
         if (stayput == false)
         {
+            if (dead == true)
+                Destroy(gameObject);
 
             if (Vector3.Distance(transform.position, Target.position) < RangoLucha)
             {
                 transform.LookAt(Target.position);
                 transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
             }
-            //if (Vector3.Distance(transform.position, fichador.position) < RangoBusca && Vector3.Distance(transform.position, fichador.position) > RangoLucha)
-            //{
-            //    transform.LookAt(fichador.position);
-            //    transform.Translate(Vector3.forward * 17 * Time.deltaTime);
-            //}
-            //if (Vector3.Distance(transform.position, fichador.position) > RangoBusca)
-            //    transform.Translate(Vector3.forward * 20 * Time.deltaTime);
+
         }
 
         if (stayput == true)

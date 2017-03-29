@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44692558, g: 0.49678743, b: 0.57508624, a: 1}
+  m_IndirectSpecularColor: {r: 0.44692534, g: 0.49678725, b: 0.57508564, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -3953,11 +3953,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114000014253440028, guid: 251b675202aa2344eb3f21b140e61bae,
-        type: 2}
-      propertyPath: levelUpTxt
-      value: 
-      objectReference: {fileID: 1813938750}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 251b675202aa2344eb3f21b140e61bae, type: 2}
   m_IsPrefabParent: 0

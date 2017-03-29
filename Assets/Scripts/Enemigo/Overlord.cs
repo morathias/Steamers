@@ -22,7 +22,11 @@ public class Overlord : MonoBehaviour
     protected enum estados
     {
         normal,
-        bajoOrdenes
+        bajoOrdenes,
+        recarga,
+        apuntando,
+        rage,
+        Durazno
     }
 
     // Update is called once per frame
@@ -41,6 +45,12 @@ public class Overlord : MonoBehaviour
         if (other.transform.tag == "BalaPlayer")
         {
             _stats.applyDamage(other.GetComponent<DañoBalas>().getDaño());
+        }
+
+        if (other.transform.tag == "FuegoPlayer")
+        {
+            Debug.Log("FGIREEE");
+            _stats.applyDamage(other.GetComponent<flameDamage>().getDaño());
         }
     }
 }

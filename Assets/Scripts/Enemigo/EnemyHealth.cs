@@ -16,26 +16,15 @@ public class EnemyHealth : MonoBehaviour
 
     public void applyDamage(int damage)
     {
-        int random = Random.Range(1, 10);
         health -= damage;
         if (health <= 0)
         {
+            int random = Random.Range(1, 10);
             if (random > 8)
                 Instantiate(Potion, transform.position, transform.rotation);
             Instantiate(XPerience, transform.position - fggt, transform.rotation);
 
-            gameObject.GetComponent<Overlord>().dead = true;
-
-            List<Mision> misiones = GameObject.Find("Tablero").GetComponent<Tablero>().getMisionDeTipo("CazaEnemigos");
-            if (misiones.Count > 0)
-            {
-                for (int i = 0; i < misiones.Count; i++)
-                {
-                    CazarEnemigos mision = (CazarEnemigos)misiones[i];
-                    mision.seMatoEnemigo(gameObject);
-                }
-            }
+            Destroy(gameObject);
         }
-
     }
 }

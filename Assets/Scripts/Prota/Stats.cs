@@ -4,43 +4,68 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Stats : MonoBehaviour {
-	public int health = 100;
-    private int _vidaActual = 100;
-    public int exp = 0;
-    private int level = 1;
-    public int damage = 1;
-    public int atkspeed = 10;
-    public int stat = 0;
+    public int health = Variables.Ghealth;
+    private int _vidaActual;
+    public int exp;
+    private int level;
+    public int damage;
+    public int atkspeed;
+    public int stat;
     public Text stats;
     public Text levelsT;
     public Text levelUpTxt;
     public LevelUp _levelUp;
 
-	public bool applyDamage(int damage) {
-		_vidaActual -= damage;
+    public bool applyDamage(int damage)
+    {
+        _vidaActual -= damage;
         if (_vidaActual <= 0)
             return true;
         return false;
-	}
+    }
 
-    public int vida{
-        get{
+    public int vida
+    {
+        get
+        {
             return _vidaActual;
         }
-        set{
+        set
+        {
             _vidaActual = value;
         }
     }
-
+    public int Levels
+    {
+        get
+        {
+            return level;
+        }
+        set
+        {
+            level = value;
+        }
+    }
+    void Start()
+    {
+        health = Variables.Ghealth;
+        _vidaActual = Variables.Gvida;
+        exp = Variables.Gexp;
+        level = Variables.Glvl;
+        damage = Variables.Gdamage;
+        atkspeed = Variables.Gatkspeed;
+        stat = Variables.Gstat;
+    }
     void Update()
     {
-        if (exp == 100){
+        if (exp == 100)
+        {
             level++;
             _levelUp.activar(true);
             exp = 0;
             Variables.random1 = Random.Range(1, 4);
             Variables.random2 = Random.Range(1, 4);
-            stat ++;
+            stat++;
         }
         if (stat > 0)
         {

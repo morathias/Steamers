@@ -1,39 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Pota : MonoBehaviour {
-
-    public Transform Target;
-    public int RangoDeteccion;
-    public int velocidad;
-    private Stats levelComponent;
-
+public class Pota : Item {
     void Start(){
-        GameObject Objetivo = GameObject.FindGameObjectWithTag("Player");
-        Target = Objetivo.transform;
-        levelComponent = GameObject.Find("Prota").gameObject.GetComponent<Stats>();
+        base.Start();
     }
-    void Update(){
-        if (levelComponent.vida >= levelComponent.health){
-            
-        }
-        if (Vector3.Distance(transform.position, Target.position) < RangoDeteccion && levelComponent.vida < levelComponent.health)
-        {
-            transform.LookAt(Target.position);
-            transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
-        }
-    }
-    void OnTriggerEnter(Collider collision)
-    {
 
-         if (collision.gameObject.tag == "Player" && levelComponent.vida < levelComponent.health)
-         {
+    protected override void itemAgarrado(){
+        Stats levelComponent = Target.gameObject.GetComponent<Stats>();
 
-            levelComponent.vida += 15;
-            Debug.Log("Health: " + levelComponent.health);
-            Debug.Log("HealthActual: " + levelComponent.vida);
+ 	    levelComponent.vida += 15;
+        if (levelComponent.vida > levelComponent.health)
+            levelComponent.vida = levelComponent.health;
 
-            Destroy(gameObject);
-        }
+        Debug.Log("Health: " + levelComponent.health);
+        Debug.Log("HealthActual: " + levelComponent.vida);
+
+        Destroy(gameObject);
     }
 }

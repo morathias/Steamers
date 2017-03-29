@@ -11,8 +11,9 @@ public class Npc : MonoBehaviour {
     GameObject _prota;
     Dialogo _dialogoBox;
 
-    int inicioDialogo = 0;
-    int finDialogo = 0;
+    public int inicioDialogo = 0;
+    public int finDialogo = 0;
+    
 
     enum estados {
         esperando,
@@ -26,7 +27,7 @@ public class Npc : MonoBehaviour {
         _dialogoBox = GetComponentInChildren<Dialogo>();
 
         _dialogoBox.setInicioDialogo(inicioDialogo);
-        finDialogo = _dialogoBox.lineas.Length - 1;
+        _dialogoBox.setFinDialogo(finDialogo);
 	}
     //-----------------------------------------------------------------------------------------------
 	void Update () {
@@ -58,6 +59,7 @@ public class Npc : MonoBehaviour {
 
             if (_dialogoBox.finDialogo())
             {
+                Debug.Log("findialogo");
                 _estado = estados.esperando;
                 _prota.GetComponent<Prota>().terminoDeHablar();
             }
@@ -65,5 +67,11 @@ public class Npc : MonoBehaviour {
         }
 	}
     //-----------------------------------------------------------------------------------------------
+    public bool estaHablando() {
+        if (_estado == estados.hablando)
+            return true;
+        else
+            return false;
+    }
 }
 //===================================================================================================

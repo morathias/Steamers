@@ -16,6 +16,8 @@ TagManager:
   - Rifleman
   - BalaPlayer
   - CazaEnemigos
+  - EnemyS
+  - FuegoPlayer
   layers:
   - Default
   - TransparentFX
@@ -26,7 +28,7 @@ TagManager:
   - 
   - 
   - BulletE
-  - 
+  - Enemigo
   - Prota
   - Shield
   - 

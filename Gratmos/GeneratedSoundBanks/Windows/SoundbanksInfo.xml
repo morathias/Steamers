@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="10" SoundbankVersion="113">
+	<RootPaths>
+		<ProjectRoot>C:\Users\Morales\Desktop\Documents\trabajos de unity\Steamers\Gratmos\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\Morales\Desktop\Documents\trabajos de unity\Steamers\Gratmos\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\Morales\Desktop\Documents\trabajos de unity\Steamers\Gratmos\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>C:\Users\Morales\Desktop\Documents\trabajos de unity\Steamers\Gratmos\GeneratedSoundBanks\Windows\</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Language="SFX">
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="1661994096" Language="SFX">
+			<ShortName>SoundBank</ShortName>
+			<Path>SoundBank.bnk</Path>
+			<IncludedEvents>
+				<Event Id="3166639638" Name="OnStart"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="383083331" Language="SFX">
+					<ShortName>Michael_McCann_-_There_And_Back_Again.wav</ShortName>
+					<Path>SFX\Michael_McCann_-_There_And_Back_Again_4B8CC0C5.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>

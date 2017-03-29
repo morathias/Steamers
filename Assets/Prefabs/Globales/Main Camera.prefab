@@ -9,24 +9,22 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1000013992911902}
+  m_RootGameObject: {fileID: 1752713522552666}
   m_IsPrefabParent: 1
---- !u!1 &1000013992911902
+--- !u!1 &1752713522552666
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000010870612070}
-  - 20: {fileID: 20000013887417900}
-  - 92: {fileID: 92000012549688292}
-  - 124: {fileID: 124000013024580642}
-  - 81: {fileID: 81000013994824910}
-  - 114: {fileID: 114000010291580974}
-  - 114: {fileID: 114000011097754162}
-  - 114: {fileID: 114000011630752868}
-  - 114: {fileID: 114000011900776694}
+  - component: {fileID: 4515423279646292}
+  - component: {fileID: 20951126701656022}
+  - component: {fileID: 92973163428760642}
+  - component: {fileID: 124347554619687818}
+  - component: {fileID: 114107814076792942}
+  - component: {fileID: 114861113939283872}
+  - component: {fileID: 114505137087088128}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -34,25 +32,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4000010870612070
+--- !u!4 &4515423279646292
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013992911902}
+  m_GameObject: {fileID: 1752713522552666}
   m_LocalRotation: {x: 0.3620585, y: -0, z: -0, w: 0.9321554}
-  m_LocalPosition: {x: 0, y: 13, z: -32.99}
+  m_LocalPosition: {x: 73, y: 98.6, z: 40}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 42.45, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!20 &20000013887417900
+  m_LocalEulerAnglesHint: {x: 42.45, y: 0, z: 0}
+--- !u!20 &20951126701656022
 Camera:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013992911902}
+  m_GameObject: {fileID: 1752713522552666}
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
@@ -72,35 +70,28 @@ Camera:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_RenderingPath: -1
+  m_RenderingPath: 3
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 0
+  m_HDR: 1
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
---- !u!81 &81000013994824910
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013992911902}
-  m_Enabled: 1
---- !u!92 &92000012549688292
+--- !u!92 &92973163428760642
 Behaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013992911902}
+  m_GameObject: {fileID: 1752713522552666}
   m_Enabled: 1
---- !u!114 &114000010291580974
+--- !u!114 &114107814076792942
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013992911902}
+  m_GameObject: {fileID: 1752713522552666}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e6bedbfa9b900c4ebd9346d6d92b53e, type: 3}
@@ -108,313 +99,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   suavizado: 5
-  altura: 11
-  distancia: 10
---- !u!114 &114000011097754162
+  altura: 13
+  distancia: 12
+--- !u!114 &114505137087088128
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013992911902}
+  m_GameObject: {fileID: 1752713522552666}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e89654dcf6db746d2a57aeaaa14f5e83, type: 3}
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings:
-    intensity: 1
-    radius: 0.3
-    sampleCount: 2
-    sampleCountValue: 24
-    downsampling: 0
-    ambientOnly: 0
-    occlusionSource: 1
-    debug: 0
-  _aoShader: {fileID: 4800000, guid: 65e203e5acda447acbf9dc1ef78c4a39, type: 3}
-  _quadMesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114000011630752868
+  profile: {fileID: 11400000, guid: 58180a2c4b40a8d46b6a7412c84538ef, type: 2}
+--- !u!114 &114861113939283872
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013992911902}
+  m_GameObject: {fileID: 1752713522552666}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58a7625302996c94ba07a8ca3351f668, type: 3}
+  m_Script: {fileID: 11500000, guid: c4dcf0190629ae546a11a6db2f0bf1bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HistogramComputeShader: {fileID: 7200000, guid: 5ee4b74fa28a3e74e89423dd49705fc5,
-    type: 3}
-  m_HistogramShader: {fileID: 4800000, guid: 9a8e838691462194482a43a02e424876, type: 3}
-  histogramRefreshOnPlay: 1
-  m_EyeAdaptation:
-    enabled: 0
-    middleGrey: 0.5
-    min: -3
-    max: 3
-    speed: 1.5
-    showDebug: 0
-  m_Tonemapping:
-    enabled: 0
-    tonemapper: 6
-    exposure: 1
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 0
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 0
-      - time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    neutralBlackIn: 0.02
-    neutralWhiteIn: 10
-    neutralBlackOut: 0
-    neutralWhiteOut: 10
-    neutralWhiteLevel: 5.3
-    neutralWhiteClip: 10
-  m_ColorGrading:
-    enabled: 1
-    precision: 16
-    colorWheels:
-      shadows: {r: 1, g: 0.75497496, b: 0.75497496, a: 1}
-      midtones: {r: 1, g: 0.6363, b: 0.6363, a: 1}
-      highlights: {r: 1, g: 0.9999, b: 0.9999, a: 1}
-    basics:
-      temperatureShift: -0.1
-      tint: 0
-      hue: 0
-      saturation: 1
-      vibrance: 0
-      value: 1
-      contrast: 1
-      gain: 1
-      gamma: 1
-    channelMixer:
-      currentChannel: 0
-      channels:
-      - {x: 1, y: 0, z: 0}
-      - {x: 0, y: 1, z: 0}
-      - {x: 0, y: 0, z: 1}
-    curves:
-      master:
-        serializedVersion: 2
-        m_Curve:
-        - time: 0
-          value: 0
-          inSlope: 1
-          outSlope: 1
-          tangentMode: 0
-        - time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 1
-          tangentMode: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 0
-      red:
-        serializedVersion: 2
-        m_Curve:
-        - time: 0
-          value: 0
-          inSlope: 1
-          outSlope: 1
-          tangentMode: 0
-        - time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 1
-          tangentMode: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 0
-      green:
-        serializedVersion: 2
-        m_Curve:
-        - time: 0
-          value: 0
-          inSlope: 1
-          outSlope: 1
-          tangentMode: 0
-        - time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 1
-          tangentMode: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 0
-      blue:
-        serializedVersion: 2
-        m_Curve:
-        - time: 0
-          value: 0
-          inSlope: 1
-          outSlope: 1
-          tangentMode: 0
-        - time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 1
-          tangentMode: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 0
-    useDithering: 0
-    showDebug: 0
-  m_Lut:
-    enabled: 0
-    texture: {fileID: 0}
-    contribution: 1
-  m_Shader: {fileID: 4800000, guid: 964b34bbab7f5e64fa40f37eaccac1ad, type: 3}
---- !u!114 &114000011900776694
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013992911902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fd999d1b2cf94a45a5b0a47ce074bef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  redChannel:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  greenChannel:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  blueChannel:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  useDepthCorrection: 0
-  zCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  depthRedChannel:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  depthGreenChannel:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  depthBlueChannel:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  saturation: 0.9
-  selectiveCc: 0
-  selectiveFromColor: {r: 1, g: 1, b: 1, a: 1}
-  selectiveToColor: {r: 1, g: 1, b: 1, a: 1}
-  mode: 0
-  updateTextures: 1
-  colorCorrectionCurvesShader: {fileID: 4800000, guid: 62bcade1028c24ca1a39760ed84b9487,
-    type: 3}
-  simpleColorCorrectionCurvesShader: {fileID: 4800000, guid: 438ddd58d82c84d9eb1fdc56111702e1,
-    type: 3}
-  colorCorrectionSelectiveShader: {fileID: 4800000, guid: e515e0f94cefc4c0db54b45cba621544,
-    type: 3}
---- !u!124 &124000013024580642
+  listenerId: 0
+--- !u!124 &124347554619687818
 Behaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013992911902}
+  m_GameObject: {fileID: 1752713522552666}
   m_Enabled: 1

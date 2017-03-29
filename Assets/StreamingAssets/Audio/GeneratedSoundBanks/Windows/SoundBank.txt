@@ -1,0 +1,9 @@
+Event	ID	Name			Wwise Object Path	Notes
+	3166639638	OnStart			\Default Work Unit\OnStart	
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	1006694123	Music_volume			\Default Work Unit\Music_volume	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	383083331	Michael_McCann_-_There_And_Back_Again	C:\Users\Morales\Desktop\Documents\trabajos de unity\Steamers\Gratmos\.cache\Windows\SFX\Michael_McCann_-_There_And_Back_Again_4B8CC0C5.wem		\Interactive Music Hierarchy\Default Work Unit\Menu Music\Michael_McCann_-_There_And_Back_Again\Michael_McCann_-_There_And_Back_Again		51310144
+

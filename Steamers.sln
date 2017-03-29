@@ -1,13 +1,13 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{424B821D-88EF-F9D4-5823-20D80AAD9311}") = "Steamers", "Assembly-CSharp-firstpass.csproj", "{C63E3953-B534-9F4B-2FD0-25F62ECFCD8F}"
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Steamers", "Assembly-CSharp-firstpass.csproj", "{C63E3953-B534-9F4B-2FD0-25F62ECFCD8F}"
 EndProject
-Project("{424B821D-88EF-F9D4-5823-20D80AAD9311}") = "Steamers", "Assembly-CSharp.csproj", "{429C5F4C-14A9-E5F0-2DB9-BD0DF7A8D15D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Steamers", "Assembly-CSharp.csproj", "{429C5F4C-14A9-E5F0-2DB9-BD0DF7A8D15D}"
 EndProject
-Project("{424B821D-88EF-F9D4-5823-20D80AAD9311}") = "Steamers", "Assembly-CSharp-Editor-firstpass.csproj", "{1A00A810-0FBC-C490-AC84-A181A6CB8B4B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Steamers", "Assembly-CSharp-Editor-firstpass.csproj", "{1A00A810-0FBC-C490-AC84-A181A6CB8B4B}"
 EndProject
-Project("{424B821D-88EF-F9D4-5823-20D80AAD9311}") = "Steamers", "Assembly-CSharp-Editor.csproj", "{438825BD-84AD-D852-C54E-A439AB9142FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Steamers", "Assembly-CSharp-Editor.csproj", "{438825BD-84AD-D852-C54E-A439AB9142FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

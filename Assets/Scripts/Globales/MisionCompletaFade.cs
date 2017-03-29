@@ -15,7 +15,6 @@ public class MisionCompletaFade : MonoBehaviour {
             {
                 timer = 7f;
                 gameObject.GetComponent<Text>().enabled = false;
-                SceneManager.LoadScene(0);
             }
         }
 	}

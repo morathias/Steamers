@@ -4,17 +4,19 @@ using UnityEngine.SceneManagement;
 
 public class EsceneManager : MonoBehaviour
 {
-    void Awake() {
+    void Awake()
+    {
         DontDestroyOnLoad(gameObject);
     }
 
     public void cambiarEscena(int index)
     {
-        SceneManager.LoadScene(index);
+        LoadingScreenManager.LoadScene(index);
         Time.timeScale = 1;
     }
 
-    public void CerrarJuego() {
+    public void CerrarJuego()
+    {
         Application.Quit();
     }
 }

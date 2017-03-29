@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bed4979ebaa78b4395523237992a50b, type: 3}
+  m_Name: AkWwiseProjectData
+  m_EditorClassIdentifier: 
+  CurrentPluginConfig: Debug
+  EventWwu:
+  - PhysicalPath: Events\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{65984326-2714-48F2-AEF9-35D15592F291}'
+    m_lastTimePsrt1: 1009000739
+    m_lastTimePart2: -1999351488
+    List:
+    - Name: OnStart
+      Path: Default Work Unit\OnStart
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: OnStart
+        ObjectType: 3
+      ID: -1128327658
+      Guid: 33b8753131e50e419a2bf8ef8a6994f4
+      maxAttenuation: 0
+  AuxBusWwu:
+  - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{CE93D1ED-92EF-4DC8-B2F8-98537C8C1842}'
+    m_lastTimePsrt1: -832393292
+    m_lastTimePart2: -1999351248
+    List: []
+  StateWwu:
+  - PhysicalPath: States\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{8FA2494B-B43C-4A1E-AE00-12F60934DC5D}'
+    m_lastTimePsrt1: -1122572717
+    m_lastTimePart2: -1999351682
+    List: []
+  SwitchWwu:
+  - PhysicalPath: Switches\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{4C352325-7E5A-4EC6-9BC6-F24DD9D2E652}'
+    m_lastTimePsrt1: -1122592719
+    m_lastTimePart2: -1999351682
+    List: []
+  BankWwu:
+  - PhysicalPath: SoundBanks\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{F5D3220B-1923-490E-96A2-B14B84587BB8}'
+    m_lastTimePsrt1: 1009020741
+    m_lastTimePart2: -1999351488
+    List:
+    - Name: SoundBank
+      Path: Default Work Unit\SoundBank
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SoundBank
+        ObjectType: 7
+      ID: 1661994096
+      Guid: cf90c615e043db468232fbd0bce19817
+  ExpandedItems: []
+  m_lastPopulateTimePsrt1: 0
+  m_lastPopulateTimePart2: 0
+  autoPopulateEnabled: 1
+  basePath: Audio\GeneratedSoundBanks
+  language: English(US)
+  defaultPoolSize: 4096
+  lowerPoolSize: 2048
+  streamingPoolSize: 1024
+  preparePoolSize: 0
+  memoryCutoffThreshold: 0.95

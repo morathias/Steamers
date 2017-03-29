@@ -4,8 +4,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 //=================================================================================================
 public class Tablero : MonoBehaviour {
-    public Mision[] misiones;
-    List<Mision> _misionesActivas;
+    public List<Mision> misiones;
 
     public Text accion;
     public Text informacion;
@@ -27,29 +26,26 @@ public class Tablero : MonoBehaviour {
     estados _estado;
     //---------------------------------------------------------------------------------------------
 	void Start () {
+        DontDestroyOnLoad(gameObject);
         _prota = GameObject.Find("Prota").GetComponent<Prota>();
         _menuPausa = GameObject.Find("gameMaster").GetComponent<MenuPausa>();
-        _misionesActivas = new List<Mision>();
 	}
     //---------------------------------------------------------------------------------------------
 	void Update () {
+
+        if(_prota == null)
+            _prota = GameObject.Find("Prota").GetComponent<Prota>();
+        if (accion == null)
+            accion = GameObject.Find("Accion").GetComponent<Text>();
+
         switch (_estado) {
             case estados.esperando:
-                if (Vector3.Distance(gameObject.transform.position, _prota.transform.position) < 3)
-                {
+                if (Vector3.Distance(gameObject.transform.position, _prota.transform.position) < 3){
                     accion.enabled = true;
                     accion.text = "E to examine Board";
 
                     if (Input.GetKeyDown(KeyCode.E))
-                    {
-                        _estado = estados.mostrando;
-                        _prota.estaHablando(true);
-                        _menuPausa.enabled = false;
-                        fondo.enabled = true;
-                        for (int i = 0; i < sliders.Length; i++)
-                            sliders[i].enabled = true;
-                        botonAceptar.SetActive(true);
-                    }
+                        abrirTablero();
                 }
                 else
                     accion.enabled = false;
@@ -57,21 +53,13 @@ public class Tablero : MonoBehaviour {
 
             case estados.mostrando:
                 accion.text = "Esc to close";
+
+                navegarTablero();
+
                 mostrarMision(misiones[_misionIndex].getInformacion(), papel);
 
                 if (Input.GetKeyDown(KeyCode.Escape))
-                {
-                    _estado = estados.esperando;
-                    _prota.terminoDeHablar();
-                    informacion.enabled = false;
-                    papel.enabled = false;
-                    _menuPausa.enabled = true;
-                    fondo.enabled = false;
-                    for (int i = 0; i < sliders.Length; i++)
-                        sliders[i].enabled = false;
-                    botonAceptar.SetActive(false);
-                    misionAceptadaTxt.enabled = false;
-                }
+                    cerrarTablero();
                 break;
         }
 	}
@@ -80,28 +68,47 @@ public class Tablero : MonoBehaviour {
         informacion.enabled = true;
         informacion.text = texto;
         papel.enabled = true;
+
+        if (misiones[_misionIndex].getActiva())
+            misionAceptadaTxt.enabled = true;
+        else
+            misionAceptadaTxt.enabled = false;
     }
     //---------------------------------------------------------------------------------------------
-
-    public List<Mision> getMisionDeTipo(string tipo) {
-        List<Mision> misionesDeTipo = new List<Mision>();
-        {
-            for (int i = 0; i < _misionesActivas.Count; i++)
-            {
-                if (_misionesActivas[i]){
-                    if (_misionesActivas[i].gameObject.tag == tipo)
-                        misionesDeTipo.Add(_misionesActivas[i]);
-                }
-            }
-        }
-
-        return misionesDeTipo;
-    }
-
     public void activarMision() {
         misiones[_misionIndex].empezarMision();
-        _misionesActivas.Add(misiones[_misionIndex]);
-        misionAceptadaTxt.enabled = true;
+    }
+
+    void navegarTablero() {
+        if (Input.GetKeyDown(KeyCode.D))
+            _misionIndex++;
+        if (Input.GetKeyDown(KeyCode.A))
+            _misionIndex--;
+        if (_misionIndex == misiones.Count)
+            _misionIndex = misiones.Count - 1;
+    }
+
+    void cerrarTablero() {
+        _estado = estados.esperando;
+        _prota.terminoDeHablar();
+        informacion.enabled = false;
+        papel.enabled = false;
+        _menuPausa.enabled = true;
+        fondo.enabled = false;
+        for (int i = 0; i < sliders.Length; i++)
+            sliders[i].enabled = false;
+        botonAceptar.SetActive(false);
+        misionAceptadaTxt.enabled = false;
+    }
+
+    void abrirTablero() {
+        _estado = estados.mostrando;
+        _prota.estaHablando(true);
+        _menuPausa.enabled = false;
+        fondo.enabled = true;
+        for (int i = 0; i < sliders.Length; i++)
+            sliders[i].enabled = true;
+        botonAceptar.SetActive(true);
     }
 }
 //=================================================================================================

@@ -46,13 +46,39 @@ public class Infantry : Overlord
 
                     transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 2.0f);
                     if (limite > 120)
-                        fire();
+                    {
+                        limite = 0;
+                        _estado = estados.rage;
+                    }
                     moveIt();
 
                 }
 
 
                 break;
+
+            case estados.rage:
+                RaycastHit ICU;
+                transform.LookAt(fichador);
+             
+                limite++;
+                if (limite > 60)
+                {
+
+                    if (Physics.Raycast(transform.position, transform.forward, out ICU) && ICU.transform.tag == "Player")
+                    {
+                        {
+                            _estado = estados.normal;
+                            fire();
+                            Debug.Log("ji");
+                        }
+
+
+                    }
+                }
+
+                break;
+
 
             case estados.bajoOrdenes:
                 switch (ordenPos)

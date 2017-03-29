@@ -21,19 +21,14 @@ public class WalkingMine : Overlord {
 
     void Update()
     {
+        if (dead == true)
+            Destroy(gameObject);
         if (Vector3.Distance(transform.position, Target.position) < RangoDeteccion)
             move = true;
         if (move == true){
             transform.LookAt(Target.position);
             transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
         }
-        //if (Vector3.Distance(transform.position, fichador.position) < RangoBusca && Vector3.Distance(transform.position, fichador.position) > RangoLucha)
-        //{
-        //    transform.LookAt(fichador.position);
-        //    transform.Translate(Vector3.forward * 17 * Time.deltaTime);
-        //}
-        //if (Vector3.Distance(transform.position, fichador.position) > RangoBusca)
-        //    transform.Translate(Vector3.forward * 20 * Time.deltaTime);
     }
 
     void OnCollisionEnter(Collision collision)

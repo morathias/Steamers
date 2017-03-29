@@ -4,6 +4,9 @@ using UnityEngine.UI;
 //===============================================================================================
 public class Prota : MonoBehaviour {
     public float velocidad = 5f;
+    public GameObject Shield;
+    public ParticleSystem FireL;
+    bool special = false;
     float _angulo;
     float _stamina = 100;
 
@@ -19,7 +22,8 @@ public class Prota : MonoBehaviour {
     public Image _barraStamina;
     public Text hasMuertoTxt;
 
-    enum estados {      //para la maquina de estados
+    enum estados
+    {      //para la maquina de estados
         moviendose,
         esquivando,
         muriendo,
@@ -30,30 +34,63 @@ public class Prota : MonoBehaviour {
 
     float _timerEsquivar = 0.2f;
     //-------------------------------------------------------------------------------------------
-	void Start () {
+    void Start()
+    {
         _stats = GetComponent<Stats>();
         _protaController = GetComponent<CharacterController>();
-	}
+    }
     //-------------------------------------------------------------------------------------------
-	void Update () {
+    void Update()
+    {
         _barraVida.fillAmount = (float)_stats.vida / _stats.health;
-        switch (_estado) {
+
+        if (_stats.vida <= 0)
+            _estado = estados.muriendo;
+
+        switch (_estado)
+        {
             case estados.moviendose:
                 moverProta();
                 rotarProta();
 
-                if (_stamina <= 100)
+                if (_stamina <= 100 && special == false)
                     recuperarStamina();
 
-                if (Input.GetKeyDown(KeyCode.Space) && _stamina > 25 && _estado != estados.hablando){
-                    perderStamina();
+                if (Input.GetKeyDown(KeyCode.Space) && _stamina > 25 && _estado != estados.hablando)
+                {
+                    perderStamina(25);
                     _estado = estados.esquivando;
+                }
+
+                if (Input.GetKey(KeyCode.F) && _stamina > 10 && _estado != estados.hablando)
+                {
+                    Shield.SetActive(true);
+                    perderStamina(0.25f);
+                    special = true;
+                }
+                else
+                {
+                    Shield.SetActive(false);
+                    special = false;
+                }
+
+
+                if (Input.GetKey(KeyCode.Q) && _stamina > 20 && _estado != estados.hablando)
+                {
+                    FireL.Play(true);
+                    perderStamina(0.5f);
+                    special = true;
+                }
+                else
+                {
+                    FireL.Stop(true);
+                    special = false;
                 }
                 break;
 
             case estados.esquivando:
                 esquivar();
-                
+
                 _timerEsquivar -= Time.deltaTime;
                 if (_timerEsquivar <= 0)
                 {
@@ -67,7 +104,7 @@ public class Prota : MonoBehaviour {
                 break;
 
             case estados.hablando:
-                Debug.Log("wololo");
+
                 //prota: -wololo-;
                 break;
 
@@ -76,20 +113,23 @@ public class Prota : MonoBehaviour {
                 this.enabled = false;
                 break;
         }
-	}
+    }
     //-------------------------------------------------------------------------------------------
-    void moverProta() {
+    void moverProta()
+    {
         _direccion = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         _direccion *= velocidad;
 
         _protaController.SimpleMove(_direccion);
     }
     //-------------------------------------------------------------------------------------------
-    void esquivar() {
+    void esquivar()
+    {
         _protaController.SimpleMove(_direccion * 3f);
     }
     //-------------------------------------------------------------------------------------------
-    void rotarProta() {
+    void rotarProta()
+    {
         _posicionDelMouse = Input.mousePosition;    //agarro la posicion del mouse
         _posicionDelMouse.z = 13f;  //distancia de la camara al prota
 
@@ -102,27 +142,33 @@ public class Prota : MonoBehaviour {
         transform.rotation = Quaternion.Euler(new Vector3(0, _angulo, 0));      //lo roto en eje y
     }
     //-------------------------------------------------------------------------------------------
-    public void stunE() {
+    public void stunE()
+    {
         _estado = estados.explosion;
     }
     //-------------------------------------------------------------------------------------------
-    void perderStamina() {
-        _stamina -= 25;
+    void perderStamina(float value)
+    {
+        _stamina -= value;
         _barraStamina.fillAmount = _stamina / 100f;
     }
     //-------------------------------------------------------------------------------------------
-    void recuperarStamina() {
+    void recuperarStamina()
+    {
         _stamina += 10f * Time.deltaTime;
         _barraStamina.fillAmount = _stamina / 100f;
     }
     //-------------------------------------------------------------------------------------------
-    public void estaHablando(bool hablando) {
+    public void estaHablando(bool hablando)
+    {
         if (hablando)
             _estado = estados.hablando;
     }
     //-------------------------------------------------------------------------------------------
-    public void terminoDeHablar() {
+    public void terminoDeHablar()
+    {
         _estado = estados.moviendose;
+        Debug.Log(_estado);
     }
     //-------------------------------------------------------------------------------------------
     public void fear()

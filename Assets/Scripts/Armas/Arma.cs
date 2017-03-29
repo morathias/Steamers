@@ -90,7 +90,7 @@ public class Arma : MonoBehaviour {
     public virtual bool disparar() { return false; }
     //---------------------------------------------
     bool recargar() {
-        _rangoRecarga += 0.01f;
+        _rangoRecarga += 0.75f * Time.deltaTime;
         barraRecarga.fillAmount = _rangoRecarga;
 
         if (Input.GetKeyDown(KeyCode.R)){

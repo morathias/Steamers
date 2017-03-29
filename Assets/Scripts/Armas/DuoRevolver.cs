@@ -30,7 +30,7 @@ public class DuoRevolver : Arma {
 
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, transform.forward, out hit, distancia)){
-                    Debug.Log("choco bala");
+                    //Debug.Log("choco bala");
                 }
 
                 _balasActuales--;

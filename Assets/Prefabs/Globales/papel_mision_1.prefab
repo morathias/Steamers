@@ -16,12 +16,12 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000011313544934}
-  - 33: {fileID: 33000011134160378}
-  - 23: {fileID: 23000013954806912}
-  - 114: {fileID: 114000012736809840}
+  - component: {fileID: 4000011313544934}
+  - component: {fileID: 33000011134160378}
+  - component: {fileID: 23000013954806912}
+  - component: {fileID: 114174318034539970}
   m_Layer: 0
   m_Name: papel_mision_1
   m_TagString: CazaEnemigos
@@ -38,10 +38,10 @@ Transform:
   m_LocalRotation: {x: -0.07492483, y: 0.7033679, z: 0.7028896, w: -0.07487385}
   m_LocalPosition: {x: -0.22037488, y: 1.8764948, z: 3.012}
   m_LocalScale: {x: 100, y: 100, z: 100}
-  m_LocalEulerAnglesHint: {x: -102.185, y: 89.81999, z: 90.175995}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -102.185, y: 89.81999, z: 90.175995}
 --- !u!23 &23000013954806912
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -56,7 +56,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 1e21c5c5e39a68349b18983f4e250504, type: 2}
-  m_SubsetIndices: 
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -64,7 +66,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -78,7 +80,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012962410942}
   m_Mesh: {fileID: 4300000, guid: 31cf337deb344a543a22f755de7f67ed, type: 3}
---- !u!114 &114000012736809840
+--- !u!114 &114174318034539970
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -86,14 +88,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000012962410942}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f82ebe7ac52c2640b972cccd294107d, type: 3}
+  m_Script: {fileID: 11500000, guid: e76d411e1fd1ddb479c2fa3058de9dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  informacionGeneral: 
+  nombre: 
   mensajeMisionCumplida: {fileID: 0}
-  tiposEnemigos:
-  - {fileID: 114000013744252034, guid: c71ae8ea513ebc54098410399aee8925, type: 2}
-  - {fileID: 114000010965773464, guid: bf64e50eb5181274da0fbb1f3fe19654, type: 2}
-  - {fileID: 114000012266314538, guid: 7dd41e037df77964796e40bf223d23b3, type: 2}
-  - {fileID: 114000010528727072, guid: 3ee76c34591f48045a2e10c74750062f, type: 2}
-  - {fileID: 114000012541447510, guid: e6ba7f40d556a67428dfc42cff4f56e7, type: 2}
-  cantidadACazar: 1
+  valorEtico: 0
+  recompensas: []
+  objetivos:
+  - {fileID: 0}
