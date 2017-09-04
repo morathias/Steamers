@@ -136,7 +136,7 @@
      <Compile Include="Assets\Scripts\Menu\JournalMenu.cs" />
      <Compile Include="Assets\Scripts\Menu\MenuSonido.cs" />
      <Compile Include="Assets\Scripts\Menu\OptionsManager.cs" />
-     <Compile Include="Assets\Scripts\NPC\Dialogo.cs" />
+     <Compile Include="Assets\Scripts\NPC\DialogoBox.cs" />
      <Compile Include="Assets\Scripts\NPC\Misiones\CazarBoss.cs" />
      <Compile Include="Assets\Scripts\NPC\Misiones\CazarEnemigos.cs" />
      <Compile Include="Assets\Scripts\NPC\Misiones\DebugCamino.cs" />
