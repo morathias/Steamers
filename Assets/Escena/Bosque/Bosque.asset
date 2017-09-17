@@ -33,19 +33,19 @@ MonoBehaviour:
     m_Settings:
       method: 0
       fxaaSettings:
-        preset: 4
+        preset: 1
       taaSettings:
-        jitterSpread: 1
+        jitterSpread: 0.75
         sharpen: 0.3
         stationaryBlending: 0.95
         motionBlending: 0.85
   ambientOcclusion:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
-      intensity: 1.24
+      intensity: 1.28
       radius: 0.52
-      sampleCount: 10
-      downsampling: 0
+      sampleCount: 16
+      downsampling: 1
       forceForwardCompatibility: 0
       ambientOnly: 0
       highPrecision: 0
@@ -85,8 +85,8 @@ MonoBehaviour:
   eyeAdaptation:
     m_Enabled: 1
     m_Settings:
-      lowPercent: 45
-      highPercent: 95
+      lowPercent: 42.977654
+      highPercent: 95.1676
       minLuminance: -5
       maxLuminance: 1
       keyValue: 0.25
@@ -100,10 +100,17 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
+<<<<<<< HEAD
         intensity: 0.4
         threshold: 0.66
         softKnee: 0.66
         radius: 2.92
+=======
+        intensity: 0.3
+        threshold: 0.78
+        softKnee: 0.611
+        radius: 4
+>>>>>>> origin/master
         antiFlicker: 1
       lensDirt:
         texture: {fileID: 2800000, guid: a2960ffde020f27409e070d92fb2e00b, type: 3}
@@ -121,10 +128,10 @@ MonoBehaviour:
         neutralWhiteClip: 10
       basic:
         postExposure: 2
-        temperature: -23
-        tint: -33
+        temperature: -30
+        tint: 0
         hueShift: 0
-        saturation: 1.22
+        saturation: 1.1
         contrast: 1
       channelMixer:
         red: {x: 1, y: 0, z: 0}
@@ -134,9 +141,9 @@ MonoBehaviour:
       colorWheels:
         mode: 1
         log:
-          slope: {r: 0.24228883, g: 0.24920456, b: 1, a: 0.010559391}
-          power: {r: 0.9884869, g: 1, b: 0.08045322, a: -0.045088224}
-          offset: {r: 1, g: 0.6953508, b: 0.5602319, a: 0.030397614}
+          slope: {r: 0.46265668, g: 0.5320344, b: 1, a: 0.010559395}
+          power: {r: 1, g: 0.80900884, b: 0.2730571, a: -0.0077050477}
+          offset: {r: 1, g: 0.7350595, b: 0.69567376, a: 0.06778079}
         linear:
           lift: {r: 1, g: 1, b: 1, a: 0}
           gamma: {r: 1, g: 1, b: 1, a: 0}
