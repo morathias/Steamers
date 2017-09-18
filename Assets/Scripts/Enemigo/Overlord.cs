@@ -8,7 +8,7 @@ public class Overlord : MonoBehaviour
     protected EnemyHealth _stats;
     protected estados _estado;
     protected int ordenPos;
-    public bool dead = false;
+    protected bool dead = true;
 
     public int daño;
 
@@ -26,18 +26,28 @@ public class Overlord : MonoBehaviour
         recarga,
         apuntando,
         rage,
-        Durazno
+        fear,
+        protect,
+        Durazno,
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (status() <= 0)
+        {
+            dead = true;
+        }
     }
 
     public void reset()
     {
         _estado = estados.normal;
+    }
+
+    public void fear()
+    {
+        _estado = estados.fear;
     }
 
     protected virtual void OnParticleCollision(GameObject other)
@@ -52,5 +62,14 @@ public class Overlord : MonoBehaviour
             Debug.Log("FGIREEE");
             _stats.applyDamage(other.GetComponent<flameDamage>().getDaño());
         }
+    }
+    public int status()
+    {
+        return _stats.health;
+    }
+
+    public bool deader()
+    {
+        return dead;
     }
 }
