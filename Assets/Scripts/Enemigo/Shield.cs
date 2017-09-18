@@ -15,9 +15,11 @@ public class Shield : Overlord
     Quaternion neededRotation;
     GameObject Leader;
     //   int ordenPos;
+    Infantry troop;
     int damage = 5;
     bool stayput = false;
     int timer = 0;
+    int move = 0;
 
 
     Vector3 _posicionLider;
@@ -36,6 +38,25 @@ public class Shield : Overlord
 
         switch (_estado)
         {
+            case estados.protect:
+                {
+                    if (dead == true)
+                    {
+                        troop.reset();
+                        Destroy(gameObject);
+                    }
+                    if (Vector3.Distance(transform.position, fichador.position) < 10)
+                    {
+                        neededRotation = Quaternion.LookRotation(fichador.transform.position - transform.position);
+                        neededRotation.x = 0;
+                        neededRotation.z = 0;
+
+                        transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 0.75f);
+                        moveIt();
+                        move++;
+                    }
+                }
+                    break;
             case estados.normal:
                 if (dead == true)
                 {
@@ -48,15 +69,13 @@ public class Shield : Overlord
                     transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 0.75f);
                 }
                 transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
-                if (stayput == true)
-                {
+
                     timer++;
-                }
 
                 if (timer > 60)
                 {
 
-                    stayput = false;
+                    searchPro();
                     timer = 0;
                 }
 
@@ -123,5 +142,45 @@ public class Shield : Overlord
             Debug.Log("Bolo");
             return false;
         }
+    }
+    void moveIt()
+    {
+        if (troop.GetComponent<Overlord>().deader() == true)
+            _estado = estados.normal;
+        else
+        {
+            move++;
+            if (move > 90)
+            {
+                _posicionLider = transform.position;
+                _posicionLider.x += Random.Range(-20.0f, 20.0f);
+                _posicionLider.z += Random.Range(-20.0f, 20.0f);
+                move = 0;
+
+            }
+            transform.position = Vector3.MoveTowards(transform.position, _posicionLider, 2 * Time.deltaTime);
+
+        }
+
+    }
+
+    void searchPro()
+    {
+
+        Vector3 explosionPos = transform.position;
+        Collider[] colliders = Physics.OverlapSphere(explosionPos, 50);
+        _estado = estados.bajoOrdenes;
+
+        foreach (Collider hit in colliders)
+        {
+            if (hit.gameObject.tag == "EnemyS")
+            {
+                troop = hit.gameObject.GetComponent<Infantry>();
+                if (troop.status()<30)
+                troop.begin(0, this.gameObject);
+            }
+
+        }
+        _estado = estados.protect;
     }
 }

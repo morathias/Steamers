@@ -60,7 +60,7 @@ public class protoScriptAC : Overlord
                     count = unidades.Count;
                     for (int f = 0; f < count; f++)
                     {
-                        unidades[f].GetComponent<Overlord>().reset();
+                        unidades[f].GetComponent<Overlord>().fear();
                         count = unidades.Count;
                     }
                     Destroy(gameObject);
@@ -159,19 +159,16 @@ public class protoScriptAC : Overlord
             _estado = estados.normal;
         }
 
-        else
-        {
-            for (int i = 0; i < unidades.Count; i++)
+        else for (int i = 0; i < unidades.Count; i++)
             {
 
-                if (unidades[i].GetComponent<Overlord>().dead == true)
+                if (unidades[i].GetComponent<Overlord>().deader() == true)
                 {
-                    unidades.RemoveAt(i);
                     Destroy(unidades[i]);
+                    unidades.RemoveAt(i);
                     count = unidades.Count;
                     break;
                 }
             }
-        }
     }
 }

@@ -5,6 +5,7 @@ public class Infantry : Overlord
 {
     Transform fichador;
     public int Rango = 1;
+    float timeLeft = 4;
     // float intervalo = 0.2f;
     //float prox = 0.0f;
     int limite = 0;
@@ -16,7 +17,7 @@ public class Infantry : Overlord
     //  private int ordenPos;
     GameObject Leader;
     Vector3 _posicionLider;
-
+    bool dead;
 
     override protected void Start()
     {
@@ -24,22 +25,22 @@ public class Infantry : Overlord
         _balaE.GetComponent<DañoBalas>().setDaño(daño);
         GameObject objective = GameObject.FindGameObjectWithTag("Player");
         fichador = objective.transform;
-
+        _estado = estados.fear;
     }
     void Update()
     {
-
+       
+   
         switch (_estado)
         {
             case estados.normal:
 
                 if (dead == true)
-                {
+                { 
                     Destroy(gameObject);
                 }
                 if (Vector3.Distance(transform.position, fichador.position) < Rango)
                 {
-                    limite++;
                     neededRotation = Quaternion.LookRotation(fichador.transform.position - transform.position);
                     neededRotation.x = 0;
                     neededRotation.z = 0;
@@ -51,7 +52,7 @@ public class Infantry : Overlord
                         _estado = estados.rage;
                     }
                     moveIt();
-
+                    limite++;
                 }
 
 
@@ -79,7 +80,17 @@ public class Infantry : Overlord
 
                 break;
 
+            case estados.fear:
+                moveIt(Random.Range(90.0f, 270.0f));
 
+                timeLeft -= Time.deltaTime;
+                if (timeLeft <4)
+                {
+                    timeLeft = 4;
+                    _estado = estados.normal;
+                }
+
+                break;
             case estados.bajoOrdenes:
                 switch (ordenPos)
                 {
@@ -134,9 +145,9 @@ public class Infantry : Overlord
         _balaE.startLifetime = Rango / _balaE.startSpeed;
 
         _balaE.transform.position = transform.position;
-        _balaE.Emit(30);
+        _balaE.Emit(1);
 
-        limite = 0;
+        limite = 0; 
     }
 
     void moveIt()
@@ -151,6 +162,17 @@ public class Infantry : Overlord
 
         }
         transform.position = Vector3.MoveTowards(transform.position, _posicionLider, 2 * Time.deltaTime);
+
+    }
+
+    void moveIt(float chaos)
+    {
+        neededRotation = Quaternion.LookRotation(fichador.transform.position - transform.position);
+        neededRotation *= Quaternion.Euler(0, Random.Range(90.0f, 270.0f), 0);
+        neededRotation.x = 0;
+        neededRotation.z = 0;
+
+        transform.Translate(Vector3.forward * 8 * Time.deltaTime);
 
     }
     public bool begin(int pos, GameObject PointMan)
