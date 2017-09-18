@@ -159,16 +159,19 @@ public class protoScriptAC : Overlord
             _estado = estados.normal;
         }
 
-        else for (int i = 0; i < unidades.Count; i++)
+        else
+        {
+            for (int i = 0; i < unidades.Count; i++)
             {
 
                 if (unidades[i].GetComponent<Overlord>().dead == true)
                 {
-                    Destroy(unidades[i]);
                     unidades.RemoveAt(i);
+                    Destroy(unidades[i]);
                     count = unidades.Count;
                     break;
                 }
             }
+        }
     }
 }

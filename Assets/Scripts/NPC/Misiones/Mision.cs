@@ -18,11 +18,16 @@ public class Mision : MonoBehaviour {
 
     public Button misionBtn;
     protected bool _activa = false;
+    public bool isAlreadyActivated = false;
 
     public Item[] recompensas;
     public List<Objetivo> objetivos;
     public Text[] objetivosTxt;
     Objetivo _objetivoActivo;
+
+    void Start() {
+        if (isAlreadyActivated) empezarMision();
+    }
     //--------------------------------------
     protected virtual void Update() {
         if (mensajeMisionCumplida == null)

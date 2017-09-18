@@ -7,9 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Escena/Menu.unity
+    guid: 1a0ac1beff188a743ac767ab61a0a498
   - enabled: 1
-    path: Assets/Escena/Bosque.unity
-  - enabled: 1
-    path: Assets/Escena/Procedural_1.unity
-  - enabled: 1
-    path: Assets/Escena/LoadingScreen.unity
+    path: Assets/Escena/Sprint1.unity
+    guid: 37a1f7a79e94f9a47bc13f4ee93ca9f8
