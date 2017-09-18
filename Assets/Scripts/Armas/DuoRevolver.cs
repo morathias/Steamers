@@ -6,8 +6,8 @@ public class DuoRevolver : Arma {
     int _cambiarArma = 0;
 
     override protected void Start() {
-        _revolverIzquierdo = transform.FindChild("revolver_Izquierdo");
-        _revolverDerecho = transform.FindChild("revolver_Derecho");
+        _revolverIzquierdo = transform.Find("revolver_Izquierdo");
+        _revolverDerecho = transform.Find("revolver_Derecho");
 
         base.Start();
     }

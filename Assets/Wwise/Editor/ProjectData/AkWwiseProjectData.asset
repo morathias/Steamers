@@ -11,13 +11,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bed4979ebaa78b4395523237992a50b, type: 3}
   m_Name: AkWwiseProjectData
   m_EditorClassIdentifier: 
-  CurrentPluginConfig: Debug
   EventWwu:
   - PhysicalPath: Events\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{65984326-2714-48F2-AEF9-35D15592F291}'
-    m_lastTimePsrt1: -933622830
-    m_lastTimePart2: -1999335986
+<<<<<<< HEAD
+    m_lastTimePsrt1: -874176248
+    m_lastTimePart2: -1999307274
+=======
+    m_lastTimePsrt1: -847367502
+    m_lastTimePart2: -1999308075
+>>>>>>> origin/master
     List:
     - Name: OnStart
       Path: Default Work Unit\OnStart
@@ -33,29 +37,49 @@ MonoBehaviour:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{CE93D1ED-92EF-4DC8-B2F8-98537C8C1842}'
-    m_lastTimePsrt1: -925793757
-    m_lastTimePart2: -1999335986
+<<<<<<< HEAD
+    m_lastTimePsrt1: -858285339
+    m_lastTimePart2: -1999307274
+=======
+    m_lastTimePsrt1: -840408495
+    m_lastTimePart2: -1999308075
+>>>>>>> origin/master
     List: []
   StateWwu:
   - PhysicalPath: States\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{8FA2494B-B43C-4A1E-AE00-12F60934DC5D}'
-    m_lastTimePsrt1: -916759376
-    m_lastTimePart2: -1999335986
+<<<<<<< HEAD
+    m_lastTimePsrt1: -839294253
+    m_lastTimePart2: -1999307274
+=======
+    m_lastTimePsrt1: -831920300
+    m_lastTimePart2: -1999308075
+>>>>>>> origin/master
     List: []
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{4C352325-7E5A-4EC6-9BC6-F24DD9D2E652}'
-    m_lastTimePsrt1: -916759376
-    m_lastTimePart2: -1999335986
+<<<<<<< HEAD
+    m_lastTimePsrt1: -839284253
+    m_lastTimePart2: -1999307274
+=======
+    m_lastTimePsrt1: -831865147
+    m_lastTimePart2: -1999308075
+>>>>>>> origin/master
     List: []
   BankWwu:
   - PhysicalPath: SoundBanks\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{F5D3220B-1923-490E-96A2-B14B84587BB8}'
-    m_lastTimePsrt1: -916759376
-    m_lastTimePart2: -1999335986
+<<<<<<< HEAD
+    m_lastTimePsrt1: -839314254
+    m_lastTimePart2: -1999307274
+=======
+    m_lastTimePsrt1: -832035611
+    m_lastTimePart2: -1999308075
+>>>>>>> origin/master
     List:
     - Name: SoundBank
       Path: Default Work Unit\SoundBank
