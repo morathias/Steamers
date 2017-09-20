@@ -10,6 +10,8 @@ public class EnemyHealth : MonoBehaviour
     Vector3 fggt = new Vector3 (1,1,1);
     Overlord killswitch;
     public int totalhealth;
+
+
     void Start()
     {
         totalhealth = health;

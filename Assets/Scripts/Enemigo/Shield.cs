@@ -20,8 +20,9 @@ public class Shield : Overlord
     bool stayput = false;
     int timer = 0;
     int move = 0;
+    float timeLeft = 4;
 
-
+    GameObject objective;
     Vector3 _posicionLider;
 
 
@@ -29,7 +30,7 @@ public class Shield : Overlord
     {
         base.Start();
         _stats.applyDamage(1);
-        GameObject objective = GameObject.FindGameObjectWithTag("Player");
+        objective = GameObject.FindGameObjectWithTag("Player");
         fichador = objective.transform;
 
     }
@@ -51,13 +52,15 @@ public class Shield : Overlord
                         neededRotation.x = 0;
                         neededRotation.z = 0;
 
-                        transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 0.75f);
+                        transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 2.0f);
                         moveIt();
                         move++;
                     }
                 }
                     break;
+
             case estados.normal:
+
                 if (dead == true)
                 {
                     Destroy(gameObject);
@@ -66,8 +69,9 @@ public class Shield : Overlord
                 if (Vector3.Distance(transform.position, fichador.position) < Rango)
                 {
                     neededRotation = Quaternion.LookRotation(fichador.transform.position - transform.position);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 0.75f);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 2.0f);
                 }
+
                 transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
 
                     timer++;
@@ -80,6 +84,18 @@ public class Shield : Overlord
                 }
 
 
+
+                break;
+
+            case estados.fear:
+                moveIt(Random.Range(90.0f, 270.0f));
+
+                timeLeft -= Time.deltaTime;
+                if (timeLeft < 0)
+                {
+                    timeLeft = 4;
+                    _estado = estados.normal;
+                }
 
                 break;
 
@@ -110,22 +126,18 @@ public class Shield : Overlord
 
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
+    //void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.tag == "Player")
+    //    {
 
-            Stats healthComponent = collision.gameObject.GetComponent<Stats>();
-            healthComponent.applyDamage(damage);
+    //        Stats healthComponent = collision.gameObject.GetComponent<Stats>();
+    //        healthComponent.applyDamage(damage);
 
-            stayput = true;
-        }
-    }
+    //        stayput = true;
+    //    }
+    //}
 
-    public void reset()
-    {
-        _estado = estados.normal;
-    }
 
     public bool begin(int pos, GameObject PointMan)
     {
@@ -145,7 +157,7 @@ public class Shield : Overlord
     }
     void moveIt()
     {
-        if (troop.GetComponent<Overlord>().deader() == true)
+        if (troop.GetComponent<Overlord>().dead == true)
             _estado = estados.normal;
         else
         {
@@ -169,7 +181,6 @@ public class Shield : Overlord
 
         Vector3 explosionPos = transform.position;
         Collider[] colliders = Physics.OverlapSphere(explosionPos, 50);
-        _estado = estados.bajoOrdenes;
 
         foreach (Collider hit in colliders)
         {
@@ -178,9 +189,23 @@ public class Shield : Overlord
                 troop = hit.gameObject.GetComponent<Infantry>();
                 if (troop.status()<30)
                 troop.begin(0, this.gameObject);
+                _estado = estados.protect;
+                break;
             }
 
         }
-        _estado = estados.protect;
+
+    }
+
+
+    void moveIt(float chaos)
+    {
+        neededRotation = Quaternion.LookRotation(fichador.transform.position - transform.position);
+        neededRotation *= Quaternion.Euler(0, Random.Range(90.0f, 270.0f), 0);
+        neededRotation.x = 0;
+        neededRotation.z = 0;
+
+        transform.Translate(Vector3.forward * 8 * Time.deltaTime);
+
     }
 }

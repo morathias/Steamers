@@ -18,18 +18,20 @@ public class Infantry : Overlord
     GameObject Leader;
     Vector3 _posicionLider;
     bool dead;
+    GameObject objective;
+
 
     override protected void Start()
     {
         base.Start();
         _balaE.GetComponent<DañoBalas>().setDaño(daño);
-        GameObject objective = GameObject.FindGameObjectWithTag("Player");
+        objective = GameObject.FindGameObjectWithTag("Player");
         fichador = objective.transform;
         _estado = estados.fear;
     }
     void Update()
     {
-       
+        Debug.Log("Mi estado es " + _estado);
    
         switch (_estado)
         {
@@ -84,7 +86,7 @@ public class Infantry : Overlord
                 moveIt(Random.Range(90.0f, 270.0f));
 
                 timeLeft -= Time.deltaTime;
-                if (timeLeft <4)
+                if (timeLeft < 0)
                 {
                     timeLeft = 4;
                     _estado = estados.normal;
