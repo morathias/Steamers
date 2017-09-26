@@ -17,7 +17,6 @@ public class Infantry : Overlord
     //  private int ordenPos;
     GameObject Leader;
     Vector3 _posicionLider;
-    bool dead;
     GameObject objective;
 
 
@@ -27,7 +26,6 @@ public class Infantry : Overlord
         _balaE.GetComponent<DañoBalas>().setDaño(daño);
         objective = GameObject.FindGameObjectWithTag("Player");
         fichador = objective.transform;
-        _estado = estados.fear;
     }
     void Update()
     {

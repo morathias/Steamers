@@ -5,6 +5,8 @@ public class DuoRevolver : Arma {
     Transform _revolverIzquierdo, _revolverDerecho;
     int _cambiarArma = 0;
 
+    public Animator protaAnimations;
+
     override protected void Start() {
         _revolverIzquierdo = transform.Find("revolver_Izquierdo");
         _revolverDerecho = transform.Find("revolver_Derecho");
@@ -20,17 +22,14 @@ public class DuoRevolver : Arma {
             else{
                 _bala.Emit(1);
                 if (_cambiarArma == 0){
+                    protaAnimations.Play("Armature|shoot_R");
                     _cambiarArma = 1;
                     _bala.transform.position = _revolverDerecho.position;
                 }
                 else {
+                    protaAnimations.Play("Armature|shoot_L");
                     _cambiarArma = 0;
                     _bala.transform.position = _revolverIzquierdo.position;
-                }
-
-                RaycastHit hit;
-                if (Physics.Raycast(transform.position, transform.forward, out hit, distancia)){
-                    //Debug.Log("choco bala");
                 }
 
                 _balasActuales--;

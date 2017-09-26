@@ -22,6 +22,8 @@ public class Prota : MonoBehaviour {
     public Image _barraStamina;
     public Text hasMuertoTxt;
 
+    Animator _animations;
+
     enum estados
     {      //para la maquina de estados
         moviendose,
@@ -38,6 +40,7 @@ public class Prota : MonoBehaviour {
     {
         _stats = GetComponent<Stats>();
         _protaController = GetComponent<CharacterController>();
+        _animations = transform.Find("gratmos_animado").GetComponent<Animator>();
     }
     //-------------------------------------------------------------------------------------------
     void Update()
@@ -52,6 +55,11 @@ public class Prota : MonoBehaviour {
             case estados.moviendose:
                 moverProta();
                 rotarProta();
+                Debug.Log(_direccion.magnitude);
+                if (_direccion.magnitude >= 1)
+                    _animations.Play("Armature|running_front");
+                else
+                    _animations.Play("Armature|iddle");
 
                 if (_stamina <= 100 && special == false)
                     recuperarStamina();
