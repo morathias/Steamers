@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: prota
+  m_Mask: 00000000010000000100000000000000000000000100000001000000010000000100000000000000000000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature
+    m_Weight: 1
+  - m_Path: Armature/base
+    m_Weight: 1
+  - m_Path: Armature/base/cadera
+    m_Weight: 1
+  - m_Path: Armature/base/cadera/columna
+    m_Weight: 1
+  - m_Path: Armature/base/cadera/columna/pecho
+    m_Weight: 1
+  - m_Path: Armature/base/cadera/columna/pecho/antebrazo.L
+    m_Weight: 1
+  - m_Path: Armature/base/cadera/columna/pecho/antebrazo.L/brazo.L
+    m_Weight: 1
+  - m_Path: Armature/base/cadera/columna/pecho/antebrazo.L/brazo.L/brazo.L_end
+    m_Weight: 1
+  - m_Path: Armature/base/cadera/columna/pecho/antebrazo.R.001
+    m_Weight: 1
+  - m_Path: Armature/base/cadera/columna/pecho/antebrazo.R.001/brazo.R.001
+    m_Weight: 1
+  - m_Path: Armature/base/cadera/columna/pecho/antebrazo.R.001/brazo.R.001/brazo.R.001_end
+    m_Weight: 1
+  - m_Path: Armature/base/cadera/columna/pecho/cuello
+    m_Weight: 1
+  - m_Path: Armature/base/cadera/columna/pecho/cuello/cabeza
+    m_Weight: 1
+  - m_Path: Armature/base/cadera/columna/pecho/cuello/cabeza/cabeza_end
+    m_Weight: 1
+  - m_Path: Armature/base/cadera/muslo.L
+    m_Weight: 0
+  - m_Path: Armature/base/cadera/muslo.L/gemelo.L
+    m_Weight: 0
+  - m_Path: Armature/base/cadera/muslo.L/gemelo.L/gemelo.L_end
+    m_Weight: 0
+  - m_Path: Armature/base/cadera/muslo.R.001
+    m_Weight: 0
+  - m_Path: Armature/base/cadera/muslo.R.001/gemelo.R.001
+    m_Weight: 0
+  - m_Path: Armature/base/cadera/muslo.R.001/gemelo.R.001/gemelo.R.001_end
+    m_Weight: 0
+  - m_Path: Armature/base/codo.L
+    m_Weight: 1
+  - m_Path: Armature/base/codo.L/codo.L_end
+    m_Weight: 1
+  - m_Path: Armature/base/codo.R
+    m_Weight: 1
+  - m_Path: Armature/base/codo.R/codo.R_end
+    m_Weight: 1
+  - m_Path: Armature/base/mano.L
+    m_Weight: 1
+  - m_Path: Armature/base/mano.L/dedos_1.L
+    m_Weight: 1
+  - m_Path: Armature/base/mano.L/dedos_1.L/dedos_2.L
+    m_Weight: 1
+  - m_Path: Armature/base/mano.L/dedos_1.L/dedos_2.L/dedos_3.L
+    m_Weight: 1
+  - m_Path: Armature/base/mano.L/dedos_1.L/dedos_2.L/dedos_3.L/dedos_3.L_end
+    m_Weight: 1
+  - m_Path: Armature/base/mano.L/pulgar_1.L
+    m_Weight: 1
+  - m_Path: Armature/base/mano.L/pulgar_1.L/pulgar_2.L
+    m_Weight: 1
+  - m_Path: Armature/base/mano.L/pulgar_1.L/pulgar_2.L/pulgar_3.L
+    m_Weight: 1
+  - m_Path: Armature/base/mano.L/pulgar_1.L/pulgar_2.L/pulgar_3.L/pulgar_3.L_end
+    m_Weight: 1
+  - m_Path: Armature/base/mano.R
+    m_Weight: 1
+  - m_Path: Armature/base/mano.R/dedos_1.R.001
+    m_Weight: 1
+  - m_Path: Armature/base/mano.R/dedos_1.R.001/dedos_2.R.001
+    m_Weight: 1
+  - m_Path: Armature/base/mano.R/dedos_1.R.001/dedos_2.R.001/dedos_3.R.001
+    m_Weight: 1
+  - m_Path: Armature/base/mano.R/dedos_1.R.001/dedos_2.R.001/dedos_3.R.001/dedos_3.R.001_end
+    m_Weight: 1
+  - m_Path: Armature/base/mano.R/pulgar_1.R.001
+    m_Weight: 1
+  - m_Path: Armature/base/mano.R/pulgar_1.R.001/pulgar_2.R.001
+    m_Weight: 1
+  - m_Path: Armature/base/mano.R/pulgar_1.R.001/pulgar_2.R.001/pulgar_3.R.001
+    m_Weight: 1
+  - m_Path: Armature/base/mano.R/pulgar_1.R.001/pulgar_2.R.001/pulgar_3.R.001/pulgar_3.R.001_end
+    m_Weight: 1
+  - m_Path: Armature/base/pie.L
+    m_Weight: 0
+  - m_Path: Armature/base/pie.L/dedos_pie.L
+    m_Weight: 0
+  - m_Path: Armature/base/pie.L/dedos_pie.L/dedos_pie.L_end
+    m_Weight: 0
+  - m_Path: Armature/base/pie.R.001
+    m_Weight: 0
+  - m_Path: Armature/base/pie.R.001/dedos_pie.R.001
+    m_Weight: 0
+  - m_Path: Armature/base/pie.R.001/dedos_pie.R.001/dedos_pie.R.001_end
+    m_Weight: 0
+  - m_Path: Armature/rodilla.L
+    m_Weight: 0
+  - m_Path: Armature/rodilla.L/rodilla.L_end
+    m_Weight: 0
+  - m_Path: Armature/rodilla.R
+    m_Weight: 0
+  - m_Path: Armature/rodilla.R/rodilla.R_end
+    m_Weight: 0
+  - m_Path: Plane.005
+    m_Weight: 0

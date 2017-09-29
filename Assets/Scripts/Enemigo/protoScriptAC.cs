@@ -14,20 +14,21 @@ public class protoScriptAC : Overlord
     int move = 0;
     int limite = 0;
     public ParticleSystem _balaE;
-    Formations f;
     private List<GameObject> unidades;
     int count;
     Infantry troop;
     Shield sTroop;
+    int numeroSoldado = 0;
+    int numeroEscudo = 0;
+    GameObject objective;
 
     override protected void Start()
     {
         base.Start();
         unidades = new List<GameObject>();
         _stats.applyDamage(1);
-        GameObject objective = GameObject.FindGameObjectWithTag("Player");
+        objective = GameObject.FindGameObjectWithTag("Player");
         fichador = objective.transform;
-        f = GetComponent<Formations>();
         commandInit = Random.Range(120, 500);
 
     }
@@ -60,9 +61,10 @@ public class protoScriptAC : Overlord
                     count = unidades.Count;
                     for (int f = 0; f < count; f++)
                     {
-                        unidades[f].GetComponent<Overlord>().reset();
+                        unidades[f].GetComponent<Overlord>().fear();
                         count = unidades.Count;
                     }
+
                     Destroy(gameObject);
                 }
                 limite++;
@@ -82,8 +84,7 @@ public class protoScriptAC : Overlord
 
         Vector3 explosionPos = transform.position;
         Collider[] colliders = Physics.OverlapSphere(explosionPos, 50);
-        int numeroSoldado = 0;
-        int numeroEscudo = 0;
+        
         _estado = estados.bajoOrdenes;
 
         foreach (Collider hit in colliders)
@@ -156,6 +157,9 @@ public class protoScriptAC : Overlord
 
                 onOrder = false;
             }
+            numeroSoldado = 0;
+            numeroEscudo = 0;
+            count = 0;
             _estado = estados.normal;
         }
 
@@ -167,7 +171,6 @@ public class protoScriptAC : Overlord
                     Destroy(unidades[i]);
                     unidades.RemoveAt(i);
                     count = unidades.Count;
-                    break;
                 }
             }
     }

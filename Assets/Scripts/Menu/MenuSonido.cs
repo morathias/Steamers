@@ -12,6 +12,5 @@ public class MenuSonido : MonoBehaviour {
 
 	public void cambiarVolumen(){
         Variables.volumenMusica = sliderVolumenMusica.value;
-        AkSoundEngine.SetRTPCValue("Music_volume", Variables.volumenMusica);
     }
 }

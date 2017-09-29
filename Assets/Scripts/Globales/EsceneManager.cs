@@ -11,7 +11,8 @@ public class EsceneManager : MonoBehaviour
 
     public void cambiarEscena(int index)
     {
-        LoadingScreenManager.LoadScene(index);
+        //LoadingScreenManager.LoadScene(index);
+        SceneManager.LoadScene(index);
         Time.timeScale = 1;
     }
 

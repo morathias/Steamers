@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33515184881376928}
   - component: {fileID: 23167297703945206}
   - component: {fileID: 65416420112577122}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: shield
   m_TagString: Shield
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 136702064146148168}
   - component: {fileID: 114025087723090116}
   - component: {fileID: 114337120142270978}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: shielder
   m_TagString: ArmoredE
   m_Icon: {fileID: 0}
@@ -69,14 +69,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1962344927074942}
-  m_LocalRotation: {x: -0, y: 0.16948396, z: -0, w: 0.985533}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 87.18, y: 85.88024, z: 49.370003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4531730952115978}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 19.516, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23122422307129036
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -211,6 +211,7 @@ MonoBehaviour:
   health: 100
   Potion: {fileID: 1000012904508556, guid: d907b4e1c141472439466638dd247860, type: 2}
   XPerience: {fileID: 1000013435819682, guid: de96d0bcfbf623043b4afda9f7619624, type: 2}
+  totalhealth: 0
 --- !u!136 &136702064146148168
 CapsuleCollider:
   m_ObjectHideFlags: 1
