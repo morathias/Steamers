@@ -55,7 +55,7 @@ public class Prota : MonoBehaviour {
             case estados.moviendose:
                 moverProta();
                 rotarProta();
-                Debug.Log(_direccion.magnitude);
+                //Debug.Log(_direccion.magnitude);
                 if (_direccion.magnitude >= 1)
                     _animations.Play("Armature|running_front");
                 else

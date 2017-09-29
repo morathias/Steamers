@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 198118003989498220}
   - component: {fileID: 199158997507486706}
   - component: {fileID: 114442316571564070}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: BalaE
   m_TagString: BalaE
   m_Icon: {fileID: 0}
@@ -145,6 +145,7 @@ MonoBehaviour:
   health: 50
   Potion: {fileID: 1000012904508556, guid: d907b4e1c141472439466638dd247860, type: 2}
   XPerience: {fileID: 1000013435819682, guid: de96d0bcfbf623043b4afda9f7619624, type: 2}
+  totalhealth: 0
 --- !u!114 &114442316571564070
 MonoBehaviour:
   m_ObjectHideFlags: 1

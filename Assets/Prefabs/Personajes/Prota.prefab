@@ -2229,6 +2229,10 @@ MonoBehaviour:
   barraRecarga: {fileID: 0}
   barraRecargaVacia: {fileID: 0}
   barraRecargaPunto: {fileID: 0}
+  protaAnimations: {fileID: 95870411393684958}
+  layer:
+    serializedVersion: 2
+    m_Bits: 2560
 --- !u!114 &114000012394874730
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2418,7 +2422,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010916823758}
   serializedVersion: 5
-  lengthInSec: 1
+  lengthInSec: 5
   simulationSpeed: 1
   looping: 0
   prewarm: 0
@@ -2477,7 +2481,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
