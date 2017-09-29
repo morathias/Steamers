@@ -677,7 +677,7 @@ GameObject:
   - component: {fileID: 114141430464295646}
   m_Layer: 9
   m_Name: rifleman_animado
-  m_TagString: Rifleman
+  m_TagString: EnemyS
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

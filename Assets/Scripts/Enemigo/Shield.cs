@@ -7,7 +7,7 @@ public class Shield : Overlord
     Transform fichador;
     public int Rango = 1;
     // float intervalo = 0.2f;
-    int velocidad = 1;
+    public int velocidad = 2;
     // float prox = 0.0f;
     // int cartucho = 0;
     //  int cool = 0;
@@ -21,6 +21,7 @@ public class Shield : Overlord
     int timer = 0;
     int move = 0;
     float timeLeft = 4;
+
 
     GameObject objective;
     Vector3 _posicionLider;
@@ -39,7 +40,6 @@ public class Shield : Overlord
     }
     void Update()
     {
-
 
         switch (_estado)
         {
@@ -63,6 +63,12 @@ public class Shield : Overlord
                         move++;
                         stayput = false;
                     }
+                    else if (!stayput)
+                    {
+
+                        _animations.SetBool("Range", false);
+                    }
+
 
                 }
                 break;
@@ -77,7 +83,7 @@ public class Shield : Overlord
                 if (Vector3.Distance(transform.position, fichador.position) < 10)
                 {
                     neededRotation = Quaternion.LookRotation(fichador.transform.position - transform.position);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 3.0f);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 2.0f);
                     if (!stayput)
                         _animations.SetBool("Range", true);
                     else
@@ -93,6 +99,10 @@ public class Shield : Overlord
 
                     _animations.SetBool("Range", false);
                 }
+
+               
+
+
 
                 timer++;
 
@@ -207,20 +217,20 @@ public class Shield : Overlord
     void searchPro()
     {
 
+        _animations.SetBool("Range", false);
+
         Vector3 explosionPos = transform.position;
         Collider[] colliders = Physics.OverlapSphere(explosionPos, 50);
 
         foreach (Collider hit in colliders)
         {
-            if (hit.gameObject.tag == "Enemy")
+            if (hit.gameObject.tag == "EnemyS")
             {
                 troop = hit.gameObject.GetComponent<Infantry>();
-                if (troop.status() < 30)
-                {
-                    troop.begin(0, this.gameObject);
-                    _estado = estados.protect;
-                    break;
-                }
+                if (troop.status()<30)
+                troop.begin(0, this.gameObject);
+                _estado = estados.protect;
+                break;
             }
 
         }
@@ -234,7 +244,7 @@ public class Shield : Overlord
         neededRotation *= Quaternion.Euler(0, Random.Range(90.0f, 270.0f), 0);
         neededRotation.x = 0;
         neededRotation.z = 0;
-        _animations.SetBool("Range", true);
+            _animations.SetBool("Range", true);
         transform.Translate(Vector3.forward * 8 * Time.deltaTime);
 
     }

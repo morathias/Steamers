@@ -263,9 +263,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f6d2813e8cb51f47a096f07935c2f91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 200
+  health: 80
   Potion: {fileID: 1000012904508556, guid: d907b4e1c141472439466638dd247860, type: 2}
   XPerience: {fileID: 1000013435819682, guid: de96d0bcfbf623043b4afda9f7619624, type: 2}
+  totalhealth: 0
 --- !u!136 &136732787316014748
 CapsuleCollider:
   m_ObjectHideFlags: 1

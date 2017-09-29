@@ -215,8 +215,8 @@ ModelImporter:
     - serializedVersion: 16
       name: Walking
       takeName: Armature|ArmatureAction
-      firstFrame: 190
-      lastFrame: 287
+      firstFrame: 182
+      lastFrame: 282
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -234,26 +234,7 @@ ModelImporter:
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves:
-      - name: Curve
-        curve:
-          serializedVersion: 2
-          curve:
-          - serializedVersion: 2
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-          - serializedVersion: 2
-            time: 1
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-          preInfinity: 3
-          postInfinity: 3
-          rotationOrder: 0
+      curves: []
       events: []
       transformMask: []
       maskType: 3
@@ -290,8 +271,8 @@ ModelImporter:
     - serializedVersion: 16
       name: StepNeutral
       takeName: Armature|ArmatureAction
-      firstFrame: 183
-      lastFrame: 183
+      firstFrame: 185
+      lastFrame: 185
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
