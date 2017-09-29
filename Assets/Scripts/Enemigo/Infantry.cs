@@ -18,6 +18,7 @@ public class Infantry : Overlord
     GameObject Leader;
     Vector3 _posicionLider;
     GameObject objective;
+    Animator _animations;
 
 
     override protected void Start()
@@ -26,6 +27,7 @@ public class Infantry : Overlord
         _balaE.GetComponent<DañoBalas>().setDaño(daño);
         objective = GameObject.FindGameObjectWithTag("Player");
         fichador = objective.transform;
+        _animations = GetComponent<Animator>();
     }
     void Update()
     {
@@ -34,7 +36,7 @@ public class Infantry : Overlord
         switch (_estado)
         {
             case estados.normal:
-
+                
                 if (dead == true)
                 { 
                     Destroy(gameObject);
@@ -52,8 +54,11 @@ public class Infantry : Overlord
                         _estado = estados.rage;
                     }
                     moveIt();
+                    _animations.Play("Armature|running");
                     limite++;
                 }
+                else
+                    _animations.Play("Armature|iddle_001");
 
 
                 break;
@@ -72,11 +77,14 @@ public class Infantry : Overlord
                             _estado = estados.normal;
                             fire();
                             Debug.Log("ji");
+                            _animations.Play("Armature|shoot");
                         }
 
 
                     }
                 }
+                else
+                    _animations.Play("Armature|apuntando");
 
                 break;
 
