@@ -2,12 +2,12 @@
 using System.Collections;
 using UnityEngine.UI;
 //=================================================
-public class Arma : MonoBehaviour {
+public class Arma : MonoBehaviour
+{
     public int balas;
-    public float daño;
     float _daño;
     public float distancia; //tiempo que tarda en destruirse
-    int health;
+    private Stats statsComponent;
 
     public Text balasTxt;
 
@@ -26,14 +26,18 @@ public class Arma : MonoBehaviour {
 
     Prota _prota;
 
-    protected enum estados {
+    protected enum estados
+    {
         llena,
         recargando
     }
     protected estados _estado;
     //---------------------------------------------
-	protected virtual void Start () {
-        _daño = daño;
+    protected virtual void Start()
+    {
+        statsComponent = GameObject.Find("Prota").gameObject.GetComponent<Stats>();
+
+        _daño = statsComponent.damageFinal;
         _dañoBala = _bala.GetComponent<DañoBalas>();
         _dañoBala.setDaño((int)_daño);
 
@@ -46,9 +50,12 @@ public class Arma : MonoBehaviour {
         barraRecargaPunto.enabled = false;
 
         _prota = GameObject.Find("Prota").GetComponent<Prota>();
-	}
+    }
     //---------------------------------------------
-	void Update () {
+    void Update()
+    {
+        _daño = statsComponent.damageFinal;
+        _dañoBala.setDaño((int)_daño);
         if (_prota.enabled)
         {
             switch (_estado)
@@ -83,17 +90,19 @@ public class Arma : MonoBehaviour {
         if (_recargaPerfecta && _balasActuales <= _balasActuales / 2)
         {
             _recargaPerfecta = false;
-            _daño = daño;
+            _daño = statsComponent.damage;
         }
-	}
+    }
     //---------------------------------------------
     public virtual bool disparar() { return false; }
     //---------------------------------------------
-    bool recargar() {
+    bool recargar()
+    {
         _rangoRecarga += 0.75f * Time.deltaTime;
         barraRecarga.fillAmount = _rangoRecarga;
 
-        if (Input.GetKeyDown(KeyCode.R)){
+        if (Input.GetKeyDown(KeyCode.R))
+        {
             if (_rangoRecarga >= _minPerfecto && _rangoRecarga <= _maxPerfecto)
             {
                 _rangoRecarga = 0f;
@@ -104,14 +113,16 @@ public class Arma : MonoBehaviour {
                 _recargaPerfecta = true;
                 return true;
             }
-            else {
+            else
+            {
                 _rangoRecarga = 0f;
                 barraRecarga.fillAmount = _rangoRecarga;
                 return false;
             }
         }
 
-        if (_rangoRecarga >= 1f){
+        if (_rangoRecarga >= 1f)
+        {
             _rangoRecarga = 0f;
             barraRecarga.fillAmount = _rangoRecarga;
             _balasActuales = balas;

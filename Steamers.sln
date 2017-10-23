@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2017
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Steamers.Plugins", "Steamers.Plugins.csproj", "{2C2DE3F9-AEEA-1C7D-B09A-21213D5541D2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Steamers", "Steamers.csproj", "{BF2BC201-EA2D-A08C-826C-382A700D6A30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Steamers.Editor.Plugins", "Steamers.Editor.Plugins.csproj", "{3E087E11-4E13-DE2F-1FD2-7433700F6578}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Steamers.Plugins", "Steamers.Plugins.csproj", "{2C2DE3F9-AEEA-1C7D-B09A-21213D5541D2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Steamers.Editor", "Steamers.Editor.csproj", "{F18F3BC8-6D9E-4B63-4D54-B98935733E10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Steamers.Editor.Plugins", "Steamers.Editor.Plugins.csproj", "{3E087E11-4E13-DE2F-1FD2-7433700F6578}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,22 +15,22 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2C2DE3F9-AEEA-1C7D-B09A-21213D5541D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2C2DE3F9-AEEA-1C7D-B09A-21213D5541D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2C2DE3F9-AEEA-1C7D-B09A-21213D5541D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2C2DE3F9-AEEA-1C7D-B09A-21213D5541D2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BF2BC201-EA2D-A08C-826C-382A700D6A30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BF2BC201-EA2D-A08C-826C-382A700D6A30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF2BC201-EA2D-A08C-826C-382A700D6A30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF2BC201-EA2D-A08C-826C-382A700D6A30}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3E087E11-4E13-DE2F-1FD2-7433700F6578}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3E087E11-4E13-DE2F-1FD2-7433700F6578}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3E087E11-4E13-DE2F-1FD2-7433700F6578}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3E087E11-4E13-DE2F-1FD2-7433700F6578}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C2DE3F9-AEEA-1C7D-B09A-21213D5541D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C2DE3F9-AEEA-1C7D-B09A-21213D5541D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C2DE3F9-AEEA-1C7D-B09A-21213D5541D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C2DE3F9-AEEA-1C7D-B09A-21213D5541D2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F18F3BC8-6D9E-4B63-4D54-B98935733E10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F18F3BC8-6D9E-4B63-4D54-B98935733E10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F18F3BC8-6D9E-4B63-4D54-B98935733E10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F18F3BC8-6D9E-4B63-4D54-B98935733E10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E087E11-4E13-DE2F-1FD2-7433700F6578}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E087E11-4E13-DE2F-1FD2-7433700F6578}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E087E11-4E13-DE2F-1FD2-7433700F6578}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E087E11-4E13-DE2F-1FD2-7433700F6578}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
