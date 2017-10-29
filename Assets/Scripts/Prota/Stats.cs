@@ -12,6 +12,7 @@ public class Stats : MonoBehaviour
     public float damageFinal;
     public float damageBase = 10;
     public int stat;
+    public float buffReload = 1.5f;
     public Text stats;
     public Text levelsT;
     public Text levelUpTxt;

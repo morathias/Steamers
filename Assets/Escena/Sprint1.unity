@@ -5420,6 +5420,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 223000013807564196, guid: 62cc358f851cc8e48b4828c3fec0bcaa,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 62cc358f851cc8e48b4828c3fec0bcaa, type: 2}
   m_IsPrefabParent: 0
@@ -7115,11 +7120,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4131794821373976, guid: d18dbee1e7a523a4296a7f824dde7752,
     type: 2}
   m_PrefabInternal: {fileID: 455354188}
---- !u!223 &456097318 stripped
-Canvas:
-  m_PrefabParentObject: {fileID: 223615325338568942, guid: a4f6cca0d3ca489478dcd9ef4125860e,
-    type: 2}
-  m_PrefabInternal: {fileID: 674944846}
 --- !u!1001 &456794296
 Prefab:
   m_ObjectHideFlags: 0
@@ -7715,7 +7715,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1830244489}
   m_HandleRect: {fileID: 1830244488}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0.9999987
   m_Size: 0.9267118
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -9357,7 +9357,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 61543372}
   m_HandleRect: {fileID: 61543371}
   m_Direction: 2
-  m_Value: 0.99999684
+  m_Value: 0.9999937
   m_Size: 0.9676665
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -13654,6 +13654,44 @@ Prefab:
         type: 2}
       propertyPath: m_Size.x
       value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 198832496790284642, guid: 251b675202aa2344eb3f21b140e61bae,
+        type: 2}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 4294966271
+      objectReference: {fileID: 0}
+    - target: {fileID: 198832496790284642, guid: 251b675202aa2344eb3f21b140e61bae,
+        type: 2}
+      propertyPath: randomSeed
+      value: -2077137938
+      objectReference: {fileID: 0}
+    - target: {fileID: 198832496790284642, guid: 251b675202aa2344eb3f21b140e61bae,
+        type: 2}
+      propertyPath: CollisionModule.m_Bounce.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358309263966986, guid: 251b675202aa2344eb3f21b140e61bae, type: 2}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4666755865949554, guid: 251b675202aa2344eb3f21b140e61bae, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.255
+      objectReference: {fileID: 0}
+    - target: {fileID: 198832496790284642, guid: 251b675202aa2344eb3f21b140e61bae,
+        type: 2}
+      propertyPath: CollisionModule.collidesWithDynamic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198832496790284642, guid: 251b675202aa2344eb3f21b140e61bae,
+        type: 2}
+      propertyPath: CollisionModule.collisionMessages
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198832496790284642, guid: 251b675202aa2344eb3f21b140e61bae,
+        type: 2}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 33704980325861200, guid: 251b675202aa2344eb3f21b140e61bae, type: 2}
@@ -25900,11 +25938,6 @@ Transform:
   m_Father: {fileID: 1047452592}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -23.616001, z: 0}
---- !u!223 &1805288356 stripped
-Canvas:
-  m_PrefabParentObject: {fileID: 223656151229625396, guid: b9c86349a8a281f4fbf888b212e54eef,
-    type: 2}
-  m_PrefabInternal: {fileID: 1093813116}
 --- !u!1001 &1805748969
 Prefab:
   m_ObjectHideFlags: 0
@@ -25993,9 +26026,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menues:
   - {fileID: 520893654}
-  - {fileID: 0}
-  - {fileID: 1805288356}
-  - {fileID: 456097318}
 --- !u!4 &1806694109
 Transform:
   m_ObjectHideFlags: 0

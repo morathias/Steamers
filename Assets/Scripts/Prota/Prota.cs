@@ -11,9 +11,13 @@ public class Prota : MonoBehaviour
     bool special = false;
     float _angulo;
     float _stamina = 100;
-    public float consumoShield = 0.5f;
-    public float consumoLlama = 0.5f;
+    public float consumoShield = 0.25f;
+    public float consumoLlama = 0.25f;
     public float consumoDash = 25f;
+    public bool ShieldCD = false;
+    public bool FlameCD = false;
+    public float ShieldTimer = 0;
+    public float FlameTimer = 0;
 
     Vector3 _direccion = Vector3.zero;
     Vector3 _posicionDelMouse;
@@ -53,6 +57,23 @@ public class Prota : MonoBehaviour
     {
         _barraVida.fillAmount = (float)_stats.VidaActual / _stats.health;
 
+        if (ShieldCD){
+            ShieldTimer += Time.deltaTime;
+            if(ShieldTimer > 1){
+                ShieldCD = false;
+                ShieldTimer = 0;
+            }
+        }
+        if (FlameCD)
+        {
+            FlameTimer += Time.deltaTime;
+            if (FlameTimer > 1)
+            {
+                FlameCD = false;
+                FlameTimer = 0;
+            }
+        }
+
         if (_stats.VidaActual <= 0)
             _estado = estados.muriendo;
 
@@ -70,17 +91,21 @@ public class Prota : MonoBehaviour
                 if (Stamina <= 100 && special == false)
                     recuperarStamina();
 
-                if (Input.GetKeyDown(KeyCode.Space) && Stamina > 25 && _estado != estados.hablando)
+                if (Input.GetKeyDown(KeyCode.Space) && !FlameCD && _estado != estados.hablando)
                 {
                     perderStamina(consumoDash);
                     _estado = estados.esquivando;
+                    if (Stamina < 10)
+                        FlameCD = true;
                 }
 
-                if (Input.GetKey(KeyCode.F) && Stamina > 10 && _estado != estados.hablando)
+                if (Input.GetKey(KeyCode.F) && !ShieldCD && _estado != estados.hablando)
                 {
                     Shield.SetActive(true);
                     perderStamina(consumoShield);
                     special = true;
+                    if (Stamina < 10)
+                        ShieldCD = true;
                 }
                 else
                 {
@@ -194,7 +219,6 @@ public class Prota : MonoBehaviour
     {
         if (other.tag == "BalaE" && _estado != estados.esquivando)
         {
-            Debug.Log("SacoVida");
             if (_stats.applyDamage(other.GetComponent<DañoBalas>().getDaño()))
                 _estado = estados.muriendo;
 

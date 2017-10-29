@@ -16,6 +16,7 @@ public class Arma : MonoBehaviour
     float _minPerfecto = 0.54f;
     float _maxPerfecto = 0.61f;
     protected int _balasActuales;
+    public float _timerReload = 0f;
 
     public ParticleSystem _bala;
     protected DañoBalas _dañoBala;
@@ -56,6 +57,9 @@ public class Arma : MonoBehaviour
     {
         _daño = statsComponent.damageFinal;
         _dañoBala.setDaño((int)_daño);
+        if (_recargaPerfecta){
+            _timerReload += Time.deltaTime;
+        }
         if (_prota.enabled)
         {
             switch (_estado)
@@ -87,10 +91,11 @@ public class Arma : MonoBehaviour
 
         balasTxt.text = "Balas: " + _balasActuales;
 
-        if (_recargaPerfecta && _balasActuales <= _balasActuales / 2)
+        if (_timerReload >= 2.5f)
         {
             _recargaPerfecta = false;
-            _daño = statsComponent.damage;
+            statsComponent.damage /= statsComponent.buffReload;
+            _timerReload = 0;
         }
     }
     //---------------------------------------------
@@ -102,14 +107,19 @@ public class Arma : MonoBehaviour
         barraRecarga.fillAmount = _rangoRecarga;
 
         if (Input.GetKeyDown(KeyCode.R))
-        {
-            if (_rangoRecarga >= _minPerfecto && _rangoRecarga <= _maxPerfecto)
+        {   if (_rangoRecarga < _minPerfecto){
+                _rangoRecarga = 0f;
+                barraRecarga.fillAmount = _rangoRecarga;
+                return false;
+            }
+            else if (_rangoRecarga >= _minPerfecto && _rangoRecarga <= _maxPerfecto)
             {
                 _rangoRecarga = 0f;
                 barraRecarga.fillAmount = _rangoRecarga;
                 _balasActuales = balas;
-                _daño *= 2;
-                _dañoBala.setDaño((int)_daño);
+                if (!_recargaPerfecta){
+                    statsComponent.damage *= statsComponent.buffReload;
+                }
                 _recargaPerfecta = true;
                 return true;
             }
@@ -117,7 +127,8 @@ public class Arma : MonoBehaviour
             {
                 _rangoRecarga = 0f;
                 barraRecarga.fillAmount = _rangoRecarga;
-                return false;
+                _balasActuales = balas;
+                return true;
             }
         }
 
