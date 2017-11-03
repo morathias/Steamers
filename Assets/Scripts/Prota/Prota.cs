@@ -30,6 +30,7 @@ public class Prota : MonoBehaviour
     public Image _barraVida;
     public Image _barraStamina;
     public Text hasMuertoTxt;
+    public Text muertoReset;
 
     Animator _animations;
 
@@ -149,6 +150,7 @@ public class Prota : MonoBehaviour
 
             case estados.muriendo:
                 hasMuertoTxt.enabled = true;
+                muertoReset.enabled = true;
                 this.enabled = false;
                 break;
         }
