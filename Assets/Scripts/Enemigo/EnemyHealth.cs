@@ -21,7 +21,6 @@ public class EnemyHealth : MonoBehaviour
     public void applyDamage(int damage)
     {
         health -= damage;
-        Debug.Log(killswitch.dead);
         if (health <= 0 && !killswitch.dead)
         {
             int random = Random.Range(1, 10);

@@ -23,12 +23,12 @@ public class GameOptionsManager : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.J))
             switchMenu(0);
-        if (Input.GetKeyDown(KeyCode.U))
+        /*if (Input.GetKeyDown(KeyCode.U))
             switchMenu(1);
         if (Input.GetKeyDown(KeyCode.O))
             switchMenu(2);
         if (Input.GetKeyDown(KeyCode.I))
-            switchMenu(3);
+            switchMenu(3);*/
 
         if (Input.GetKeyDown(KeyCode.Escape) && !_menuPausa.enabled) {
             _menuPausa.enabled = true;
@@ -41,10 +41,10 @@ public class GameOptionsManager : MonoBehaviour {
         switch (_options)
         {
             case Options.journal:
-                enableJournalMenu();
+                    enableJournalMenu();
                 break;
 
-            case Options.stats:
+            /*case Options.stats:
                 enableStatsMenu();
                 break;
 
@@ -54,7 +54,7 @@ public class GameOptionsManager : MonoBehaviour {
 
             case Options.inventory:
                 enableInventoryMenu();
-                break;
+                break;*/
 
             default:
                 break;
@@ -62,6 +62,11 @@ public class GameOptionsManager : MonoBehaviour {
     }
     //----------------------------------------------------
     public void switchMenu(int index) {
+        if (menues[index].enabled){
+            menues[index].enabled = false;
+            Time.timeScale = 1;
+            return;
+        }
         Time.timeScale = 0;
         _options = (Options)index;
         _menuPausa.enabled = false;
@@ -70,37 +75,37 @@ public class GameOptionsManager : MonoBehaviour {
     //----------------------------------------------------
     void enableJournalMenu() {
         menues[(int)Options.journal].enabled = true;
-        menues[(int)Options.stats].enabled = false;
-        menues[(int)Options.options].enabled = false;
-        menues[(int)Options.inventory].enabled = false;
+      //menues[(int)Options.stats].enabled = false;
+      //menues[(int)Options.options].enabled = false;
+      //menues[(int)Options.inventory].enabled = false;
     }
     //----------------------------------------------------
-    void enableStatsMenu() {
+    /*void enableStatsMenu() {
         menues[(int)Options.journal].enabled = false;
         menues[(int)Options.stats].enabled = true;
         menues[(int)Options.options].enabled = false;
         menues[(int)Options.inventory].enabled = false;
-    }
+    }*/
     //----------------------------------------------------
-    void enableOptionsMenu() {
+    /*void enableOptionsMenu() {
         menues[(int)Options.journal].enabled = false;
         menues[(int)Options.stats].enabled = false;
         menues[(int)Options.options].enabled = true;
         menues[(int)Options.inventory].enabled = false;
-    }
+    }*/
     //----------------------------------------------------
-    void enableInventoryMenu() {
+    /*void enableInventoryMenu() {
         menues[(int)Options.journal].enabled = false;
         menues[(int)Options.stats].enabled = false;
         menues[(int)Options.options].enabled = false;
         menues[(int)Options.inventory].enabled = true;
-    }
+    }*/
     //----------------------------------------------------
     void disableAll() {
         menues[(int)Options.journal].enabled = false;
-        menues[(int)Options.stats].enabled = false;
-        menues[(int)Options.options].enabled = false;
-        menues[(int)Options.inventory].enabled = false;
+        //menues[(int)Options.stats].enabled = false;
+        //menues[(int)Options.options].enabled = false;
+        //menues[(int)Options.inventory].enabled = false;
     }
 }
 //=======================================================

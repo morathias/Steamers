@@ -2,13 +2,22 @@
 using System.Collections;
 using UnityEngine.UI;
 //===============================================================================================
-public class Prota : MonoBehaviour {
+public class Prota : MonoBehaviour
+{
     public float velocidad = 5f;
     public GameObject Shield;
     public ParticleSystem FireL;
+    public float staminaBase = 100;
     bool special = false;
     float _angulo;
     float _stamina = 100;
+    public float consumoShield = 0.25f;
+    public float consumoLlama = 0.25f;
+    public float consumoDash = 25f;
+    public bool ShieldCD = false;
+    public bool FlameCD = false;
+    public float ShieldTimer = 0;
+    public float FlameTimer = 0;
 
     Vector3 _direccion = Vector3.zero;
     Vector3 _posicionDelMouse;
@@ -21,6 +30,7 @@ public class Prota : MonoBehaviour {
     public Image _barraVida;
     public Image _barraStamina;
     public Text hasMuertoTxt;
+    public Text muertoReset;
 
     Animator _animations;
 
@@ -35,6 +45,7 @@ public class Prota : MonoBehaviour {
     estados _estado = estados.moviendose;
 
     float _timerEsquivar = 0.2f;
+
     //-------------------------------------------------------------------------------------------
     void Start()
     {
@@ -45,9 +56,26 @@ public class Prota : MonoBehaviour {
     //-------------------------------------------------------------------------------------------
     void Update()
     {
-        _barraVida.fillAmount = (float)_stats.vida / _stats.health;
+        _barraVida.fillAmount = (float)_stats.VidaActual / _stats.health;
 
-        if (_stats.vida <= 0)
+        if (ShieldCD){
+            ShieldTimer += Time.deltaTime;
+            if(ShieldTimer > 1){
+                ShieldCD = false;
+                ShieldTimer = 0;
+            }
+        }
+        if (FlameCD)
+        {
+            FlameTimer += Time.deltaTime;
+            if (FlameTimer > 1)
+            {
+                FlameCD = false;
+                FlameTimer = 0;
+            }
+        }
+
+        if (_stats.VidaActual <= 0)
             _estado = estados.muriendo;
 
         switch (_estado)
@@ -61,20 +89,24 @@ public class Prota : MonoBehaviour {
                 else
                     _animations.Play("Armature|iddle");
 
-                if (_stamina <= 100 && special == false)
+                if (Stamina <= 100 && special == false)
                     recuperarStamina();
 
-                if (Input.GetKeyDown(KeyCode.Space) && _stamina > 25 && _estado != estados.hablando)
+                if (Input.GetKeyDown(KeyCode.Space) && !FlameCD && _estado != estados.hablando)
                 {
-                    perderStamina(25);
+                    perderStamina(consumoDash);
                     _estado = estados.esquivando;
+                    if (Stamina < 10)
+                        FlameCD = true;
                 }
 
-                if (Input.GetKey(KeyCode.F) && _stamina > 10 && _estado != estados.hablando)
+                if (Input.GetKey(KeyCode.F) && !ShieldCD && _estado != estados.hablando)
                 {
                     Shield.SetActive(true);
-                    perderStamina(0.25f);
+                    perderStamina(consumoShield);
                     special = true;
+                    if (Stamina < 10)
+                        ShieldCD = true;
                 }
                 else
                 {
@@ -83,10 +115,10 @@ public class Prota : MonoBehaviour {
                 }
 
 
-                if (Input.GetKey(KeyCode.Q) && _stamina > 20 && _estado != estados.hablando)
+                if (Input.GetKey(KeyCode.Q) && Stamina > 20 && _estado != estados.hablando)
                 {
                     FireL.Play(true);
-                    perderStamina(0.5f);
+                    perderStamina(consumoLlama);
                     special = true;
                 }
                 else
@@ -118,6 +150,7 @@ public class Prota : MonoBehaviour {
 
             case estados.muriendo:
                 hasMuertoTxt.enabled = true;
+                muertoReset.enabled = true;
                 this.enabled = false;
                 break;
         }
@@ -157,14 +190,14 @@ public class Prota : MonoBehaviour {
     //-------------------------------------------------------------------------------------------
     void perderStamina(float value)
     {
-        _stamina -= value;
-        _barraStamina.fillAmount = _stamina / 100f;
+        Stamina -= value;
+        _barraStamina.fillAmount = Stamina / 100f;
     }
     //-------------------------------------------------------------------------------------------
     void recuperarStamina()
     {
-        _stamina += 10f * Time.deltaTime;
-        _barraStamina.fillAmount = _stamina / 100f;
+        Stamina += (10f + _stats.rage) * Time.deltaTime;
+        _barraStamina.fillAmount = Stamina / 100f;
     }
     //-------------------------------------------------------------------------------------------
     public void estaHablando(bool hablando)
@@ -188,11 +221,23 @@ public class Prota : MonoBehaviour {
     {
         if (other.tag == "BalaE" && _estado != estados.esquivando)
         {
-            Debug.Log("SacoVida");
             if (_stats.applyDamage(other.GetComponent<DañoBalas>().getDaño()))
                 _estado = estados.muriendo;
 
-            _barraVida.fillAmount = _stats.vida / _stats.health;
+            _barraVida.fillAmount = _stats.VidaActual / _stats.health;
+        }
+    }
+    //===============================================================================================
+    public float Stamina
+    {
+        get
+        {
+            return _stamina;
+        }
+
+        set
+        {
+            _stamina = value;
         }
     }
 }

@@ -20,7 +20,6 @@ public class DuoRevolver : Arma {
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, layer))
         {
-            Debug.Log("hit");
             return hit.point;
         }
 
