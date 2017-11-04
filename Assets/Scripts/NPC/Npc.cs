@@ -28,6 +28,8 @@ public class Npc : MonoBehaviour
 
     int _dialogoIndex;
 
+    Animator _animations;
+
     enum estados
     {
         esperando,
@@ -44,6 +46,8 @@ public class Npc : MonoBehaviour
         _dialogoBox = GetComponentInChildren<DialogoBox>();
 
         _dialogoBox.setInicioDialogo(dialogos[_dialogoIndex].lineas, dialogos[_dialogoIndex].dialogoInteractivo);
+
+        _animations = transform.GetChild(0).GetComponent<Animator>();
     }
     //-----------------------------------------------------------------------------------------------
     void Update()
@@ -51,6 +55,7 @@ public class Npc : MonoBehaviour
         switch (_estado)
         {
             case estados.esperando:
+                _animations.Play("Armature|Iddle");
                 if (Vector3.Distance(gameObject.transform.position, _prota.transform.position) < 3)
                 {
                     accion.enabled = true;
@@ -62,6 +67,7 @@ public class Npc : MonoBehaviour
                         _prota.GetComponent<Prota>().estaHablando(true);
                         dialogoBox.enabled = true;
                         mensaje.enabled = true;
+                        _animations.Play("Armature|Speaking");
                         _estado = estados.hablando;
                     }
                 }

@@ -6005,11 +6005,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114378379389640828, guid: 125136f85b1cd5449846bdf0b43209e0,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4000012652554742, guid: 125136f85b1cd5449846bdf0b43209e0, type: 2}
       propertyPath: m_LocalPosition.x
       value: 65.496826
@@ -6042,6 +6037,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114378379389640828, guid: 125136f85b1cd5449846bdf0b43209e0,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 861473209}
     - target: {fileID: 1000012919908666, guid: 125136f85b1cd5449846bdf0b43209e0, type: 2}
       propertyPath: m_Name
       value: Npc (3)
@@ -6051,72 +6051,9 @@ Prefab:
       propertyPath: misiones.Array.data[0]
       value: 
       objectReference: {fileID: 861473209}
-    - target: {fileID: 114000011332019528, guid: 125136f85b1cd5449846bdf0b43209e0,
-        type: 2}
-      propertyPath: dialogos.Array.data[0].lineas.Array.data[0]
-      value: 'Please save my
-
-        child!'
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011332019528, guid: 125136f85b1cd5449846bdf0b43209e0,
-        type: 2}
-      propertyPath: dialogos.Array.data[0].lineas.Array.data[1]
-      value: Im begging you!
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011332019528, guid: 125136f85b1cd5449846bdf0b43209e0,
-        type: 2}
-      propertyPath: dialogos.Array.data[1].lineas.Array.data[0]
-      value: God Bless you!
-      objectReference: {fileID: 0}
-    - target: {fileID: 114378379389640828, guid: 125136f85b1cd5449846bdf0b43209e0,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 861473209}
-    - target: {fileID: 114378379389640828, guid: 125136f85b1cd5449846bdf0b43209e0,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: empezarMision
-      objectReference: {fileID: 0}
-    - target: {fileID: 114378379389640828, guid: 125136f85b1cd5449846bdf0b43209e0,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114378379389640828, guid: 125136f85b1cd5449846bdf0b43209e0,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114378379389640828, guid: 125136f85b1cd5449846bdf0b43209e0,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
-      value: 
-      objectReference: {fileID: 367378046}
-    - target: {fileID: 114378379389640828, guid: 125136f85b1cd5449846bdf0b43209e0,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: setDialogo
-      objectReference: {fileID: 0}
-    - target: {fileID: 114378379389640828, guid: 125136f85b1cd5449846bdf0b43209e0,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 114378379389640828, guid: 125136f85b1cd5449846bdf0b43209e0,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_IntArgument
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 125136f85b1cd5449846bdf0b43209e0, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &367378046 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114000011332019528, guid: 125136f85b1cd5449846bdf0b43209e0,
-    type: 2}
-  m_PrefabInternal: {fileID: 367378045}
-  m_Script: {fileID: 11500000, guid: 05883a509f6f78c48aaa888d29cf5a76, type: 3}
 --- !u!4 &368021451 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4056459789505234, guid: ad682db948880e54798c4f9c3b04388f,
@@ -12552,15 +12489,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4945798812620300, guid: 9bf8b3b42544f9845998b7d142b98628, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4945798812620300, guid: 9bf8b3b42544f9845998b7d142b98628, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4945798812620300, guid: 9bf8b3b42544f9845998b7d142b98628, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4945798812620300, guid: 9bf8b3b42544f9845998b7d142b98628, type: 2}
       propertyPath: m_LocalRotation.w
@@ -22322,8 +22259,7 @@ MonoBehaviour:
 --- !u!23 &1531393322
 MeshRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 23000011553382962, guid: 125136f85b1cd5449846bdf0b43209e0,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1531393320}
   m_Enabled: 1
@@ -22369,8 +22305,7 @@ CapsuleCollider:
 --- !u!33 &1531393324
 MeshFilter:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 33000010530362632, guid: 125136f85b1cd5449846bdf0b43209e0,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1531393320}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
