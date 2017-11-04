@@ -31,6 +31,7 @@ public class Infantry : Overlord
     }
     void Update()
     {
+        Debug.Log("Mi estado es " + _estado);
    
         switch (_estado)
         {
@@ -75,6 +76,7 @@ public class Infantry : Overlord
                         {
                             _estado = estados.normal;
                             fire();
+                            Debug.Log("ji");
                             _animations.Play("Armature|shoot");
                         }
 

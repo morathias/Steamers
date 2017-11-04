@@ -2,12 +2,12 @@
 using System.Collections;
 using UnityEngine.UI;
 //=================================================
-public class Arma : MonoBehaviour
-{
+public class Arma : MonoBehaviour {
     public int balas;
+    public float daño;
     float _daño;
     public float distancia; //tiempo que tarda en destruirse
-    private Stats statsComponent;
+    int health;
 
     public Text balasTxt;
 
@@ -16,7 +16,6 @@ public class Arma : MonoBehaviour
     float _minPerfecto = 0.54f;
     float _maxPerfecto = 0.61f;
     protected int _balasActuales;
-    public float _timerReload = 0f;
 
     public ParticleSystem _bala;
     protected DañoBalas _dañoBala;
@@ -27,18 +26,14 @@ public class Arma : MonoBehaviour
 
     Prota _prota;
 
-    protected enum estados
-    {
+    protected enum estados {
         llena,
         recargando
     }
     protected estados _estado;
     //---------------------------------------------
-    protected virtual void Start()
-    {
-        statsComponent = GameObject.Find("Prota").gameObject.GetComponent<Stats>();
-
-        _daño = statsComponent.damageFinal;
+	protected virtual void Start () {
+        _daño = daño;
         _dañoBala = _bala.GetComponent<DañoBalas>();
         _dañoBala.setDaño((int)_daño);
 
@@ -51,15 +46,9 @@ public class Arma : MonoBehaviour
         barraRecargaPunto.enabled = false;
 
         _prota = GameObject.Find("Prota").GetComponent<Prota>();
-    }
+	}
     //---------------------------------------------
-    void Update()
-    {
-        _daño = statsComponent.damageFinal;
-        _dañoBala.setDaño((int)_daño);
-        if (_recargaPerfecta){
-            _timerReload += Time.deltaTime;
-        }
+	void Update () {
         if (_prota.enabled)
         {
             switch (_estado)
@@ -91,49 +80,38 @@ public class Arma : MonoBehaviour
 
         balasTxt.text = "Balas: " + _balasActuales;
 
-        if (_timerReload >= 2.5f)
+        if (_recargaPerfecta && _balasActuales <= _balasActuales / 2)
         {
             _recargaPerfecta = false;
-            statsComponent.damage /= statsComponent.buffReload;
-            _timerReload = 0;
+            _daño = daño;
         }
-    }
+	}
     //---------------------------------------------
     public virtual bool disparar() { return false; }
     //---------------------------------------------
-    bool recargar()
-    {
+    bool recargar() {
         _rangoRecarga += 0.75f * Time.deltaTime;
         barraRecarga.fillAmount = _rangoRecarga;
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {   if (_rangoRecarga < _minPerfecto){
+        if (Input.GetKeyDown(KeyCode.R)){
+            if (_rangoRecarga >= _minPerfecto && _rangoRecarga <= _maxPerfecto)
+            {
+                _rangoRecarga = 0f;
+                barraRecarga.fillAmount = _rangoRecarga;
+                _balasActuales = balas;
+                _daño *= 2;
+                _dañoBala.setDaño((int)_daño);
+                _recargaPerfecta = true;
+                return true;
+            }
+            else {
                 _rangoRecarga = 0f;
                 barraRecarga.fillAmount = _rangoRecarga;
                 return false;
             }
-            else if (_rangoRecarga >= _minPerfecto && _rangoRecarga <= _maxPerfecto)
-            {
-                _rangoRecarga = 0f;
-                barraRecarga.fillAmount = _rangoRecarga;
-                _balasActuales = balas;
-                if (!_recargaPerfecta){
-                    statsComponent.damage *= statsComponent.buffReload;
-                }
-                _recargaPerfecta = true;
-                return true;
-            }
-            else
-            {
-                _rangoRecarga = 0f;
-                barraRecarga.fillAmount = _rangoRecarga;
-                _balasActuales = balas;
-                return true;
-            }
         }
 
-        if (_rangoRecarga >= 1f)
-        {
+        if (_rangoRecarga >= 1f){
             _rangoRecarga = 0f;
             barraRecarga.fillAmount = _rangoRecarga;
             _balasActuales = balas;

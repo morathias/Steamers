@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MisionCompletaFade : MonoBehaviour {
-    float timer = 3f;
+    float timer = 7f;
 
 	void Update () {
         if (gameObject.GetComponent<Text>().enabled)
@@ -13,7 +13,7 @@ public class MisionCompletaFade : MonoBehaviour {
 
             if (timer <= 0)
             {
-                timer = 3f;
+                timer = 7f;
                 gameObject.GetComponent<Text>().enabled = false;
             }
         }

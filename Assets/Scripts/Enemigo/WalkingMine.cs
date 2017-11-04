@@ -40,7 +40,7 @@ public class WalkingMine : Overlord {
             Prota stun = collision.gameObject.GetComponent<Prota>();
 
             stun.stunE();
-            healthComponent.VidaActual -= 15;
+            healthComponent.vida -= 15;
   
             Destroy(gameObject);
         }

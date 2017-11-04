@@ -92,6 +92,7 @@ public class Shield : Overlord
                         _animations.Play("ready");
                     }
                     transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
+                    Debug.Log("gilacato");
                 }
                 else if (!stayput)
                 {

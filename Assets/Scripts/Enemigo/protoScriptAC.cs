@@ -34,6 +34,8 @@ public class protoScriptAC : Overlord
     }
     void Update()
     {
+        Debug.Log("count = " + count);
+        Debug.Log("oreder = " + onOrder);
         switch (_estado)
         {
             case estados.normal:
@@ -142,6 +144,8 @@ public class protoScriptAC : Overlord
 
     void check()
     {
+        Debug.Log(unidades.Count);
+
         count = unidades.Count;
         if (count < 3)
         {
