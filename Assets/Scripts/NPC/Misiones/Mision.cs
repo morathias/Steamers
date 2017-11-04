@@ -10,6 +10,7 @@ public class Mision : MonoBehaviour {
     public Text informacionGeneralTxt;
     public string nombre;
     public Text nombreTxt;
+    private Image tick;
 
     public Text mensajeMisionCumplida;
     private Sprite papel;
@@ -27,6 +28,7 @@ public class Mision : MonoBehaviour {
 
     void Start() {
         if (isAlreadyActivated) empezarMision();
+        tick = misionBtn.gameObject.transform.Find("Tick").GetComponent<Image>();
     }
     //--------------------------------------
     protected virtual void Update() {
@@ -74,7 +76,7 @@ public class Mision : MonoBehaviour {
 
             Instantiate(recompensas[i].gameObject, pos, transform.rotation);
         }
-
+        tick.gameObject.SetActive(true);
         gameObject.SetActive(_activa);
         return true;
     }
