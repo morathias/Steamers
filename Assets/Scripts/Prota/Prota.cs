@@ -83,6 +83,7 @@ public class Prota : MonoBehaviour
             case estados.moviendose:
                 moverProta();
                 rotarProta();
+
                 //Debug.Log(_direccion.magnitude);
                 if (_direccion.magnitude >= 1)
                     _animations.Play("Armature|running_front");
@@ -113,11 +114,16 @@ public class Prota : MonoBehaviour
                     special = false;
                 }
 
-                if (!FlameCD &&  Input.GetKeyDown(KeyCode.Q)&& _estado != estados.hablando)
+                if (!FlameCD &&  Input.GetKeyDown(KeyCode.Q) && _estado != estados.hablando)
                 {
                     FireL.Play(true);
                 }
 
+                else if (Input.GetKeyUp(KeyCode.Q)|| FlameCD)
+                {
+                    FireL.Stop(true);
+                    special = false;
+                }
                 if (Input.GetKey(KeyCode.Q) && !FlameCD && _estado != estados.hablando)
                 { 
                     perderStamina(consumoLlama);
@@ -126,11 +132,6 @@ public class Prota : MonoBehaviour
                         FlameCD = true;
                 }
 
-                else if (!Input.GetKey(KeyCode.Q))
-                {
-                    FireL.Stop(true);
-                    special = false;
-                }
                 break;
 
             case estados.esquivando:
