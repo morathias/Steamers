@@ -21,11 +21,8 @@ public class Stats : MonoBehaviour
     public float regen = 0.3f;
     public int rage = 0;
     public bool onKilling = false;
-<<<<<<< HEAD
+
     public float timerRage = 0f;
-=======
-    float timerRage = 0f;
->>>>>>> c03f49f21b13d69d78c3aeb06fc11e076205f9b2
 
     public bool applyDamage(int damage)
     {
