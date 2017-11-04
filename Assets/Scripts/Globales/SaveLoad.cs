@@ -32,7 +32,7 @@ public class SaveLoad : MonoBehaviour {
     class PlayerData
     {
         public float saveHealth;
-        public int saveExp;
+        public float saveExp;
         public float saveDamage;
         public int saveStat;
         public float saveVida;

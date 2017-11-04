@@ -16,6 +16,7 @@ public class Npc : MonoBehaviour
     public Image dialogoBox;
     public Text mensaje;
     public Text accion;
+    private Animator NpcAni;
 
     [Space(10.0f)]
     public Mision[] misiones;
@@ -44,6 +45,7 @@ public class Npc : MonoBehaviour
         _dialogoBox = GetComponentInChildren<DialogoBox>();
 
         _dialogoBox.setInicioDialogo(dialogos[_dialogoIndex].lineas, dialogos[_dialogoIndex].dialogoInteractivo);
+        NpcAni = transform.GetChild(0).GetComponent<Animator>();
     }
     //-----------------------------------------------------------------------------------------------
     void Update()
@@ -53,12 +55,13 @@ public class Npc : MonoBehaviour
             case estados.esperando:
                 if (Vector3.Distance(gameObject.transform.position, _prota.transform.position) < 3)
                 {
+                    NpcAni.Play("Armature|Iddle");
                     accion.enabled = true;
                     accion.text = "E to talk";
 
                     if (Input.GetKeyDown(KeyCode.E))
                     {
-                        Debug.Log("dialogo index: " + _dialogoIndex);
+                        NpcAni.Play("Armature|Speaking");
                         _prota.GetComponent<Prota>().estaHablando(true);
                         dialogoBox.enabled = true;
                         mensaje.enabled = true;

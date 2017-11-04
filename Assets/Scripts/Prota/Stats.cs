@@ -5,7 +5,7 @@ public class Stats : MonoBehaviour
 {
     public float health = Variables.Ghealth;
     private float _vidaActual;
-    public int exp;
+    public float exp;
     public int healthPool = 100;
     private int level;
     public float damage;
@@ -76,11 +76,11 @@ public class Stats : MonoBehaviour
                 timerRage = 0;
             }
         }
-        if (exp == 100)
+        if (exp > 100*(1+level*0.5))
         {
             level++;
             _levelUp.activar(true);
-            exp = 0;
+            exp = exp-(100 * (1 + level * 0.5f));
             stat++;
         }
         if (stat > 0)

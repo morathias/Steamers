@@ -10,8 +10,8 @@ public class ExpCube : Item {
     protected override void itemAgarrado()
     {
         Stats expComponent = Target.gameObject.GetComponent<Stats>();
-        expComponent.exp = 100;
-
+        expComponent.exp += 100;
+        Debug.Log(expComponent.exp);
         Destroy(gameObject);
     }
 }
