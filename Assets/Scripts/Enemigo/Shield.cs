@@ -18,12 +18,10 @@ public class Shield : Overlord
     Infantry troop;
     int damage = 5;
     bool stayput = true;
-    int timer = 0;
-    int move = 0;
+    float timer = 0;
+    float move = 0;
     float timeLeft = 4;
 
-
-    GameObject objective;
     Vector3 _posicionLider;
 
     Animator _animations;
@@ -33,7 +31,7 @@ public class Shield : Overlord
     {
         base.Start();
         _stats.applyDamage(1);
-        objective = GameObject.FindGameObjectWithTag("Player");
+        
         fichador = objective.transform;
         _animations = GetComponent<Animator>();
 
@@ -60,7 +58,7 @@ public class Shield : Overlord
 
                         transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 2.0f);
                         moveIt();
-                        move++;
+                        move += Time.deltaTime * Time.timeScale;
                         stayput = false;
                     }
                     else if (!stayput)
@@ -103,9 +101,9 @@ public class Shield : Overlord
 
 
 
-                timer++;
+                timer+= Time.deltaTime * Time.timeScale; ;
 
-                if (timer > 60)
+                if (timer > 1)
                 {
 
                     searchPro();
@@ -119,7 +117,7 @@ public class Shield : Overlord
             case estados.fear:
                 moveIt(Random.Range(90.0f, 270.0f));
 
-                timeLeft -= Time.deltaTime;
+                timeLeft -= Time.deltaTime * Time.timeScale;
                 if (timeLeft < 0)
                 {
                     timeLeft = 4;
@@ -191,8 +189,8 @@ public class Shield : Overlord
             _estado = estados.normal;
         else
         {
-            move++;
-            if (move > 300)
+            move += Time.deltaTime * Time.timeScale;
+            if (move > 5)
             {
                 _posicionLider = transform.position;
                 _posicionLider.x += Random.Range(-20.0f, 20.0f);

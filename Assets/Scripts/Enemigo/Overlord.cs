@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Overlord : MonoBehaviour
 {
-    protected Prota gratmos;
+    protected GameObject objective;
     protected EnemyHealth _stats;
     protected estados _estado;
     protected int ordenPos;
@@ -16,7 +16,7 @@ public class Overlord : MonoBehaviour
     protected virtual void Start()
     {
         _estado = estados.normal;
-        gratmos = Component.FindObjectOfType<Prota>();
+        objective = GameObject.FindGameObjectWithTag("Player");
         _stats = GetComponent<EnemyHealth>();
     }
     protected enum estados
