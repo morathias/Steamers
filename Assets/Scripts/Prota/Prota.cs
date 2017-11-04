@@ -92,12 +92,11 @@ public class Prota : MonoBehaviour
                 if (Stamina <= 100 && special == false)
                     recuperarStamina();
 
-                if (Input.GetKeyDown(KeyCode.Space) && !FlameCD && _estado != estados.hablando)
+                if (Input.GetKeyDown(KeyCode.Space) && Stamina > 20 && _estado != estados.hablando)
                 {
                     perderStamina(consumoDash);
                     _estado = estados.esquivando;
-                    if (Stamina < 10)
-                        FlameCD = true;
+
                 }
 
                 if (Input.GetKey(KeyCode.F) && !ShieldCD && _estado != estados.hablando)
@@ -114,14 +113,20 @@ public class Prota : MonoBehaviour
                     special = false;
                 }
 
-
-                if (Input.GetKey(KeyCode.Q) && Stamina > 20 && _estado != estados.hablando)
+                if (!FlameCD &&  Input.GetKeyDown(KeyCode.Q)&& _estado != estados.hablando)
                 {
                     FireL.Play(true);
+                }
+
+                if (Input.GetKey(KeyCode.Q) && !FlameCD && _estado != estados.hablando)
+                { 
                     perderStamina(consumoLlama);
                     special = true;
+                    if (Stamina < 10)
+                        FlameCD = true;
                 }
-                else
+
+                else if (!Input.GetKey(KeyCode.Q))
                 {
                     FireL.Stop(true);
                     special = false;
