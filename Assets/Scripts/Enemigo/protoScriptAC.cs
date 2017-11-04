@@ -11,7 +11,7 @@ public class protoScriptAC : Overlord
     private int commandInit;
     private bool onOrder = false;
     Vector3 _posicionLider;
-    int move = 0;
+    float move = 0;
     int limite = 0;
     public ParticleSystem _balaE;
     private List<GameObject> unidades;
@@ -20,22 +20,18 @@ public class protoScriptAC : Overlord
     Shield sTroop;
     int numeroSoldado = 0;
     int numeroEscudo = 0;
-    GameObject objective;
 
     override protected void Start()
     {
         base.Start();
         unidades = new List<GameObject>();
         _stats.applyDamage(1);
-        objective = GameObject.FindGameObjectWithTag("Player");
         fichador = objective.transform;
         commandInit = Random.Range(120, 500);
-
     }
+
     void Update()
     {
-        Debug.Log("count = " + count);
-        Debug.Log("oreder = " + onOrder);
         switch (_estado)
         {
             case estados.normal:
@@ -81,7 +77,6 @@ public class protoScriptAC : Overlord
     }
     void formUp()
     {
-
         Vector3 explosionPos = transform.position;
         Collider[] colliders = Physics.OverlapSphere(explosionPos, 50);
         
@@ -144,8 +139,6 @@ public class protoScriptAC : Overlord
 
     void check()
     {
-        Debug.Log(unidades.Count);
-
         count = unidades.Count;
         if (count < 3)
         {

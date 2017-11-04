@@ -8,16 +8,15 @@ public class Infantry : Overlord
     float timeLeft = 4;
     // float intervalo = 0.2f;
     //float prox = 0.0f;
-    int limite = 0;
+    float limite = 0;
     // int cool = 0;
-    int move = 0;
+    float move = 0;
     Transform capitanPos;
     public ParticleSystem _balaE;
     Quaternion neededRotation;
     //  private int ordenPos;
     GameObject Leader;
     Vector3 _posicionLider;
-    GameObject objective;
     Animator _animations;
 
 
@@ -25,13 +24,11 @@ public class Infantry : Overlord
     {
         base.Start();
         _balaE.GetComponent<DañoBalas>().setDaño(daño);
-        objective = GameObject.FindGameObjectWithTag("Player");
         fichador = objective.transform;
         _animations = GetComponent<Animator>();
     }
     void Update()
     {
-        Debug.Log("Mi estado es " + _estado);
    
         switch (_estado)
         {
@@ -67,8 +64,8 @@ public class Infantry : Overlord
                 RaycastHit ICU;
                 transform.LookAt(fichador);
              
-                limite++;
-                if (limite > 60)
+                limite += Time.deltaTime * Time.timeScale;
+                if (limite > 1)
                 {
 
                     if (Physics.Raycast(transform.position, transform.forward, out ICU) && ICU.transform.tag == "Player")
@@ -76,7 +73,6 @@ public class Infantry : Overlord
                         {
                             _estado = estados.normal;
                             fire();
-                            Debug.Log("ji");
                             _animations.Play("Armature|shoot");
                         }
 
@@ -91,7 +87,7 @@ public class Infantry : Overlord
             case estados.fear:
                 moveIt(Random.Range(90.0f, 270.0f));
 
-                timeLeft -= Time.deltaTime;
+                timeLeft -= Time.deltaTime * Time.timeScale;
                 if (timeLeft < 0)
                 {
                     timeLeft = 4;
@@ -133,12 +129,12 @@ public class Infantry : Overlord
 
                 if (Vector3.Distance(transform.position, fichador.position) < Rango)
                 {
-                    limite++;
+                    limite += Time.deltaTime * Time.timeScale; ;
                     neededRotation = Quaternion.LookRotation(fichador.transform.position - transform.position);
                     neededRotation.x = 0;
                     neededRotation.z = 0;
                     transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 0.9f);
-                    if (limite > 80)
+                    if (limite > 1.2)
                         fire();
                 }
 
@@ -160,8 +156,8 @@ public class Infantry : Overlord
 
     void moveIt()
     {
-        move++;
-        if (move > 90)
+        move+= Time.deltaTime * Time.timeScale;
+        if (move > 1.5f)
         {
             _posicionLider = transform.position;
             _posicionLider.x += Random.Range(-20.0f, 20.0f);

@@ -21,10 +21,7 @@ public class SaveLoad : MonoBehaviour {
         wololol.saveDamage = _stats.damage;
         wololol.saveExp = _stats.exp;
         wololol.saveStat = _stats.stat;
-        wololol.saveAtkspeed = _stats.atkspeed;
-        wololol.saveRandom1 = Variables.random1;
-        wololol.saveRandom2 = Variables.random2;
-        wololol.saveVida = _stats.vida;
+        wololol.saveVida = _stats.VidaActual;
         wololol.saveLvl = _stats.Levels;
         wololol.saveIndex = SceneManager.GetActiveScene().buildIndex;
         bf.Serialize(file, wololol);
@@ -34,14 +31,11 @@ public class SaveLoad : MonoBehaviour {
     [Serializable]
     class PlayerData
     {
-        public int saveHealth;
+        public float saveHealth;
         public int saveExp;
-        public int saveDamage;
-        public int saveAtkspeed;
+        public float saveDamage;
         public int saveStat;
-        public int saveRandom1;
-        public int saveRandom2;
-        public int saveVida;
+        public float saveVida;
         public int saveLvl;
         public int saveIndex;
     }
@@ -56,9 +50,6 @@ public class SaveLoad : MonoBehaviour {
             Variables.Gdamage = wololol.saveDamage;
             Variables.Gexp = wololol.saveExp;
             Variables.Gstat = wololol.saveStat;
-            Variables.Gatkspeed = wololol.saveAtkspeed;
-            Variables.random1 = wololol.saveRandom1;
-            Variables.random2 = wololol.saveRandom2;
             Variables.Gvida = wololol.saveVida;
             Variables.Glvl = wololol.saveLvl;
             Variables.Gindex = wololol.saveIndex;

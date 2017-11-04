@@ -27,7 +27,6 @@ public class CazarEnemigos : Objetivo {
         else
             cantidadACazar = tiposEnemigos.Count;
 
-        Debug.Log("cantidad" + cantidadACazar);
 	}
     //-------------------------------------------------------------------------
     void Update() {
@@ -59,7 +58,6 @@ public class CazarEnemigos : Objetivo {
         if (activo){
             if (enemigo == null){
                 _cantidadCazada++;
-                Debug.Log("cantidad cazada" + _cantidadCazada);
             }
         }
     }

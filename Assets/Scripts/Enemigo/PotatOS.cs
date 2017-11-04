@@ -72,10 +72,10 @@ public class PotatOS : Overlord
 
             case estados.rage:
                 transform.LookAt(fichador);
-                if (Time.time >= prox && cartucho < 10)
+                if (Time.deltaTime >= prox && cartucho < 10)
                 {
 
-                    prox = Time.time + intervalo;
+                    prox = Time.deltaTime + intervalo;
                     _balaE.startLifetime = Rango / _balaE.startSpeed;
                     _balaE.transform.position = transform.position;
                     _balaE.Emit(1);
