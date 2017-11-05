@@ -113,6 +113,7 @@ public class SkillTree : MonoBehaviour {
         if (statsComponent.stat > 0){
             statsComponent.RageOn = true;
             statsComponent.stat--;
+            statsComponent.rageText.enabled = true;
             buttons[3].image.sprite = ActiveGear;
             buttons[3].interactable = false;
         }

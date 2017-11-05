@@ -5,6 +5,9 @@ public class DuoRevolver : Arma {
     Transform _revolverIzquierdo, _revolverDerecho;
     int _cambiarArma = 0;
 
+    public AudioClip shootSound;
+    public AudioSource shootSource;
+    public float vol = 1f;
     public Animator protaAnimations;
 
     public LayerMask layer;
@@ -12,6 +15,7 @@ public class DuoRevolver : Arma {
     override protected void Start() {
         _revolverIzquierdo = transform.Find("revolver_Izquierdo");
         _revolverDerecho = transform.Find("revolver_Derecho");
+        shootSource = GetComponent<AudioSource>();
 
         base.Start();
     }
@@ -37,15 +41,23 @@ public class DuoRevolver : Arma {
                 else
                     _bala.transform.rotation = transform.rotation;
                 _bala.Emit(1);
+                shootSource.PlayOneShot(shootSound,vol);
+                _smoke.Play();
+                _sparks.Play();
                 if (_cambiarArma == 0){
                     protaAnimations.Play("Armature|shoot_R");
                     _cambiarArma = 1;
                     _bala.transform.position = _revolverDerecho.position;
+                    _smoke.transform.position = _revolverDerecho.position;
+                    _sparks.transform.position = _revolverDerecho.position;
                 }
                 else {
                     protaAnimations.Play("Armature|shoot_L");
                     _cambiarArma = 0;
                     _bala.transform.position = _revolverIzquierdo.position;
+                    _smoke.transform.position = _revolverIzquierdo.position;
+                    _sparks.transform.position = _revolverIzquierdo.position;
+
                 }
 
                 _balasActuales--;

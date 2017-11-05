@@ -17,9 +17,12 @@ public class Arma : MonoBehaviour
     float _maxPerfecto = 0.61f;
     protected int _balasActuales;
     public float _timerReload = 0f;
+    public Image BuffImage;
 
     public ParticleSystem _bala;
     protected DañoBalas _dañoBala;
+    public ParticleSystem _smoke;
+    public ParticleSystem _sparks;
 
     public Image barraRecarga;
     public Image barraRecargaVacia;
@@ -51,6 +54,7 @@ public class Arma : MonoBehaviour
         barraRecargaPunto.enabled = false;
 
         _prota = GameObject.Find("Prota").GetComponent<Prota>();
+
     }
     //---------------------------------------------
     void Update()
@@ -95,6 +99,7 @@ public class Arma : MonoBehaviour
         {
             _recargaPerfecta = false;
             statsComponent.damage /= statsComponent.buffReload;
+            BuffImage.enabled = false;
             _timerReload = 0;
         }
     }
@@ -121,6 +126,7 @@ public class Arma : MonoBehaviour
                     statsComponent.damage *= statsComponent.buffReload;
                 }
                 _recargaPerfecta = true;
+                BuffImage.enabled = true;
                 return true;
             }
             else

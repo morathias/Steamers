@@ -15,7 +15,7 @@ public class Stats : MonoBehaviour
     public float buffReload = 1.5f;
     public Text stats;
     public Text levelsT;
-    public Text levelUpTxt;
+    public Text rageText;
     public LevelUp _levelUp;
     public bool RageOn = false;
     public float regen = 0.3f;
@@ -86,14 +86,13 @@ public class Stats : MonoBehaviour
         if (stat > 0)
         {
             stats.text = "Points:" + stat;
-            levelUpTxt.enabled = true;
         }
         else
         {
             stats.text = "";
-            levelUpTxt.enabled = false;
         }
 
         levelsT.text = "Lvl: " + level;
+        rageText.text = "Rage: " + rage;
     }
 }
