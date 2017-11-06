@@ -21,7 +21,7 @@ public class Shield : Overlord
     float timer = 0;
     float move = 0;
     float timeLeft = 4;
-
+    public Collider shield;
     Vector3 _posicionLider;
 
     Animator _animations;
@@ -31,18 +31,22 @@ public class Shield : Overlord
     {
         base.Start();
         _stats.applyDamage(1);
-        
+
         fichador = objective.transform;
         _animations = GetComponent<Animator>();
 
     }
     void Update()
     {
-
         switch (_estado)
         {
             case estados.protect:
                 {
+                    if (troop.GetComponent<Overlord>().dead == true)
+                    {
+                        Destroy(troop.gameObject);
+                        _estado = estados.normal;
+                    }
                     if (dead == true)
                     {
                         troop.reset();
@@ -74,9 +78,7 @@ public class Shield : Overlord
             case estados.normal:
 
                 if (dead == true)
-                {
                     Destroy(gameObject);
-                }
 
                 if (Vector3.Distance(transform.position, fichador.position) < 10)
                 {
@@ -97,11 +99,7 @@ public class Shield : Overlord
                     _animations.SetBool("Range", false);
                 }
 
-               
-
-
-
-                timer+= Time.deltaTime * Time.timeScale; ;
+                timer += Time.deltaTime * Time.timeScale; ;
 
                 if (timer > 1)
                 {
@@ -109,12 +107,11 @@ public class Shield : Overlord
                     searchPro();
                     timer = 0;
                 }
-
-
-
                 break;
 
             case estados.fear:
+                if (dead == true)
+                    Destroy(gameObject);
                 moveIt(Random.Range(90.0f, 270.0f));
 
                 timeLeft -= Time.deltaTime * Time.timeScale;
@@ -127,8 +124,6 @@ public class Shield : Overlord
                 break;
 
             case estados.bajoOrdenes:
-
-                _posicionLider = new Vector3(capitanPos.transform.position.x, capitanPos.transform.position.y, capitanPos.transform.position.z) - (capitanPos.right * 3);
 
                 switch (ordenPos)
                 {
@@ -185,29 +180,25 @@ public class Shield : Overlord
     }
     void moveIt()
     {
-        if (troop.GetComponent<Overlord>().dead == true)
-            _estado = estados.normal;
-        else
+        move += Time.deltaTime * Time.timeScale;
+        if (move > 5)
         {
-            move += Time.deltaTime * Time.timeScale;
-            if (move > 5)
-            {
-                _posicionLider = transform.position;
-                _posicionLider.x += Random.Range(-20.0f, 20.0f);
-                _posicionLider.z += Random.Range(-20.0f, 20.0f);
-                move = 0;
-
-            }
-            if (!stayput)
-                _animations.SetBool("Range", true);
-            else
-            {
-                stayput = false;
-                _animations.Play("ready");
-            }
-            transform.position = Vector3.MoveTowards(transform.position, _posicionLider, 2 * Time.deltaTime);
+            _posicionLider = transform.position;
+            _posicionLider.x += Random.Range(-20.0f, 20.0f);
+            _posicionLider.z += Random.Range(-20.0f, 20.0f);
+            move = 0;
 
         }
+        if (!stayput)
+            _animations.SetBool("Range", true);
+        else
+        {
+            stayput = false;
+            _animations.Play("ready");
+        }
+        transform.position = Vector3.MoveTowards(transform.position, _posicionLider, 2 * Time.deltaTime);
+
+
 
     }
 
@@ -224,8 +215,8 @@ public class Shield : Overlord
             if (hit.gameObject.tag == "EnemyS")
             {
                 troop = hit.gameObject.GetComponent<Infantry>();
-                if (troop.status()<30)
-                troop.begin(0, this.gameObject);
+                if (troop.status() < 30)
+                    troop.begin(0, this.gameObject);
                 _estado = estados.protect;
                 break;
             }
@@ -241,8 +232,16 @@ public class Shield : Overlord
         neededRotation *= Quaternion.Euler(0, Random.Range(90.0f, 270.0f), 0);
         neededRotation.x = 0;
         neededRotation.z = 0;
-            _animations.SetBool("Range", true);
+        _animations.SetBool("Range", true);
         transform.Translate(Vector3.forward * 8 * Time.deltaTime);
 
+    }
+    protected override void OnParticleCollision(GameObject other)
+    {
+        if (other == shield)
+        {
+
+            _stats.healDamage(other.GetComponent<DañoBalas>().getDaño());
+        }
     }
 }

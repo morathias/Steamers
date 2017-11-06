@@ -227,6 +227,8 @@ public class Prota : MonoBehaviour
     {
         if (other.tag == "BalaE" && _estado != estados.esquivando)
         {
+            Debug.Log("ouch");
+            Debug.Log(_stats.applyDamage(other.GetComponent<DañoBalas>().getDaño()));
             if (_stats.applyDamage(other.GetComponent<DañoBalas>().getDaño()))
                 _estado = estados.muriendo;
 

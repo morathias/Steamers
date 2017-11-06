@@ -18,7 +18,7 @@ public class Infantry : Overlord
     GameObject Leader;
     Vector3 _posicionLider;
     Animator _animations;
-
+    public bool isBoss = false;
 
     override protected void Start()
     {
@@ -29,13 +29,13 @@ public class Infantry : Overlord
     }
     void Update()
     {
-   
+
         switch (_estado)
         {
             case estados.normal:
-                
                 if (dead == true)
-                { 
+                {
+                    countdown--;
                     Destroy(gameObject);
                 }
                 if (Vector3.Distance(transform.position, fichador.position) < Rango)
@@ -56,14 +56,14 @@ public class Infantry : Overlord
                 }
                 else
                     _animations.Play("Armature|iddle_001");
-
-
                 break;
 
             case estados.rage:
+                if (dead == true)
+                    Destroy(gameObject);
                 RaycastHit ICU;
                 transform.LookAt(fichador);
-             
+
                 limite += Time.deltaTime * Time.timeScale;
                 if (limite > 1)
                 {
@@ -81,10 +81,11 @@ public class Infantry : Overlord
                 }
                 else
                     _animations.Play("Armature|apuntando");
-
                 break;
 
             case estados.fear:
+                if (dead == true)
+                    Destroy(gameObject);
                 moveIt(Random.Range(90.0f, 270.0f));
 
                 timeLeft -= Time.deltaTime * Time.timeScale;
@@ -93,8 +94,8 @@ public class Infantry : Overlord
                     timeLeft = 4;
                     _estado = estados.normal;
                 }
-
                 break;
+
             case estados.bajoOrdenes:
                 switch (ordenPos)
                 {
@@ -122,11 +123,7 @@ public class Infantry : Overlord
                         break;
 
                 }
-
                 transform.position = Vector3.MoveTowards(transform.position, _posicionLider, 5 * Time.deltaTime);
-
-
-
                 if (Vector3.Distance(transform.position, fichador.position) < Rango)
                 {
                     limite += Time.deltaTime * Time.timeScale; ;
@@ -151,12 +148,12 @@ public class Infantry : Overlord
         _balaE.transform.position = transform.position;
         _balaE.Emit(1);
 
-        limite = 0; 
+        limite = 0;
     }
 
     void moveIt()
     {
-        move+= Time.deltaTime * Time.timeScale;
+        move += Time.deltaTime * Time.timeScale;
         if (move > 1.5f)
         {
             _posicionLider = transform.position;

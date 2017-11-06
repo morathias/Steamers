@@ -8,10 +8,10 @@ public class Overlord : MonoBehaviour
     protected EnemyHealth _stats;
     protected estados _estado;
     protected int ordenPos;
-    public bool dead = true;
-
+    public bool dead = false;
+    public int countdown = 6;
     public int daño;
-
+    public string phase = "0";
 
     protected virtual void Start()
     {
@@ -29,14 +29,15 @@ public class Overlord : MonoBehaviour
         fear,
         protect,
         Durazno,
+        brag,
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (status() <= 0)
+        if (countdown<1)
         {
-            dead = true;
+            phase = "1";
         }
     }
 
@@ -65,5 +66,9 @@ public class Overlord : MonoBehaviour
     public int status()
     {
         return _stats.health;
+    }
+    public string bossSat()
+    {
+        return phase;
     }
 }
