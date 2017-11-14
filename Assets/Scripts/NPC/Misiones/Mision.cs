@@ -26,6 +26,8 @@ public class Mision : MonoBehaviour {
     public Text[] objetivosTxt;
     Objetivo _objetivoActivo;
 
+    GameObject _activeMissionIcon;
+
     void Start() {
         if (isAlreadyActivated) empezarMision();
         tick = misionBtn.gameObject.transform.Find("Tick").GetComponent<Image>();
@@ -48,6 +50,7 @@ public class Mision : MonoBehaviour {
     }
     //--------------------------------------
     public void empezarMision() {
+        _activeMissionIcon.SetActive(false);
         _activa = true;
         _objetivoActivo = objetivos[0];
         _objetivoActivo.activo = true;
@@ -95,6 +98,10 @@ public class Mision : MonoBehaviour {
 
     public bool getActiva() {
         return _activa;
+    }
+
+    public void setActiveMissionIcon(GameObject icon) {
+        _activeMissionIcon = icon;
     }
 }
 //==========================================

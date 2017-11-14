@@ -29,6 +29,8 @@ public class Npc : MonoBehaviour
 
     int _dialogoIndex;
 
+    GameObject _activeMissionIcon;
+
     enum estados
     {
         esperando,
@@ -46,10 +48,17 @@ public class Npc : MonoBehaviour
 
         _dialogoBox.setInicioDialogo(dialogos[_dialogoIndex].lineas, dialogos[_dialogoIndex].dialogoInteractivo);
         NpcAni = transform.GetChild(0).GetComponent<Animator>();
+        _activeMissionIcon = transform.GetChild(2).gameObject;
+
+        for (int i = 0; i < misiones.Length; i++)
+        {
+            misiones[i].setActiveMissionIcon(_activeMissionIcon);
+        }
     }
     //-----------------------------------------------------------------------------------------------
     void Update()
     {
+
         switch (_estado)
         {
             case estados.esperando:
