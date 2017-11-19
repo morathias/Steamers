@@ -6116,6 +6116,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114000010611313302, guid: 62cc358f851cc8e48b4828c3fec0bcaa,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 224000011807707374, guid: 62cc358f851cc8e48b4828c3fec0bcaa,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -6210,6 +6215,32 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010611313302, guid: 62cc358f851cc8e48b4828c3fec0bcaa,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 114884158853171908, guid: 4df439d997e1fa449a4f1bd27fc16df3,
+        type: 2}
+    - target: {fileID: 114000010611313302, guid: 62cc358f851cc8e48b4828c3fec0bcaa,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Save
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010611313302, guid: 62cc358f851cc8e48b4828c3fec0bcaa,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010611313302, guid: 62cc358f851cc8e48b4828c3fec0bcaa,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010611313302, guid: 62cc358f851cc8e48b4828c3fec0bcaa,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 62cc358f851cc8e48b4828c3fec0bcaa, type: 2}
@@ -10575,8 +10606,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 61543372}
   m_HandleRect: {fileID: 61543371}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.96766675
+  m_Value: 0.99999684
+  m_Size: 0.9676666
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -18749,6 +18780,11 @@ Prefab:
     - target: {fileID: 224392048334622440, guid: b9c86349a8a281f4fbf888b212e54eef,
         type: 2}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 223656151229625396, guid: b9c86349a8a281f4fbf888b212e54eef,
+        type: 2}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
