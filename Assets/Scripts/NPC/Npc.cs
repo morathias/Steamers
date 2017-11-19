@@ -50,6 +50,11 @@ public class Npc : MonoBehaviour
         NpcAni = transform.GetChild(0).GetComponent<Animator>();
         _activeMissionIcon = transform.GetChild(2).gameObject;
 
+        if (misiones.Length == 0) {
+            hideMisionIcon();
+            return;
+        }
+
         for (int i = 0; i < misiones.Length; i++)
         {
             misiones[i].setActiveMissionIcon(_activeMissionIcon);
@@ -87,12 +92,24 @@ public class Npc : MonoBehaviour
 
             case estados.hablando:
                 accion.text = "E: next";
-
+                hideMisionIcon();
                 if (_dialogoBox.finDialogo())
                 {
                     Debug.Log("findialogo");
                     _estado = estados.esperando;
                     _prota.GetComponent<Prota>().terminoDeHablar();
+
+                    for (int i = 0; i < misiones.Length; i++)
+                    {
+                        if (misiones[i].gameObject.activeInHierarchy)
+                        {
+                            showMisionIcon();
+                            break;
+                        }
+                        else
+                            hideMisionIcon();
+                    }
+                    
                 }
                 break;
 
@@ -116,6 +133,15 @@ public class Npc : MonoBehaviour
         _dialogoIndex = index;
         _dialogoBox.setInicioDialogo(dialogos[_dialogoIndex].lineas, dialogos[_dialogoIndex].dialogoInteractivo);
         Debug.Log("dialogo index: " + _dialogoIndex);
+    }
+
+    public void showMisionIcon() {
+        if(!_activeMissionIcon.activeInHierarchy)
+            _activeMissionIcon.SetActive(true);
+    }
+
+    public void hideMisionIcon() {
+        _activeMissionIcon.SetActive(false);
     }
 }
 //===================================================================================================

@@ -29,7 +29,10 @@ public class Mision : MonoBehaviour {
     GameObject _activeMissionIcon;
 
     void Start() {
-        if (isAlreadyActivated) empezarMision();
+        if (isAlreadyActivated)
+        {
+            empezarMision();
+        }
         tick = misionBtn.gameObject.transform.Find("Tick").GetComponent<Image>();
     }
     //--------------------------------------
@@ -38,6 +41,7 @@ public class Mision : MonoBehaviour {
             mensajeMisionCumplida = GameObject.Find("misionCumplida").GetComponent<Text>();
 
         if (_activa) {
+            _activeMissionIcon.SetActive(false);
             if (objetivosCumplidos()){
                 Debug.Log("Mision Cumplida");
                 mensajeMisionCumplida.enabled = true;
@@ -50,7 +54,6 @@ public class Mision : MonoBehaviour {
     }
     //--------------------------------------
     public void empezarMision() {
-        _activeMissionIcon.SetActive(false);
         _activa = true;
         _objetivoActivo = objetivos[0];
         _objetivoActivo.activo = true;
@@ -71,6 +74,7 @@ public class Mision : MonoBehaviour {
     }
     //--------------------------------------
     public bool misionTerminada() {
+        _activeMissionIcon.SetActive(false);
         _activa = false;
 
         for (int i = 0; i < recompensas.Length; i++){

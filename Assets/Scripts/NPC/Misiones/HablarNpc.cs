@@ -18,10 +18,13 @@ public class HablarNpc : Objetivo
 
             _activo = false;
             _terminado = true;
-
+            npcAHablar.hideMisionIcon();
             return true;
         }
         else
+        {
+            npcAHablar.showMisionIcon();
             return false;
+        }
     }
 }
