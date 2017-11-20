@@ -87,7 +87,7 @@ public class Stats : MonoBehaviour
         }
         if (stat > 0)
         {
-            stats.text = "Points:" + stat;
+            stats.text = "Skillpoints:" + stat;
         }
         else
         {

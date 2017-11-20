@@ -236,6 +236,7 @@ public class Shield : Overlord
         transform.Translate(Vector3.forward * 8 * Time.deltaTime);
 
     }
+<<<<<<< HEAD
     /*protected override void OnParticleCollision(GameObject other)
     {
 		base.OnParticleCollision (other);
@@ -248,4 +249,6 @@ public class Shield : Overlord
 			
 
     }*/
+=======
+>>>>>>> f4c789c85763acb9acef607fe473656adfb8293a
 }
