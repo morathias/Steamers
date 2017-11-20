@@ -5,6 +5,8 @@ public class Stats : MonoBehaviour
 {
     public float health = Variables.Ghealth;
     private float _vidaActual;
+    public float _porcentajeActualBarraVida = 0.365f;
+    public float _porcentajeActualBarraStamina = 0.365f;
     public float exp;
     public int healthPool = 100;
     private int level;
@@ -76,11 +78,11 @@ public class Stats : MonoBehaviour
                 timerRage = 0;
             }
         }
-        if (exp > 100*(1+level*0.5))
+        if (exp >= 100 * (1 + level * 0.5))
         {
             level++;
             _levelUp.activar(true);
-            exp = exp-(100 * (1 + level * 0.5f));
+            exp = exp - (100 * (1 + level * 0.5f));
             stat++;
         }
         if (stat > 0)
@@ -92,7 +94,7 @@ public class Stats : MonoBehaviour
             stats.text = "";
         }
 
-        levelsT.text = "Lvl: " + level;
+        levelsT.text = level.ToString();
         rageText.text = "Rage: " + rage;
     }
 }

@@ -60,7 +60,7 @@ public class Shield : Overlord
                         neededRotation.x = 0;
                         neededRotation.z = 0;
 
-                        //transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 2.5f);
+                        transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 2.5f);
                         moveIt();
                         move += Time.deltaTime * Time.timeScale;
                         stayput = false;
@@ -83,7 +83,7 @@ public class Shield : Overlord
                 if (Vector3.Distance(transform.position, fichador.position) < 10)
                 {
                     neededRotation = Quaternion.LookRotation(fichador.transform.position - transform.position);
-                 //  transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 2.5f);
+                   transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 2.5f);
                     if (!stayput)
                         _animations.SetBool("Range", true);
                     else
@@ -99,7 +99,7 @@ public class Shield : Overlord
                     _animations.SetBool("Range", false);
                 }
 
-                timer += Time.deltaTime * Time.timeScale; ;
+                timer += Time.deltaTime * Time.timeScale;
 
                 if (timer > 1)
                 {
@@ -236,7 +236,7 @@ public class Shield : Overlord
         transform.Translate(Vector3.forward * 8 * Time.deltaTime);
 
     }
-    protected override void OnParticleCollision(GameObject other)
+    /*protected override void OnParticleCollision(GameObject other)
     {
 		base.OnParticleCollision (other);
 		if (other.tag == "Shield")
@@ -247,5 +247,5 @@ public class Shield : Overlord
         }
 			
 
-    }
+    }*/
 }

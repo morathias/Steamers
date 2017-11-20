@@ -49,7 +49,9 @@ public class SkillTree : MonoBehaviour {
     public void extraStamina(){
         if (statsComponent.stat > 0)
         {
-            protaComponent.Stamina += protaComponent.staminaBase * fiveP;
+            protaComponent.staminaBase += 100 * fiveP;
+            protaComponent.Stamina += 100 * fiveP;
+            statsComponent._porcentajeActualBarraStamina += 0.127f;
             statsComponent.stat--;
             staminaCounter++;
             buttons[4].image.sprite = MatiShenanigans[staminaCounter];
@@ -73,6 +75,7 @@ public class SkillTree : MonoBehaviour {
         if (statsComponent.stat > 0){
             statsComponent.health += statsComponent.healthPool * tenP;
             statsComponent.VidaActual += statsComponent.healthPool * tenP;
+            statsComponent._porcentajeActualBarraVida += 0.127f;
             statsComponent.stat--;
             healthCounter++;
             buttons[8].image.sprite = MatiShenanigans[healthCounter];

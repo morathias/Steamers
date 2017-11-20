@@ -27,8 +27,17 @@ public class Prota : MonoBehaviour
 
     Stats _stats;
 
-    public Image _barraVida;
-    public Image _barraStamina;
+    public GameObject protaStatsUi;
+
+    Image _barraVida;
+    Image _barraVidaVacia;
+
+    Image _barraStamina;
+    Image _barraStaminaVacia;
+
+    Image _barraExp;
+    Image _panel;
+
     public Text hasMuertoTxt;
     public Text muertoReset;
 
@@ -52,11 +61,20 @@ public class Prota : MonoBehaviour
         _stats = GetComponent<Stats>();
         _protaController = GetComponent<CharacterController>();
         _animations = transform.Find("gratmos_animado").GetComponent<Animator>();
+
+        _barraVida = protaStatsUi.transform.Find("life_bar").GetComponent<Image>();
+        _barraVidaVacia = protaStatsUi.transform.Find("empty_bar").GetComponent<Image>();
+
+        _barraStamina = protaStatsUi.transform.Find("stamina_bar").GetComponent<Image>();
+        _barraStaminaVacia = protaStatsUi.transform.Find("empty_bar_stamina").GetComponent<Image>();
+
+        _panel = protaStatsUi.transform.Find("panel").GetComponent<Image>();
+        _barraExp = protaStatsUi.transform.Find("exp_bar").GetComponent<Image>();
     }
     //-------------------------------------------------------------------------------------------
     void Update()
     {
-        _barraVida.fillAmount = (float)_stats.VidaActual / _stats.health;
+        updateBars();
 
         if (ShieldCD){
             ShieldTimer += Time.deltaTime;
@@ -90,7 +108,7 @@ public class Prota : MonoBehaviour
                 else
                     _animations.Play("Armature|iddle");
 
-                if (Stamina <= 100 && special == false)
+                if (Stamina <= staminaBase && special == false)
                     recuperarStamina();
 
                 if (Input.GetKeyDown(KeyCode.Space) && Stamina > 20 && _estado != estados.hablando)
@@ -162,6 +180,21 @@ public class Prota : MonoBehaviour
         }
     }
     //-------------------------------------------------------------------------------------------
+    void updateBars() {
+        _barraVida.fillAmount = (float)(_stats.VidaActual / _stats.health) * _stats._porcentajeActualBarraVida;
+        _barraVidaVacia.fillAmount = (float)(_stats.health / _stats.health) * _stats._porcentajeActualBarraVida;
+
+        _barraStamina.fillAmount = (float)(Stamina / staminaBase) * _stats._porcentajeActualBarraStamina;
+        _barraStaminaVacia.fillAmount = (float)(staminaBase/ staminaBase) * _stats._porcentajeActualBarraStamina;
+
+        _barraExp.fillAmount = (float)_stats.exp / (100f * (1 + _stats.Levels * 0.5f));
+
+        if (_stats._porcentajeActualBarraStamina > _stats._porcentajeActualBarraVida)
+            _panel.fillAmount = _stats._porcentajeActualBarraStamina;
+        else
+            _panel.fillAmount = _stats._porcentajeActualBarraVida;
+    }
+
     void moverProta()
     {
         _direccion = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -197,13 +230,13 @@ public class Prota : MonoBehaviour
     void perderStamina(float value)
     {
         Stamina -= value;
-        _barraStamina.fillAmount = Stamina / 100f;
+        _barraStamina.fillAmount = (Stamina / staminaBase) * _stats._porcentajeActualBarraStamina;
     }
     //-------------------------------------------------------------------------------------------
     void recuperarStamina()
     {
         Stamina += (10f + _stats.rage) * Time.deltaTime;
-        _barraStamina.fillAmount = Stamina / 100f;
+        _barraStamina.fillAmount = (Stamina / staminaBase) * _stats._porcentajeActualBarraStamina;
     }
     //-------------------------------------------------------------------------------------------
     public void estaHablando(bool hablando)
@@ -232,7 +265,7 @@ public class Prota : MonoBehaviour
             if (_stats.applyDamage(other.GetComponent<DañoBalas>().getDaño()))
                 _estado = estados.muriendo;
 
-            _barraVida.fillAmount = _stats.VidaActual / _stats.health;
+            //_barraVida.fillAmount = _stats.VidaActual / _stats.health;
         }
     }
     //===============================================================================================
