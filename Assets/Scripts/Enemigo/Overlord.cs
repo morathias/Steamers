@@ -39,7 +39,7 @@ public class Overlord : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (countdown<1)
+        if (countdown < 1)
         {
             phase = "1";
         }
@@ -60,7 +60,9 @@ public class Overlord : MonoBehaviour
         if (other.transform.tag == "BalaPlayer")
         {
             // _stats.applyDamage(10000);
-            other.GetComponent<DañoBalas>().getDaño();
+
+            _stats.applyDamage(other.GetComponent<DañoBalas>().getDaño());
+
         }
 
         if (other.transform.tag == "FuegoPlayer")
