@@ -23945,7 +23945,7 @@ Prefab:
         type: 2}
       propertyPath: levelsT
       value: 
-      objectReference: {fileID: 2126865304}
+      objectReference: {fileID: 0}
     - target: {fileID: 114000014253440028, guid: 251b675202aa2344eb3f21b140e61bae,
         type: 2}
       propertyPath: levelUpTxt
@@ -50140,12 +50140,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 36eae605fa0b06247b6b7e4e02bfc771, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &2126865304 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114622915374723752, guid: 2c93b7b44d01a8a47869508300250e8f,
-    type: 2}
-  m_PrefabInternal: {fileID: 1039154307}
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1001 &2128310752
 Prefab:
   m_ObjectHideFlags: 0

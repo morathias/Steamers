@@ -13,9 +13,8 @@ public class DuoRevolver : Arma {
     public LayerMask layer;
 
     override protected void Start() {
-        _revolverIzquierdo = new Vector3(-0.486f, 0.805f, 1.661f);
-        _revolverDerecho = new Vector3(0.486f, 0.805f, 1.661f);
-        shootSource = GetComponent<AudioSource>();
+        _revolverIzquierdo = new Vector3(-0.486f, 0.805f, 1.561f);
+        _revolverDerecho = new Vector3(0.486f, 0.805f, 1.561f);
 
         base.Start();
     }
