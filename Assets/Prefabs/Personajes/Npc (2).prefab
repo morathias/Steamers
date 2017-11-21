@@ -2016,6 +2016,7 @@ MonoBehaviour:
   objetivosTxt:
   - {fileID: 0}
   - {fileID: 0}
+  _activeMissionIcon: {fileID: 1738808112325274}
 --- !u!114 &114120958248266992
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2060,6 +2061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c6702f41a5580d4fb7a66febe4ddc5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _texto: {fileID: 114120958248266992}
 --- !u!114 &114218752696604774
 MonoBehaviour:
   m_ObjectHideFlags: 1
