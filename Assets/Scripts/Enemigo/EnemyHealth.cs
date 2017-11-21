@@ -35,7 +35,7 @@ public class EnemyHealth : MonoBehaviour
             }
             if (prota.onKilling)
             {
-                int random2 = Random.Range(1, 10);
+                int random2 = Random.Range(5, 15);
                 prota.VidaActual += random2;
             }
             dead = true;

@@ -625,7 +625,7 @@ GameObject:
   - component: {fileID: 23343247816520340}
   - component: {fileID: 65062349504047892}
   - component: {fileID: 54582363985333712}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: shield_low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1485,7 +1485,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1743248161333602}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 115.94551, y: 0, z: 206.40974}
+  m_LocalPosition: {x: 125.73249, y: 0, z: 207.00508}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4381330813986892}
@@ -1734,7 +1734,7 @@ MonoBehaviour:
   blood: {fileID: 198654092196436366}
   Rango: 10
   velocidad: 1
-  protect: 0
+  protect: 1
 --- !u!114 &114496695613101004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5151,8 +5151,8 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: ed95f2015dbca4d4ab70e184a829089c, type: 2}
-  - {fileID: 2100000, guid: ed95f2015dbca4d4ab70e184a829089c, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

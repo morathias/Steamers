@@ -159,7 +159,7 @@ public class Prota : MonoBehaviour
                 if (_timerEsquivar <= 0)
                 {
                     _estado = estados.moviendose;
-                    _timerEsquivar = 0.2f;
+                    _timerEsquivar = 0.4f;
                 }
                 break;
 
@@ -205,7 +205,7 @@ public class Prota : MonoBehaviour
     //-------------------------------------------------------------------------------------------
     void esquivar()
     {
-        _protaController.SimpleMove(_direccion * 3f);
+        _protaController.SimpleMove(_direccion * 3.75f);
     }
     //-------------------------------------------------------------------------------------------
     void rotarProta()
