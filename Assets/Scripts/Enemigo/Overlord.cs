@@ -59,8 +59,8 @@ public class Overlord : MonoBehaviour
     {
         if (other.transform.tag == "BalaPlayer")
         {
-            _stats.applyDamage(10000);
-            //other.GetComponent<DañoBalas>().getDaño()
+            // _stats.applyDamage(10000);
+            other.GetComponent<DañoBalas>().getDaño();
         }
 
         if (other.transform.tag == "FuegoPlayer")

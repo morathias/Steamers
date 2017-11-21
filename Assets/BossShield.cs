@@ -71,7 +71,7 @@ public class BossShield : Overlord
                 break;
             case estados.normal:
 
-                if (dead == true)
+
                     Destroy(gameObject);
 
                 if (Vector3.Distance(transform.position, fichador.position) < 10)
@@ -104,7 +104,7 @@ public class BossShield : Overlord
                 break;
 
             case estados.fear:
-                if (dead == true)
+            
                     Destroy(gameObject);
                 moveIt(Random.Range(90.0f, 270.0f));
 
