@@ -8,14 +8,13 @@ public class EnemyHealth : MonoBehaviour
     public GameObject Potion;
     public GameObject XPerience;
     Vector3 fggt = new Vector3(0, 0.5f, 0);
-    Overlord killswitch;
+    public bool dead = false;
     public int totalhealth;
     private Stats prota;
 
     void Start()
     {
         totalhealth = health;
-        killswitch = this.GetComponent<Overlord>();
         prota = GameObject.FindGameObjectWithTag("Player").GetComponent<Stats>();
 
     }
@@ -23,7 +22,7 @@ public class EnemyHealth : MonoBehaviour
     public void applyDamage(int damage)
     {
         health -= damage;
-        if (health <= 0 && !killswitch.dead)
+        if (health <= 0 && !dead)
         {
             int random = Random.Range(1, 10);
             if (random >= 7)
@@ -39,7 +38,7 @@ public class EnemyHealth : MonoBehaviour
                 int random2 = Random.Range(1, 10);
                 prota.VidaActual += random2;
             }
-            killswitch.dead = true;
+            dead = true;
         }
 
     }
@@ -48,6 +47,15 @@ public class EnemyHealth : MonoBehaviour
     {
         health += damage;
 
+    }
+    public bool isDead()
+    {
+        return dead;
+
+    }
+    public int inDanger()
+    {
+        return (health / totalhealth) * 100;
     }
 }
 

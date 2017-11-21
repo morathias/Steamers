@@ -43,7 +43,7 @@ public class LogicEn : Overlord
             case estados.normal:
                 time++;
 
-                if (dead == true)
+                if (_stats.dead == true)
                 {
                     Destroy(gameObject);
                 }

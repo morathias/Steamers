@@ -22,7 +22,7 @@ public class CrnR : Overlord
 
     void Update()
     {
-        if (dead)
+        if (_stats.dead)
         {
             Destroy(gameObject);
         }
