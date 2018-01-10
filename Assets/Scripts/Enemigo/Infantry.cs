@@ -3,23 +3,22 @@ using System.Collections;
 
 public class Infantry : Overlord
 {
-    public UnityEngine.AI.NavMeshAgent navigator { get; private set; }
-    private Rigidbody _rigidBody;
+    
     public int Rango = 10;
     float timeLeft = 4;
     float limite = 0;
     float move = 0;
     Transform capitanPos;
-    public ParticleSystem _balaE;
-    Quaternion neededRotation;
+    
+    
     GameObject Leader;
     Vector3 _posicionLider;
     Animator _animations;
-    public bool isBoss = false;
 
     override protected void Start()
     {
         base.Start();
+        _balaE = GetComponentInChildren<ParticleSystem>();
         _balaE.GetComponent<DañoBalas>().setDaño(daño);
         _animations = GetComponent<Animator>();
         _rigidBody = GetComponent<Rigidbody>();
@@ -174,20 +173,7 @@ public class Infantry : Overlord
 
     }
 
-    void moveIt(float chaos)
-    {
-        neededRotation = Quaternion.LookRotation(fichador.position - transform.position);
-        neededRotation *= Quaternion.Euler(0, Random.Range(90.0f, 270.0f), 0);
-        neededRotation.x = 0;
-        neededRotation.z = 0;
-        transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 5f);
 
-        fichadorPos.x = fichadorPos.x + Random.Range(10, 20.0f)* Random.Range(-1,1);
-        fichadorPos.z = fichadorPos.z + Random.Range(10, 20.0f) * Random.Range(-1, 1);
-        navigator.SetDestination(fichadorPos);
-        navigator.transform.position = transform.position;
-        _rigidBody.velocity = navigator.desiredVelocity;
-    }
     public bool begin(int pos, GameObject PointMan)
     {
         if (pos < 6 && _estado != estados.bajoOrdenes)
@@ -201,12 +187,5 @@ public class Infantry : Overlord
         else
             return false;
 
-    }
-
-
-    public void MoveIt(Vector3 velocity, Vector3 lookAt)
-    {
-
-        _rigidBody.velocity = velocity;
     }
 }

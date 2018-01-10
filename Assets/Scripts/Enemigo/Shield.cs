@@ -3,13 +3,9 @@ using System.Collections;
 
 public class Shield : Overlord
 {
-    public UnityEngine.AI.NavMeshAgent navigator { get; private set; }
-    private Rigidbody _rigidBody;
     public int Rango = 1;
-    // float intervalo = 0.2f;
     public int velocidad = 2;
     Transform capitanPos;
-    Quaternion neededRotation;
     GameObject Leader;
     Infantry troop;
     int damage = 5;
@@ -17,7 +13,6 @@ public class Shield : Overlord
     float timer = 0;
     float move = 0;
     float timeLeft = 4;
-   // public Collider shield;
     Vector3 _posicionLider;
     Animator _animations;
     public bool protect = false;
@@ -25,8 +20,6 @@ public class Shield : Overlord
     override protected void Start()
     {
         base.Start();
-        _stats.applyDamage(1);
-
         fichador = objective.transform;
         _animations = GetComponent<Animator>();
         _rigidBody = GetComponent<Rigidbody>();
@@ -85,10 +78,6 @@ public class Shield : Overlord
                     neededRotation = Quaternion.LookRotation(fichador.transform.position - transform.position);
                     neededRotation.x = 0;
                     neededRotation.z = 0;
-                    //if (protect)
-                    //{
-                    //    searchPro();
-                    //}
                     transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 1f);
                     if (!stayput)
                         _animations.SetBool("Range", true);
@@ -174,7 +163,7 @@ public class Shield : Overlord
         }
         else
         {
-            
+
             return false;
         }
     }
@@ -223,22 +212,10 @@ public class Shield : Overlord
                     Debug.Log(troop.status());
                     break;
                 }
-               
+
             }
 
         }
-
-    }
-
-
-    void moveIt(float chaos)
-    {
-        neededRotation = Quaternion.LookRotation(fichador.transform.position - transform.position);
-        neededRotation *= Quaternion.Euler(0, Random.Range(90.0f, 270.0f), 0);
-        neededRotation.x = 0;
-        neededRotation.z = 0;
-        _animations.SetBool("Range", true);
-        transform.Translate(Vector3.forward * 8 * Time.deltaTime);
 
     }
 }
