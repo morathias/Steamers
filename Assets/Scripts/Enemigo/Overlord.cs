@@ -5,21 +5,25 @@ using System.Collections.Generic;
 public class Overlord : MonoBehaviour
 {
     protected GameObject objective;
+    protected Transform fichador;
+    protected Vector3 fichadorPos;
     protected EnemyHealth _stats;
-    protected estados _estado;
+    public estados _estado;
     protected int ordenPos;
-    public bool dead = false;
     public int countdown = 6;
     public int daño;
     public string phase = "0";
+    public ParticleSystem blood;
 
     protected virtual void Start()
     {
         _estado = estados.normal;
         objective = GameObject.FindGameObjectWithTag("Player");
         _stats = GetComponent<EnemyHealth>();
+        fichador = objective.transform;
+        fichadorPos = fichador.position;
     }
-    protected enum estados
+    public enum estados
     {
         normal,
         bajoOrdenes,
@@ -35,7 +39,7 @@ public class Overlord : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (countdown<1)
+        if (countdown < 1)
         {
             phase = "1";
         }
@@ -55,17 +59,21 @@ public class Overlord : MonoBehaviour
     {
         if (other.transform.tag == "BalaPlayer")
         {
+            // _stats.applyDamage(10000);
+
             _stats.applyDamage(other.GetComponent<DañoBalas>().getDaño());
+
         }
 
         if (other.transform.tag == "FuegoPlayer")
         {
             _stats.applyDamage(other.GetComponent<flameDamage>().getDaño());
         }
+        blood.Emit(1);
     }
     public int status()
     {
-        return _stats.health;
+        return _stats.inDanger();
     }
     public string bossSat()
     {

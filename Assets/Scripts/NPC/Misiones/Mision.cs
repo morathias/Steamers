@@ -26,7 +26,7 @@ public class Mision : MonoBehaviour {
     public Text[] objetivosTxt;
     Objetivo _objetivoActivo;
 
-    GameObject _activeMissionIcon;
+    public GameObject _activeMissionIcon;
 
     void Start() {
         if (isAlreadyActivated)

@@ -34,7 +34,7 @@ public class PotatOS : Overlord
         {
             case estados.normal:
 
-                if (dead == true)
+                if (_stats.dead == true)
                 {
                     Destroy(gameObject);
                 }

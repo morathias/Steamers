@@ -21,7 +21,7 @@ public class WalkingMine : Overlord {
 
     void Update()
     {
-        if (dead == true)
+        if (_stats.dead == true)
             Destroy(gameObject);
         if (Vector3.Distance(transform.position, Target.position) < RangoDeteccion)
             move = true;

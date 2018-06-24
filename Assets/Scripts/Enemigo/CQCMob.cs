@@ -22,7 +22,7 @@ public class CQCMob : Overlord
     {
         if (stayput == false)
         {
-            if (dead == true)
+            if (_stats.dead == true)
                 Destroy(gameObject);
 
             if (Vector3.Distance(transform.position, Target.position) < RangoLucha)

@@ -7,7 +7,7 @@ public class DialogoBox : MonoBehaviour
 {
     string[] _lineas;
 
-    Text _texto;
+    public Text _texto;
     Image _dialogoBox;
     List<GameObject> _botones;
 
