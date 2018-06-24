@@ -198,8 +198,8 @@ public class Prota : MonoBehaviour
     void moverProta()
     {
         _direccion = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        _direccion = Camera.main.transform.worldToLocalMatrix.inverse * _direccion;
         _direccion *= velocidad;
-
         _protaController.SimpleMove(_direccion);
     }
     //-------------------------------------------------------------------------------------------
@@ -219,7 +219,8 @@ public class Prota : MonoBehaviour
         _posicionDelMouse.y -= _posicionDelPlayer.y;    //_|
 
         _angulo = Mathf.Atan2(_posicionDelMouse.x, _posicionDelMouse.y) * Mathf.Rad2Deg;    //saco el angulo de ese vector
-        transform.rotation = Quaternion.Euler(new Vector3(0, _angulo, 0));      //lo roto en eje y
+        float cameraAngle = Camera.main.transform.eulerAngles.y;
+        transform.rotation = Quaternion.Euler(new Vector3(0, _angulo + cameraAngle, 0));      //lo roto en eje y
     }
     //-------------------------------------------------------------------------------------------
     public void stunE()

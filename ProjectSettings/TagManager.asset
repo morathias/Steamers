@@ -17,7 +17,7 @@ TagManager:
   - BalaPlayer
   - CazaEnemigos
   - EnemyS
-  - FuegoPlayer
+  - Postprocessing
   layers:
   - Default
   - TransparentFX
@@ -33,7 +33,7 @@ TagManager:
   - Shield
   - GUI
   - Ambiente
-  - 
+  - PostProcessing
   - 
   - 
   - 
