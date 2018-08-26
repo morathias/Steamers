@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 //===================================================================================================
 [System.Serializable]
 public class Dialogo
 {
     [TextArea(4, 3)]
-    public string[] lineas;
+    public List<string> lineas;
     public int dialogoInteractivo;
+    public List<bool> sonLineasInteractivas;
 }
 //===================================================================================================
 public class Npc : MonoBehaviour
@@ -19,10 +21,10 @@ public class Npc : MonoBehaviour
     private Animator NpcAni;
 
     [Space(10.0f)]
-    public Mision[] misiones;
+    public List<Mision> misiones;
 
     [Space(10.0f)]
-    public Dialogo[] dialogos;
+    public List<Dialogo> dialogos;
 
     GameObject _prota;
     DialogoBox _dialogoBox;
@@ -30,6 +32,8 @@ public class Npc : MonoBehaviour
     int _dialogoIndex;
 
     GameObject _activeMissionIcon;
+
+    public string[] _misionesAActivar;
 
     enum estados
     {
@@ -46,18 +50,19 @@ public class Npc : MonoBehaviour
         _prota = GameObject.Find("Prota");
         _dialogoBox = GetComponentInChildren<DialogoBox>();
 
-        _dialogoBox.setInicioDialogo(dialogos[_dialogoIndex].lineas, dialogos[_dialogoIndex].dialogoInteractivo);
+        _dialogoBox.setInicioDialogo(dialogos[_dialogoIndex].lineas.ToArray(), dialogos[_dialogoIndex].dialogoInteractivo);
         NpcAni = transform.GetChild(0).GetComponent<Animator>();
         _activeMissionIcon = transform.GetChild(2).gameObject;
 
-        if (misiones.Length == 0) {
-            hideMisionIcon();
-            return;
-        }
-
-        for (int i = 0; i < misiones.Length; i++)
+        if (misiones.Count == 0)
         {
-            misiones[i].setActiveMissionIcon(_activeMissionIcon);
+            hideMisionIcon();
+        }
+        else
+        {
+            misiones[0].setUp();
+            if (!misiones[0].enEspera)
+                hideMisionIcon();
         }
     }
     //-----------------------------------------------------------------------------------------------
@@ -99,9 +104,9 @@ public class Npc : MonoBehaviour
                     _estado = estados.esperando;
                     _prota.GetComponent<Prota>().terminoDeHablar();
 
-                    for (int i = 0; i < misiones.Length; i++)
+                    for (int i = 0; i < misiones.Count; i++)
                     {
-                        if (misiones[i].gameObject.activeInHierarchy)
+                        if (misiones[i].getActiva())
                         {
                             showMisionIcon();
                             break;
@@ -131,10 +136,10 @@ public class Npc : MonoBehaviour
     public void setDialogo(int index)
     {
         _dialogoIndex = index;
-        _dialogoBox.setInicioDialogo(dialogos[_dialogoIndex].lineas, dialogos[_dialogoIndex].dialogoInteractivo);
+        _dialogoBox.setInicioDialogo(dialogos[_dialogoIndex].lineas.ToArray(), dialogos[_dialogoIndex].dialogoInteractivo);
         Debug.Log("dialogo index: " + _dialogoIndex);
     }
-
+    //-----------------------------------------------------------------------------------------------
     public void showMisionIcon() {
         if(!_activeMissionIcon.activeInHierarchy)
             _activeMissionIcon.SetActive(true);
@@ -143,5 +148,10 @@ public class Npc : MonoBehaviour
     public void hideMisionIcon() {
         _activeMissionIcon.SetActive(false);
     }
+    //-----------------------------------------------------------------------------------------------
+    public void empezarMisionEnEspera() {
+        misiones[0].empezarMision();
+    }
+    //-----------------------------------------------------------------------------------------------
 }
 //===================================================================================================

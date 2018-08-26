@@ -11,7 +11,7 @@ public class ExpCube : Item {
     {
         Stats expComponent = Target.gameObject.GetComponent<Stats>();
         expComponent.exp += 100;
-        Debug.Log(expComponent.exp);
+        //Debug.Log(expComponent.exp);
         Destroy(gameObject);
     }
 }

@@ -12,7 +12,7 @@ public class GameOptionsManager : MonoBehaviour {
 
     Options _options = Options.journal;
 
-    public Canvas[] menues;
+    public GameObject[] menues;
 
     MenuPausa _menuPausa;
 	//----------------------------------------------------
@@ -62,8 +62,8 @@ public class GameOptionsManager : MonoBehaviour {
     }
     //----------------------------------------------------
     public void switchMenu(int index) {
-        if (menues[index].enabled){
-            menues[index].enabled = false;
+        if (menues[index].activeInHierarchy){
+            menues[index].SetActive(false);
             Time.timeScale = 1;
             return;
         }
@@ -74,7 +74,7 @@ public class GameOptionsManager : MonoBehaviour {
     }
     //----------------------------------------------------
     void enableJournalMenu() {
-        menues[(int)Options.journal].enabled = true;
+        menues[(int)Options.journal].SetActive(true);
       //menues[(int)Options.stats].enabled = false;
       //menues[(int)Options.options].enabled = false;
       //menues[(int)Options.inventory].enabled = false;
@@ -102,7 +102,7 @@ public class GameOptionsManager : MonoBehaviour {
     }*/
     //----------------------------------------------------
     void disableAll() {
-        menues[(int)Options.journal].enabled = false;
+        menues[(int)Options.journal].SetActive(false);
         //menues[(int)Options.stats].enabled = false;
         //menues[(int)Options.options].enabled = false;
         //menues[(int)Options.inventory].enabled = false;

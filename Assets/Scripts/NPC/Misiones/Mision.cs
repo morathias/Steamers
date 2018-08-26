@@ -3,48 +3,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 //==========================================
-public class Mision : MonoBehaviour {
+[System.Serializable]
+public class Mision {
+    public string nombre;
     [TextArea]
     public string informacionGeneral;
 
-    public Text informacionGeneralTxt;
-    public string nombre;
-    public Text nombreTxt;
-    private Image tick;
-
-    public Text mensajeMisionCumplida;
-    private Sprite papel;
-
     public int valorEtico = 0;
 
-    public Button misionBtn;
+    public bool enEspera = false;
     protected bool _activa = false;
     public bool isAlreadyActivated = false;
 
-    public Item[] recompensas;
+    public List<Item> recompensas;
+
+    [SerializeField]
     public List<Objetivo> objetivos;
-    public Text[] objetivosTxt;
+
     Objetivo _objetivoActivo;
 
-    public GameObject _activeMissionIcon;
+    private Vector3 _npcPos;
 
-    void Start() {
-        if (isAlreadyActivated)
+    public Mision() {
+        
+    }
+
+    public void setUp()
+    {
+        if (enEspera)
         {
-            empezarMision();
+            MisionesManager.getInstance().agregarMisionInactiva(this);
         }
-        tick = misionBtn.gameObject.transform.Find("Tick").GetComponent<Image>();
+
+        if (isAlreadyActivated)
+            empezarMision();
     }
     //--------------------------------------
     protected virtual void Update() {
-        if (mensajeMisionCumplida == null)
-            mensajeMisionCumplida = GameObject.Find("misionCumplida").GetComponent<Text>();
-
         if (_activa) {
-            _activeMissionIcon.SetActive(false);
             if (objetivosCumplidos()){
                 Debug.Log("Mision Cumplida");
-                mensajeMisionCumplida.enabled = true;
                 misionTerminada();
             }
 
@@ -58,11 +56,15 @@ public class Mision : MonoBehaviour {
         _objetivoActivo = objetivos[0];
         _objetivoActivo.activo = true;
 
-        for (int i = 0; i < objetivos.Count; i++)
-            objetivosTxt[i].text = objetivos[i].informacion;
-        nombreTxt.text = nombre;
-        informacionGeneralTxt.text = informacionGeneral;
-        misionBtn.gameObject.SetActive(true);
+        MisionesManager.getInstance().removerMisionInactiva(this);
+
+        //chequeo para misiones que estan activas en el mundo pero el jugador las desconoce
+        //asi no aparecenen en el journal menu
+        if (!isAlreadyActivated)
+        {
+            Debug.Log("agregando al journal");
+            MisionesManager.getInstance().agregarMisionEnCurso(this);
+        }
     }
     //--------------------------------------
     public void siguienteObjetivo() {
@@ -74,17 +76,17 @@ public class Mision : MonoBehaviour {
     }
     //--------------------------------------
     public bool misionTerminada() {
-        _activeMissionIcon.SetActive(false);
         _activa = false;
+        MisionesManager.getInstance().removerMisionEnCurso(this);
+        MisionesManager.getInstance().agregarMisionTerminada(this);
 
-        for (int i = 0; i < recompensas.Length; i++){
+        for (int i = 0; i < recompensas.Count; i++){
             int randomPos = Random.Range(-3, 3);
-            Vector3 pos = new Vector3(transform.position.x + randomPos, transform.position.y, transform.position.z + randomPos);
+            Vector3 pos = new Vector3(_npcPos.x + randomPos, _npcPos.y, _npcPos.z + randomPos);
 
-            Instantiate(recompensas[i].gameObject, pos, transform.rotation);
+            GameObject.Instantiate(recompensas[i].gameObject, pos, Quaternion.identity);
         }
-        tick.gameObject.SetActive(true);
-        gameObject.SetActive(_activa);
+
         return true;
     }
     //--------------------------------------
@@ -102,10 +104,6 @@ public class Mision : MonoBehaviour {
 
     public bool getActiva() {
         return _activa;
-    }
-
-    public void setActiveMissionIcon(GameObject icon) {
-        _activeMissionIcon = icon;
     }
 }
 //==========================================

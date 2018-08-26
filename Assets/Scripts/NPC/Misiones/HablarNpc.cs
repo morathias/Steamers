@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class HablarNpc : Objetivo
 {
+    [HideInInspector]
     public Npc npcAHablar;
-
+    [HideInInspector]
     public int dialogoIndex;
 
     public override bool condicionCumplida()
@@ -26,5 +27,10 @@ public class HablarNpc : Objetivo
             npcAHablar.showMisionIcon();
             return false;
         }
+    }
+
+    public override object downCast()
+    {
+        return this;
     }
 }

@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 //============================================================
+[System.Serializable]
 public class EncontrarItem : Objetivo {
+    [HideInInspector]
     public Item.Tipo itemAEncontrar;
 
+    [HideInInspector]
     public int cantidad;
     static int _cantidadAgarrada = 0;
 
+    [HideInInspector]
     public bool esRandom = false;
     //-----------------------------------------------------
     public delegate void itemAgarradoHandler(Item item);
@@ -44,5 +48,9 @@ public class EncontrarItem : Objetivo {
         return false;
     }
     //-----------------------------------------------------
+    public override object downCast()
+    {
+        return this;
+    }
 }
 //============================================================

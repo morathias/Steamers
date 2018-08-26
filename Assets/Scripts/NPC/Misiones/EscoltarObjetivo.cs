@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class EscoltarObjetivo : Objetivo {
+    [HideInInspector]
     public GameObject camino;
     Transform[] puntos;
 
+    [HideInInspector]
     public Npc npcAEscoltar;
     SeguirCamino _caminoASeguir;
 	
@@ -33,5 +36,10 @@ public class EscoltarObjetivo : Objetivo {
         }
 
         return false;
+    }
+
+    public override object downCast()
+    {
+        return this;
     }
 }
