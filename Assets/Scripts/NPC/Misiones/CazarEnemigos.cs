@@ -4,8 +4,8 @@ using System.Collections.Generic;
 //=============================================================================
 [System.Serializable]
 public class CazarEnemigos : Objetivo {
-    [HideInInspector]
-    public List<Overlord> tiposEnemigos;
+    //[HideInInspector]
+    public List<Overlord> tiposEnemigos = new List<Overlord>();
 
     GameObject[] enemigos;
 
@@ -13,13 +13,13 @@ public class CazarEnemigos : Objetivo {
     public bool esRandom = false;
 
     [HideInInspector]
-    public int cantidadACazar = 10;
+    public int cantidadACazar = 0;
     int _cantidadCazada;
     int _tipoRandom;
     string _tipoEnemigoACazar;
     //-------------------------------------------------------------------------
-	public CazarEnemigos () {
-        tiposEnemigos = new List<Overlord>();
+	public void Awake () {
+        //tiposEnemigos = new List<Overlord>();
         _cantidadCazada = 0;
 
         if (esRandom){
@@ -73,7 +73,6 @@ public class CazarEnemigos : Objetivo {
             if (enemigo == null){
                 _cantidadCazada++;
                 tiposEnemigos.Remove(enemigo);
-                Debug.Log("cantidad cazada" + _cantidadCazada);
             }
         }
     }

@@ -59,7 +59,6 @@ public class DialogoBox : MonoBehaviour
     public void setFinDialogo(int fin)
     {
         _finDialogo = fin;
-        Debug.Log(_finDialogo);
     }
     //----------------------------------------------------------------------------
     public bool finDialogo()

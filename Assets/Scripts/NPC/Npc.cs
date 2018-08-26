@@ -100,7 +100,6 @@ public class Npc : MonoBehaviour
                 hideMisionIcon();
                 if (_dialogoBox.finDialogo())
                 {
-                    Debug.Log("findialogo");
                     _estado = estados.esperando;
                     _prota.GetComponent<Prota>().terminoDeHablar();
 
@@ -123,6 +122,11 @@ public class Npc : MonoBehaviour
             case estados.cubriendose:
                 break;
         }
+
+        if (misiones.Count > 0)
+        {
+            misiones[0].Update();
+        }
     }
     //-----------------------------------------------------------------------------------------------
     public bool estaHablando()
@@ -137,7 +141,6 @@ public class Npc : MonoBehaviour
     {
         _dialogoIndex = index;
         _dialogoBox.setInicioDialogo(dialogos[_dialogoIndex].lineas.ToArray(), dialogos[_dialogoIndex].dialogoInteractivo);
-        Debug.Log("dialogo index: " + _dialogoIndex);
     }
     //-----------------------------------------------------------------------------------------------
     public void showMisionIcon() {

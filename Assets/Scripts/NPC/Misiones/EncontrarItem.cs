@@ -23,7 +23,6 @@ public class EncontrarItem : Objetivo {
         if (itemAgarrado != null)
         {
             itemAgarrado(item);
-            Debug.Log("evento ejecutado");
         }
     }
     //-----------------------------------------------------
@@ -32,14 +31,12 @@ public class EncontrarItem : Objetivo {
             if (item.tipo == itemAEncontrar)
             {
                 _cantidadAgarrada++;
-                Debug.Log("se agarro item " + _cantidadAgarrada);
             }
         }
     }
     //-----------------------------------------------------
     public override bool condicionCumplida(){
         if (_cantidadAgarrada == cantidad){
-            Debug.Log("se consiguieron todos los items " + _cantidadAgarrada);
             _terminado = true;
             _activo = false;
             itemAgarrado -= seAgarroItem;

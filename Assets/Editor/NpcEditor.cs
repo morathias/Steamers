@@ -138,6 +138,11 @@ public class NpcEditor : Editor
             if (targetNpc.dialogos[i].lineas == null)
                 targetNpc.dialogos[i].lineas = new List<string>();
 
+            Undo.RecordObject(target, "mision");
+            EditorUtility.SetDirty(target);
+            if (GUI.changed)
+                EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+
             for (int j = 0; j < targetNpc.dialogos[i].lineas.Count; j++)
             {
                 EditorGUILayout.BeginHorizontal();
@@ -257,14 +262,12 @@ public class NpcEditor : Editor
     //----------------------------------------------------------------------------------------------------------------------
     private void agregarObjetivo(TiposObjetivos tipo, Mision mision)
     {
-        Debug.Log("agregar objetivo a: " + mision.nombre);
-
         switch (tipo)
         {
             case TiposObjetivos.CazarEnemigos:
                 GameObject objetivoCEObj = new GameObject(mision.nombre + "_cazar_enemigo");
                 objetivoCEObj.transform.parent = (target as Npc).transform;
-                objetivoCEObj.SetActive(false);
+                //objetivoCEObj.SetActive(false);
                 CazarEnemigos objetivoCE = objetivoCEObj.AddComponent<CazarEnemigos>();
                 objetivoCE.tipo = tipo;
 
@@ -274,7 +277,7 @@ public class NpcEditor : Editor
             case TiposObjetivos.CazarBoss:
                 GameObject objetivoCBObj = new GameObject(mision.nombre + "_cazar_boss");
                 objetivoCBObj.transform.parent = (target as Npc).transform;
-                objetivoCBObj.SetActive(false);
+                //objetivoCBObj.SetActive(false);
                 CazarBoss objetivoCB = objetivoCBObj.AddComponent<CazarBoss>();
                 objetivoCB.tipo = tipo;
 
@@ -284,7 +287,7 @@ public class NpcEditor : Editor
             case TiposObjetivos.EncontrarItem:
                 GameObject objetivoEIObj = new GameObject(mision.nombre + "_encontrar_item");
                 objetivoEIObj.transform.parent = (target as Npc).transform;
-                objetivoEIObj.SetActive(false);
+                //objetivoEIObj.SetActive(false);
                 EncontrarItem objetivoEI = objetivoEIObj.AddComponent<EncontrarItem>();
                 objetivoEI.tipo = tipo;
 
@@ -294,7 +297,7 @@ public class NpcEditor : Editor
             case TiposObjetivos.EscoltarObjetivo:
                 GameObject objetivoEOObj = new GameObject(mision.nombre + "_escoltar_objetivo");
                 objetivoEOObj.transform.parent = (target as Npc).transform;
-                objetivoEOObj.SetActive(false);
+                //objetivoEOObj.SetActive(false);
                 EscoltarObjetivo objetivoEO = objetivoEOObj.AddComponent<EscoltarObjetivo>();
                 objetivoEO.tipo = tipo;
 
@@ -304,7 +307,7 @@ public class NpcEditor : Editor
             case TiposObjetivos.HablarBoss:
                 GameObject objetivoHBObj = new GameObject(mision.nombre + "_hablar_Boss");
                 objetivoHBObj.transform.parent = (target as Npc).transform;
-                objetivoHBObj.SetActive(false);
+                //objetivoHBObj.SetActive(false);
                 HablarBoss objetivoHB = objetivoHBObj.AddComponent<HablarBoss>();
                 objetivoHB.tipo = tipo;
 
@@ -314,7 +317,7 @@ public class NpcEditor : Editor
             case TiposObjetivos.HablarNpc:
                 GameObject objetivoHNObj = new GameObject(mision.nombre + "_hablar_npc");
                 objetivoHNObj.transform.parent = (target as Npc).transform;
-                objetivoHNObj.SetActive(false);
+                //objetivoHNObj.SetActive(false);
                 HablarNpc objetivoHN = objetivoHNObj.AddComponent<HablarNpc>();
                 objetivoHN.tipo = tipo;
 
@@ -324,7 +327,7 @@ public class NpcEditor : Editor
             case TiposObjetivos.IrAZona:
                 GameObject objetivoIAZObj = new GameObject(mision.nombre + "_ir_a_zona");
                 objetivoIAZObj.transform.parent = (target as Npc).transform;
-                objetivoIAZObj.SetActive(false);
+                //objetivoIAZObj.SetActive(false);
                 IrAZona objetivoIAZ = objetivoIAZObj.AddComponent<IrAZona>();
                 objetivoIAZ.tipo = tipo;
 
@@ -378,7 +381,6 @@ public class NpcEditor : Editor
 
                 if (objetivoCE == null)
                 {
-                    Debug.Log("could not convert");
                     return;
                 }
 
@@ -387,20 +389,18 @@ public class NpcEditor : Editor
                 objetivoCE.cantidadACazar = EditorGUILayout.IntField("Cantidad a cazar:", objetivoCE.cantidadACazar);
                 EditorGUIUtility.labelWidth = 70;
                 objetivoCE.esRandom = EditorGUILayout.Toggle("Es random:", objetivoCE.esRandom);
-
+                if (GUI.changed)
+                {
+                    objetivoCE.tiposEnemigos.Clear();
+                    for (int i = 0; i < objetivoCE.cantidadACazar; i++)
+                        objetivoCE.tiposEnemigos.Add(null);
+                }
                 if (!objetivoCE.esRandom)
                 {
                     EditorGUILayout.LabelField("Enemigos a cazar:");
-                    if (GUI.changed)
-                        objetivoCE.tiposEnemigos.Clear();
-                    for (int i = 0; i < objetivoCE.cantidadACazar; i++)
+                    for (int i = 0; i < objetivoCE.tiposEnemigos.Count; i++)
                     {
-
-                        if (GUI.changed)
-                        {
-                            objetivoCE.tiposEnemigos.Add(null);
-                        }
-                            objetivoCE.tiposEnemigos[i] = (Overlord)EditorGUILayout.ObjectField(objetivoCE.tiposEnemigos[i], typeof(Overlord), true);
+                        objetivoCE.tiposEnemigos[i] = (Overlord)EditorGUILayout.ObjectField(objetivoCE.tiposEnemigos[i], typeof(Overlord), true);
                     }
                 }
                 break;

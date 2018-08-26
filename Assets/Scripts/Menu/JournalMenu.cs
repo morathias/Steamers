@@ -25,8 +25,6 @@ public class JournalMenu : MonoBehaviour {
     }
     //-------------------------------------------------------------------------------------
     private void updateUI() {
-        Debug.Log("updating journal ui");
-
         if(_misionesActivasContainer == null)
             _misionesActivasContainer = transform.Find("misionesActivas").Find("Viewport").Find("Content").transform;
 
@@ -39,8 +37,6 @@ public class JournalMenu : MonoBehaviour {
             _infoGralTxt.text = misionesActivas[0].informacionGeneral;
 
             for (int i = _ultimaMisionIndex; i < misionesActivas.Count; i++) {
-                Debug.Log("creating mision ui");
-
                 GameObject misionBtnObj = new GameObject(misionesActivas[i].nombre);
                 misionBtnObj.transform.parent = _misionesActivasContainer;
                 ObjetivoGUI objetivoGUI = misionBtnObj.AddComponent<ObjetivoGUI>();

@@ -13,8 +13,6 @@ public class HablarNpc : Objetivo
     {
         if (npcAHablar.estaHablando())
         {
-            Debug.Log("hablaste");
-            Debug.Log("dialogo index: " + dialogoIndex);
             npcAHablar.setDialogo(dialogoIndex);
 
             _activo = false;

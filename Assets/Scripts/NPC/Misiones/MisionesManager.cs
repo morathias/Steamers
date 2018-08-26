@@ -10,8 +10,6 @@ public class MisionesManager {
     private static MisionesManager _instance;
     //------------------------------------------------------------------
     private MisionesManager() {
-        Debug.Log("MisionesManager inicializado");
-
         _misionesEnEspera = new List<Mision>();
         _misionesEnCurso = new List<Mision>();
         _misionesTerminadas = new List<Mision>();
@@ -33,7 +31,6 @@ public class MisionesManager {
     }
     //------------------------------------------------------------------
     public void agregarMisionInactiva(Mision mision) {
-        Debug.Log("agregando mision inactiva");
         _misionesEnEspera.Add(mision);
     }
     //------------------------------------------------------------------
@@ -46,7 +43,6 @@ public class MisionesManager {
     }
     //------------------------------------------------------------------
     public void removerMisionInactiva(Mision mision){
-        Debug.Log("removing mision");
         _misionesEnEspera.Remove(mision);
     }
     //------------------------------------------------------------------

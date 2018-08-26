@@ -11,7 +11,6 @@ public class SeguirCamino : MonoBehaviour {
         if (puntoActual >= _puntos.Length){
             _alcanzoDestino = true;
             puntoActual = _puntos.Length - 1;
-            Debug.Log("punto actual: "+puntoActual+" length: "+_puntos.Length);
         }
 
         gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, _puntos[puntoActual].position, Time.deltaTime * 3);

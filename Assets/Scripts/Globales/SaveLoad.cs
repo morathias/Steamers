@@ -26,7 +26,6 @@ public class SaveLoad : MonoBehaviour {
         wololol.saveIndex = SceneManager.GetActiveScene().buildIndex;
         bf.Serialize(file, wololol);
         file.Close();
-        Debug.Log("Save");
     }
     [Serializable]
     class PlayerData
@@ -56,7 +55,5 @@ public class SaveLoad : MonoBehaviour {
             SceneManager.LoadScene(Variables.Gindex);
             file.Close();
         }
-        else
-            Debug.Log("No hay save");
     }
 }

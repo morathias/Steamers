@@ -24,12 +24,13 @@ public class Mision {
 
     private Vector3 _npcPos;
 
-    public Mision() {
-        
-    }
+    private Text _misionCumplidaTxt;
 
+    public Mision() {}
+    //--------------------------------------
     public void setUp()
     {
+        _misionCumplidaTxt = GameObject.Find("misionCumplida").GetComponent<Text>();
         if (enEspera)
         {
             MisionesManager.getInstance().agregarMisionInactiva(this);
@@ -39,10 +40,9 @@ public class Mision {
             empezarMision();
     }
     //--------------------------------------
-    protected virtual void Update() {
+    public virtual void Update() {
         if (_activa) {
             if (objetivosCumplidos()){
-                Debug.Log("Mision Cumplida");
                 misionTerminada();
             }
 
@@ -55,6 +55,7 @@ public class Mision {
         _activa = true;
         _objetivoActivo = objetivos[0];
         _objetivoActivo.activo = true;
+        objetivos[0].gameObject.SetActive(true);
 
         MisionesManager.getInstance().removerMisionInactiva(this);
 
@@ -62,7 +63,6 @@ public class Mision {
         //asi no aparecenen en el journal menu
         if (!isAlreadyActivated)
         {
-            Debug.Log("agregando al journal");
             MisionesManager.getInstance().agregarMisionEnCurso(this);
         }
     }
@@ -85,6 +85,11 @@ public class Mision {
             Vector3 pos = new Vector3(_npcPos.x + randomPos, _npcPos.y, _npcPos.z + randomPos);
 
             GameObject.Instantiate(recompensas[i].gameObject, pos, Quaternion.identity);
+        }
+
+        if (_misionCumplidaTxt)
+        {
+            _misionCumplidaTxt.enabled = true;
         }
 
         return true;

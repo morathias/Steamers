@@ -102,7 +102,6 @@ public class Prota : MonoBehaviour
                 moverProta();
                 rotarProta();
 
-                //Debug.Log(_direccion.magnitude);
                 if (_direccion.magnitude >= 1)
                     _animations.Play("Armature|running_front");
                 else
@@ -249,7 +248,6 @@ public class Prota : MonoBehaviour
     public void terminoDeHablar()
     {
         _estado = estados.moviendose;
-        Debug.Log(_estado);
     }
     //-------------------------------------------------------------------------------------------
     public void fear()
@@ -261,8 +259,6 @@ public class Prota : MonoBehaviour
     {
         if (other.tag == "BalaE" && _estado != estados.esquivando)
         {
-            Debug.Log("ouch");
-            Debug.Log(_stats.applyDamage(other.GetComponent<DañoBalas>().getDaño()));
             if (_stats.applyDamage(other.GetComponent<DañoBalas>().getDaño()))
                 _estado = estados.muriendo;
 
