@@ -21,6 +21,7 @@ public class Mision {
     public List<Objetivo> objetivos;
 
     Objetivo _objetivoActivo;
+    int _objetivoActivoIndex = 0;
 
     private Vector3 _npcPos;
 
@@ -68,14 +69,16 @@ public class Mision {
     }
     //--------------------------------------
     public void siguienteObjetivo() {
-        objetivos.Remove(_objetivoActivo);
-        objetivos.Add(_objetivoActivo);
+        _objetivoActivoIndex++;
 
-        _objetivoActivo = objetivos[0];
-        _objetivoActivo.activo = true;
+        if (_objetivoActivoIndex < objetivos.Count){
+            _objetivoActivo = objetivos[_objetivoActivoIndex];
+            _objetivoActivo.activo = true;
+        }
     }
     //--------------------------------------
     public bool misionTerminada() {
+        _objetivoActivoIndex = 0;
         _activa = false;
         MisionesManager.getInstance().removerMisionEnCurso(this);
         MisionesManager.getInstance().agregarMisionTerminada(this);

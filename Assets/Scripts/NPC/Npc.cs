@@ -14,16 +14,13 @@ public class Dialogo
 //===================================================================================================
 public class Npc : MonoBehaviour
 {
-    [Header("Viñeta Dialogo")]
-    public Image dialogoBox;
-    public Text mensaje;
-    public Text accion;
+    private Image _dialogoBoxImg;
+    private Text _mensajeTxt;
+    private Text _accionTxt;
     private Animator NpcAni;
 
-    [Space(10.0f)]
     public List<Mision> misiones;
 
-    [Space(10.0f)]
     public List<Dialogo> dialogos;
 
     GameObject _prota;
@@ -48,6 +45,10 @@ public class Npc : MonoBehaviour
     {
         _estado = estados.esperando;
         _prota = GameObject.Find("Prota");
+        _dialogoBoxImg = transform.Find("Dialogos").Find("dialogue_box").GetComponent<Image>();
+        _mensajeTxt = _dialogoBoxImg.gameObject.transform.Find("linea").GetComponent<Text>();
+        _accionTxt = transform.Find("Dialogos").Find("Accion").GetComponent<Text>();
+
         _dialogoBox = GetComponentInChildren<DialogoBox>();
 
         _dialogoBox.setInicioDialogo(dialogos[_dialogoIndex].lineas.ToArray(), dialogos[_dialogoIndex].dialogoInteractivo);
@@ -75,28 +76,28 @@ public class Npc : MonoBehaviour
                 if (Vector3.Distance(gameObject.transform.position, _prota.transform.position) < 3)
                 {
                     NpcAni.Play("Armature|Iddle");
-                    accion.enabled = true;
-                    accion.text = "E to talk";
+                    _accionTxt.enabled = true;
+                    _accionTxt.text = "E to talk";
 
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         NpcAni.Play("Armature|Speaking");
                         _prota.GetComponent<Prota>().estaHablando(true);
-                        dialogoBox.enabled = true;
-                        mensaje.enabled = true;
+                        _dialogoBoxImg.enabled = true;
+                        _mensajeTxt.enabled = true;
                         _estado = estados.hablando;
                     }
                 }
 
                 else
                 {
-                    if (accion.enabled)
-                        accion.enabled = false;
+                    if (_accionTxt.enabled)
+                        _accionTxt.enabled = false;
                 }
                 break;
 
             case estados.hablando:
-                accion.text = "E: next";
+                _accionTxt.text = "E: next";
                 hideMisionIcon();
                 if (_dialogoBox.finDialogo())
                 {
