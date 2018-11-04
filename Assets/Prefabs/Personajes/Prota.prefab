@@ -36,11 +36,12 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4000013372477570}
-  - component: {fileID: 136000014248971492}
   - component: {fileID: 114000013485816930}
   - component: {fileID: 143000012903314378}
   - component: {fileID: 114000014253440028}
   - component: {fileID: 114000011607329648}
+  - component: {fileID: 136007279056167600}
+  - component: {fileID: 114149087803901758}
   m_Layer: 10
   m_Name: Prota
   m_TagString: Player
@@ -2293,7 +2294,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 809efda2ce540b447bac992d0e4c8137, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2551,6 +2552,18 @@ MonoBehaviour:
   rage: 0
   onKilling: 0
   timerRage: 0
+--- !u!114 &114149087803901758
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010646601584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7026b45087c5a63449dae26d88cc81ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mass: 75
 --- !u!114 &114472837675460752
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2562,7 +2575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ac471c82e3179441bf6134507e4ab43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!136 &136000014248971492
+--- !u!136 &136007279056167600
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2571,10 +2584,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.6
+  m_Height: 3
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!136 &136025212023925590
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -2780,13 +2793,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
+  m_Height: 3
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.4
   m_SkinWidth: 0.01
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!183 &183972214083856586
 Cloth:
   m_ObjectHideFlags: 1

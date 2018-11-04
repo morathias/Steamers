@@ -18,6 +18,7 @@ public class Prota : MonoBehaviour
     public bool FlameCD = false;
     public float ShieldTimer = 0;
     public float FlameTimer = 0;
+    private float knockDownTimer = 1f;
 
     Vector3 _direccion = Vector3.zero;
     Vector3 _posicionDelMouse;
@@ -163,7 +164,12 @@ public class Prota : MonoBehaviour
                 break;
 
             case estados.explosion:
-                _estado = estados.moviendose;
+                knockDownTimer -= Time.deltaTime;
+                if (knockDownTimer <= 0)
+                {
+                    knockDownTimer = 1f;
+                    _estado = estados.moviendose;
+                }
                 break;
 
             case estados.hablando:
@@ -263,6 +269,20 @@ public class Prota : MonoBehaviour
                 _estado = estados.muriendo;
 
             //_barraVida.fillAmount = _stats.VidaActual / _stats.health;
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Boss") {
+            Vector3 dir = transform.position - other.transform.parent.position;
+            dir.y = 0;
+            GetComponent<ImpactReceiver>().AddImpact(dir, 3000f);
+            other.gameObject.SetActive(false);
+
+            _estado = estados.explosion;
+
+            _stats.applyDamage(20);
         }
     }
     //===============================================================================================

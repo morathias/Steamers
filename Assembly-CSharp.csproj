@@ -126,6 +126,8 @@
      <Compile Include="Assets\Scripts\Globales\FadeInOut.cs" />
      <Compile Include="Assets\Scripts\Globales\GeneradorMapa.cs" />
      <Compile Include="Assets\Scripts\Globales\GeneradorMaya.cs" />
+     <Compile Include="Assets\Scripts\Globales\IgnoreRotations.cs" />
+     <Compile Include="Assets\Scripts\Globales\ImpactReceiver.cs" />
      <Compile Include="Assets\Scripts\Globales\LoadingScreenManager.cs" />
      <Compile Include="Assets\Scripts\Globales\MenuPausa.cs" />
      <Compile Include="Assets\Scripts\Globales\MisionCompletaFade.cs" />

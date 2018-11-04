@@ -18,6 +18,7 @@ TagManager:
   - CazaEnemigos
   - EnemyS
   - Postprocessing
+  - Boss
   layers:
   - Default
   - TransparentFX
