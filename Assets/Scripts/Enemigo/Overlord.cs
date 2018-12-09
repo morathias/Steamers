@@ -6,7 +6,7 @@ public class Overlord : MonoBehaviour
 {
     protected GameObject objective;
     protected Transform fichador;
-    protected Vector3 fichadorPos;
+    protected Vector3 playerTF;
     protected EnemyHealth _stats;
     public estados _estado;
     protected int ordenPos;
@@ -14,6 +14,8 @@ public class Overlord : MonoBehaviour
     public int daño;
     public string phase = "0";
     public ParticleSystem blood;
+    protected UnityEngine.AI.NavMeshAgent navigator { get; private set; }
+    public int id;
 
     protected virtual void Start()
     {
@@ -21,7 +23,10 @@ public class Overlord : MonoBehaviour
         objective = GameObject.FindGameObjectWithTag("Player");
         _stats = GetComponent<EnemyHealth>();
         fichador = objective.transform;
-        fichadorPos = fichador.position;
+        playerTF = fichador.position;
+
+        navigator = GetComponentInChildren<UnityEngine.AI.NavMeshAgent>();
+       // navigator.isStopped = true;
     }
     public enum estados
     {
@@ -35,7 +40,30 @@ public class Overlord : MonoBehaviour
         Durazno,
         brag,
     }
+    public bool setDestination(Vector3 objective)
+    {
+        if (!navigator.isStopped) //Se asegura que este activado, si ya esta, por diseño, implicaria que el jugador esta a distancia.
+        {
 
+            navigator.isStopped = false;
+            navigator.destination = objective;
+
+            if (navigator.remainingDistance > 30)
+            {
+
+                navigator.isStopped = true;
+                return false;
+            }
+            else
+            {
+                Debug.Log("holllaaa");
+                playerTF = objective;
+                return true;
+            }
+        }
+
+        return true;
+    }
     // Update is called once per frame
     void Update()
     {
