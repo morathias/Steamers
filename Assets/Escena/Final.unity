@@ -2518,6 +2518,91 @@ Transform:
   m_PrefabParentObject: {fileID: 4296255953021796, guid: acb68b76d86ed724aad320d4fb00cef1,
     type: 2}
   m_PrefabInternal: {fileID: 118529254}
+--- !u!1 &120895927 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1752713522552666, guid: 95913dc74174b984eb6f4a3b55307944,
+    type: 2}
+  m_PrefabInternal: {fileID: 1420926094}
+--- !u!114 &120895928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 120895927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: f003e827aa33e1440b4b6179573f7285, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
+--- !u!114 &120895929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 120895927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 120895934}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 16384
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 1
+  antialiasingMode: 3
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 0
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
+--- !u!4 &120895934 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4515423279646292, guid: 95913dc74174b984eb6f4a3b55307944,
+    type: 2}
+  m_PrefabInternal: {fileID: 1420926094}
 --- !u!1001 &126573241
 Prefab:
   m_ObjectHideFlags: 0
@@ -30436,7 +30521,19 @@ Prefab:
       propertyPath: layerToFade.m_Bits
       value: 8192
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114195908793479994, guid: 95913dc74174b984eb6f4a3b55307944,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114412222445408664, guid: 95913dc74174b984eb6f4a3b55307944,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114195908793479994, guid: 95913dc74174b984eb6f4a3b55307944, type: 2}
+    - {fileID: 114412222445408664, guid: 95913dc74174b984eb6f4a3b55307944, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 95913dc74174b984eb6f4a3b55307944, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1429100279
