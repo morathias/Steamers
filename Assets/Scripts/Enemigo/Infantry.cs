@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Infantry : Overlord
 {
-    public UnityEngine.AI.NavMeshAgent navigator { get; private set; }
+
     private Rigidbody _rigidBody;
     public int Rango = 10;
     float timeLeft = 4;
@@ -23,11 +23,10 @@ public class Infantry : Overlord
         _balaE.GetComponent<DañoBalas>().setDaño(daño);
         _animations = GetComponent<Animator>();
         _rigidBody = GetComponent<Rigidbody>();
-        navigator = GetComponentInChildren<UnityEngine.AI.NavMeshAgent>();
     }
     void Update()
     {
-        fichadorPos = fichador.position;
+        playerTF = fichador.position;
         switch (_estado)
         {
             case estados.normal:
@@ -46,14 +45,14 @@ public class Infantry : Overlord
                     transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 5.0f);
                     if (limite > 2)
                     {
-                        fichadorPos.x = fichadorPos.x + Random.Range(-10, 10.0f);
-                        fichadorPos.z = fichadorPos.z + Random.Range(-10, 10.0f);
+                        playerTF.x = playerTF.x + Random.Range(-10, 10.0f);
+                        playerTF.z = playerTF.z + Random.Range(-10, 10.0f);
                         limite = 0;
                         _estado = estados.rage;
                     }
                     if (Vector3.Distance(transform.position, fichador.position) > 8)
                     {
-                        moveIt();
+                      //  moveIt();
                         _animations.Play("Armature|running");
                     }
 
@@ -130,11 +129,11 @@ public class Infantry : Overlord
                         break;
 
                 }
-                navigator.SetDestination(_posicionLider);
-                navigator.transform.position = transform.position;
+               // navigator.SetDestination(_posicionLider);
+              //  navigator.transform.position = transform.position;
 
                 _animations.Play("Armature|running");
-                _rigidBody.velocity = navigator.desiredVelocity;
+             //   _rigidBody.velocity = navigator.desiredVelocity;
                 if (Vector3.Distance(transform.position, fichador.position) < 30)
                 {
                     limite += Time.deltaTime * Time.timeScale; ;
@@ -166,13 +165,6 @@ public class Infantry : Overlord
         limite = 0;
     }
 
-    void moveIt()
-    {
-        navigator.SetDestination(fichadorPos);
-        navigator.transform.position = transform.position;
-        _rigidBody.velocity = navigator.desiredVelocity;
-
-    }
 
     void moveIt(float chaos)
     {
@@ -182,9 +174,9 @@ public class Infantry : Overlord
         neededRotation.z = 0;
         transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 5f);
 
-        fichadorPos.x = fichadorPos.x + Random.Range(10, 20.0f)* Random.Range(-1,1);
-        fichadorPos.z = fichadorPos.z + Random.Range(10, 20.0f) * Random.Range(-1, 1);
-        navigator.SetDestination(fichadorPos);
+        playerTF.x = playerTF.x + Random.Range(10, 20.0f)* Random.Range(-1,1);
+        playerTF.z = playerTF.z + Random.Range(10, 20.0f) * Random.Range(-1, 1);
+        navigator.SetDestination(playerTF);
         navigator.transform.position = transform.position;
         _rigidBody.velocity = navigator.desiredVelocity;
     }

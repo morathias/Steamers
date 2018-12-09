@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Shield : Overlord
 {
-    public UnityEngine.AI.NavMeshAgent navigator { get; private set; }
+    //public UnityEngine.AI.NavMeshAgent navigator { get; private set; }
     private Rigidbody _rigidBody;
     public int Rango = 1;
     // float intervalo = 0.2f;
@@ -30,12 +30,12 @@ public class Shield : Overlord
         fichador = objective.transform;
         _animations = GetComponent<Animator>();
         _rigidBody = GetComponent<Rigidbody>();
-        navigator = GetComponentInChildren<UnityEngine.AI.NavMeshAgent>();
+
 
     }
     void Update()
     {
-        fichadorPos = fichador.position;
+        playerTF = fichador.position;
         switch (_estado)
         {
             case estados.protect:
@@ -197,7 +197,7 @@ public class Shield : Overlord
             _animations.Play("ready");
         }
 
-        navigator.SetDestination(fichadorPos);
+        navigator.SetDestination(playerTF);
         navigator.transform.position = transform.position;
         _rigidBody.velocity = navigator.desiredVelocity * 0.8f;
     }

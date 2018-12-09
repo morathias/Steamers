@@ -34,7 +34,7 @@ public class protoScriptAC : Overlord
     bool range = true;
     int daño2 = 2;
     Vector3 specific;
-    public UnityEngine.AI.NavMeshAgent navigator { get; private set; }
+   // public UnityEngine.AI.NavMeshAgent navigator { get; private set; }
     private Rigidbody _rigidBody;
 
     override protected void Start()
@@ -49,12 +49,11 @@ public class protoScriptAC : Overlord
         _estado = estados.normal;
     //    _balaE.GetComponent<DañoBalas>().setDaño(daño2);
         _rigidBody = GetComponent<Rigidbody>();
-        navigator = GetComponentInChildren<UnityEngine.AI.NavMeshAgent>();
     }
 
     void Update()
     {
-        fichadorPos = fichador.position;
+        playerTF = fichador.position;
 
         Debug.Log("unidades " + count);
         if (Vector3.Distance(transform.position, fichador.position) < 40)
@@ -186,7 +185,7 @@ public class protoScriptAC : Overlord
     {
 
 
-        navigator.SetDestination(fichadorPos);
+        navigator.SetDestination(playerTF);
         navigator.transform.position = transform.position;
         _rigidBody.velocity = navigator.desiredVelocity * 0.3f;
         _animations.Play("Armature|running");
