@@ -69,6 +69,9 @@ public class Arma : MonoBehaviour
             switch (_estado)
             {
                 case estados.llena:
+                    if (_prota.estaHablando())
+                        break;
+
                     if (!disparar())
                         _estado = estados.recargando;
 

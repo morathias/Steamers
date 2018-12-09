@@ -103,7 +103,7 @@ public class Tablero : MonoBehaviour {
 
     void abrirTablero() {
         _estado = estados.mostrando;
-        _prota.estaHablando(true);
+        _prota.empezoAHablar(true);
         _menuPausa.enabled = false;
         fondo.enabled = true;
         for (int i = 0; i < sliders.Length; i++)

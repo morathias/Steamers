@@ -37,14 +37,13 @@ GameObject:
   - component: {fileID: 4155882515481424}
   - component: {fileID: 33206584235844126}
   - component: {fileID: 23783816037709498}
-  - component: {fileID: 114323381179215062}
   - component: {fileID: 136308266751564812}
   m_Layer: 0
   m_Name: Arbusto_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 4294967294
   m_IsActive: 1
 --- !u!4 &4155882515481424
 Transform:
@@ -66,7 +65,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1300997269798560}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 333.8922, y: 216.2619, z: 165.24013}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4155882515481424}
@@ -82,9 +81,11 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 21000011205179994, guid: a0edc81cb9629b341b9d515b80080b6b, type: 2}
   - {fileID: 21000013840584942, guid: a0edc81cb9629b341b9d515b80080b6b, type: 2}
@@ -98,12 +99,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &33206584235844126
 MeshFilter:
@@ -112,18 +115,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1913713519351456}
   m_Mesh: {fileID: 43000010897817628, guid: a32d970ea08e7c44f86968eb5efc54d9, type: 2}
---- !u!114 &114323381179215062
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1913713519351456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ead14cd3fcd711842a61a3ebb367ac0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _frecuencia: 0.75
 --- !u!136 &136308266751564812
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -133,7 +124,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.4
+  m_Radius: 0.82
   m_Height: 7.2139773
   m_Direction: 1
   m_Center: {x: 0, y: 3.5869782, z: 0}

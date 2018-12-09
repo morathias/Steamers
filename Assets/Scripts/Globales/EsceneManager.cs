@@ -12,6 +12,7 @@ public class EsceneManager : MonoBehaviour
 
     void Start() {
         _fadeOverlay = transform.GetChild(0).GetChild(0).GetComponent<Image>();
+        _fadeOverlay.enabled = true;
         StartCoroutine(startFadingOut());
     }
 

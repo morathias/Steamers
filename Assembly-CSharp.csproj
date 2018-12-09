@@ -147,6 +147,7 @@
      <Compile Include="Assets\Scripts\Menu\JournalMenu.cs" />
      <Compile Include="Assets\Scripts\Menu\MenuSonido.cs" />
      <Compile Include="Assets\Scripts\Menu\OptionsManager.cs" />
+     <Compile Include="Assets\Scripts\Menu\SkillTreeMenu.cs" />
      <Compile Include="Assets\Scripts\NPC\DialogoBox.cs" />
      <Compile Include="Assets\Scripts\NPC\Misiones\CazarBoss.cs" />
      <Compile Include="Assets\Scripts\NPC\Misiones\CazarEnemigos.cs" />
@@ -168,6 +169,17 @@
      <Compile Include="Assets\Scripts\Prota\LevelUp.cs" />
      <Compile Include="Assets\Scripts\Prota\Prota.cs" />
      <Compile Include="Assets\Scripts\Prota\Stats.cs" />
+     <Compile Include="Assets\Scripts\Skills\DashStaminaImprovementSkill.cs" />
+     <Compile Include="Assets\Scripts\Skills\ExtraBulletsSkill.cs" />
+     <Compile Include="Assets\Scripts\Skills\LifeOnKillSkill.cs" />
+     <Compile Include="Assets\Scripts\Skills\PlusDamageSkill.cs" />
+     <Compile Include="Assets\Scripts\Skills\PlusHealthSkill.cs" />
+     <Compile Include="Assets\Scripts\Skills\PlusStaminaSkill.cs" />
+     <Compile Include="Assets\Scripts\Skills\PotionRegenImprovementSkill.cs" />
+     <Compile Include="Assets\Scripts\Skills\RageSkill.cs" />
+     <Compile Include="Assets\Scripts\Skills\ReloadBuffSkill.cs" />
+     <Compile Include="Assets\Scripts\Skills\Skill.cs" />
+     <Compile Include="Assets\Scripts\Skills\SkillTreeManager.cs" />
      <Compile Include="Assets\shiedAux.cs" />
      <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\MotionBlur.cginc" />

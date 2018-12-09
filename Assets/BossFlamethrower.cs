@@ -76,6 +76,14 @@ public class BossFlamethrower : MonoBehaviour {
     private Image _lifeBarImage;
 
     private float _iddleTimer = 3f;
+
+    private ParticleSystem _blood;
+
+    private Animator _animator;
+    private const string RUNNING_TRIGGER = "Running";
+    private const string SHOOTING_TRIGGER = "Shooting";
+    private const string TARGETING_TRIGGER = "Targeting";
+    private const string JUMPING_TRIGGER = "Jumping";
     //----------------------------------------------------------------------------------
 	void Start () {
         _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
@@ -103,6 +111,10 @@ public class BossFlamethrower : MonoBehaviour {
 
         _fireRainFlamesObject = transform.Find("fireRainBall").gameObject;
         _fireRainFlamesObject.GetComponent<DañoBalas>().setDaño(flamesDamage);
+
+        _blood = transform.Find("blood_splat").GetComponent<ParticleSystem>();
+
+        _animator = transform.Find("steampunk_boss_animado").GetComponent<Animator>();
     }
     //----------------------------------------------------------------------------------
     void Update () {
@@ -115,8 +127,10 @@ public class BossFlamethrower : MonoBehaviour {
                 _lifeBarImage = bossLifeBar.transform.GetChild(1).GetComponent<Image>();
 
                 _iddleTimer -= Time.deltaTime;
-                if(_iddleTimer <= 0)
+                if (_iddleTimer <= 0){
                     _state = States.Moving;
+                    _animator.SetTrigger(RUNNING_TRIGGER);
+                }
                 break;
 
             case States.Raging:
@@ -124,6 +138,7 @@ public class BossFlamethrower : MonoBehaviour {
                 _specialAttackTimer = Random.Range(4f * _rageMode, 8f * _rageMode);
                 _throwingFlamesTimer = 1.5f * _rageMode;
                 _state = States.Moving;
+                _animator.SetTrigger(RUNNING_TRIGGER);
                 break;
 
             case States.Moving:
@@ -144,7 +159,7 @@ public class BossFlamethrower : MonoBehaviour {
                         startSpecialAttack((Attacks)Random.Range(0, (int)Attacks.AttacksCount) - 1);
                     else
                         startSpecialAttack((Attacks)Random.Range(0, (int)Attacks.AttacksCount));
-                    //startSpecialAttack(Attacks.FireRain);
+                   //startSpecialAttack(Attacks.FireRain);
                     _state = States.Attacking;
                 }
                 break;
@@ -158,6 +173,7 @@ public class BossFlamethrower : MonoBehaviour {
 
                 if (_actions.Count == 0){
                     _state = States.Moving;
+                    _animator.SetTrigger(RUNNING_TRIGGER);
                 }
                 break;
             case States.Dying:
@@ -265,6 +281,9 @@ public class BossFlamethrower : MonoBehaviour {
             return;
 
         applyDamage(other.GetComponent<DañoBalas>().getDaño());
+        _blood.transform.localPosition = new Vector3(Random.Range(-0.1f, 0.3f), Random.Range(1.8f, 2.5f));
+        _blood.transform.LookAt(_playerTransform);
+        _blood.Play(true);
     }
     //----------------------------------------------------------------------------------
     private void applyDamage(float damage){
@@ -322,6 +341,8 @@ public class BossFlamethrower : MonoBehaviour {
     //----------------------------------------------------------------------------------
     float rotatingTimer = 1.2f;
     private bool dashActionRotate() {
+        _animator.ResetTrigger(RUNNING_TRIGGER);
+        _animator.SetBool(TARGETING_TRIGGER, true);
         Vector3 playerDir = _playerTransform.position - transform.position;
         playerDir.y = 0;
         transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, -playerDir.normalized, steerSpeed * Time.deltaTime, 0f));
@@ -336,6 +357,8 @@ public class BossFlamethrower : MonoBehaviour {
     }
 
     private bool dashActionDash() {
+        _animator.SetBool(JUMPING_TRIGGER, true);
+        _animator.SetBool(TARGETING_TRIGGER, false);
         Vector3 playerDir = _playerTransform.position - transform.position;
         _playerPosToDash = _playerTransform.position;
 
@@ -358,6 +381,7 @@ public class BossFlamethrower : MonoBehaviour {
             _rigidBody.AddForce(-transform.forward * 30f, ForceMode.Impulse);
             _explotionColliderObject.SetActive(true);
             _explotionParticleSystem.Play();
+            _animator.SetBool(JUMPING_TRIGGER, false);
             return true;
         }
 
@@ -371,6 +395,7 @@ public class BossFlamethrower : MonoBehaviour {
         {
             attackingTimer = 1f * _rageMode;
             _explotionColliderObject.SetActive(false);
+            _animator.SetTrigger(RUNNING_TRIGGER);
             return true;
         }
 
@@ -380,6 +405,7 @@ public class BossFlamethrower : MonoBehaviour {
     private bool flameThrowActionCharge() {
         Vector3 predictionDir = _playerTransform.position - _previousPlayerPosition;
         lookAtPosition(predictionDir.normalized * 5f + _playerTransform.position);
+        _animator.SetBool(TARGETING_TRIGGER, true);
 
         _chargingFlamethrowerTimer -= Time.deltaTime;
         if (_chargingFlamethrowerTimer <= 0) {
@@ -413,6 +439,7 @@ public class BossFlamethrower : MonoBehaviour {
         if (drawBackTimer <= 0) {
             drawBackTimer = 0.5f;
             _flamethrowerFlames.SetActive(false);
+            _animator.SetBool(TARGETING_TRIGGER, false);
             return true;
         }
         return false;
@@ -420,6 +447,7 @@ public class BossFlamethrower : MonoBehaviour {
     //----------------------------------------------------------------------------------
     private float _barrierTimer = 1f;
     private bool flameBarrierActionRightPosition() {
+        _animator.SetBool(TARGETING_TRIGGER, true);
         transform.rotation = transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, _rightVector, steerSpeed * Time.deltaTime, 0f));
         _barrierTimer -= Time.deltaTime;
         if (_barrierTimer <= 0) {
@@ -473,6 +501,8 @@ public class BossFlamethrower : MonoBehaviour {
         {
             _barrierAttackTimer = 3f;
             resetFlames();
+
+            _animator.SetBool(TARGETING_TRIGGER, false);
             return true;
         }
 
@@ -493,6 +523,8 @@ public class BossFlamethrower : MonoBehaviour {
 
     float shootRateTime = 0.0625f;
     private void shootFireRain() {
+        _animator.SetBool(SHOOTING_TRIGGER, true);
+
         shootRateTime -= Time.deltaTime;
         if (shootRateTime > 0)
         {
@@ -528,6 +560,7 @@ public class BossFlamethrower : MonoBehaviour {
 
     float fireRainDrawbackTimer = 1f;
     private bool fireRainActionDrawBack() {
+        _animator.SetBool(SHOOTING_TRIGGER, false);
         fireRainDrawbackTimer -= Time.deltaTime;
         if (fireRainDrawbackTimer <= 0) {
             fireRainDrawbackTimer = 1f;

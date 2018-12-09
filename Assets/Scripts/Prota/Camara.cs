@@ -24,6 +24,8 @@ public class Camara : MonoBehaviour {
 
     private const float TARGET_ALPHA = 0.3f;
 
+    public LayerMask layerToFade;
+
     void Start() {
         _pivotPoint = new Vector3();
         _pivotPoint = transform.position;
@@ -46,7 +48,8 @@ public class Camara : MonoBehaviour {
                                   target.position.z + Mathf.Cos(_angle * Mathf.Deg2Rad) * distancia);
         _pivotPoint += cameraMouseOffset();
 
-        transform.position = Vector3.Lerp(transform.position, _pivotPoint, Time.deltaTime * suavizado);
+        if((transform.position - _pivotPoint).magnitude > 0.05f)
+            transform.position = Vector3.Lerp(transform.position, _pivotPoint, Time.deltaTime * suavizado);
 
         clampAngle();
 
@@ -79,7 +82,8 @@ public class Camara : MonoBehaviour {
         
         _currentIntersectingMeshes = Physics.RaycastAll(transform.position, 
                                                         transform.forward, 
-                                                        (target.transform.position - transform.position).magnitude - 1f).ToList();
+                                                        (target.transform.position - transform.position).magnitude - 1f, 
+                                                        layerToFade).ToList();
     }
     //----------------------------------------------------------------------------------------------------------
     void startFade(ref RaycastHit mesh, ref Renderer renderer) {

@@ -44,6 +44,8 @@ public class Prota : MonoBehaviour
 
     Animator _animations;
 
+    private ParticleSystem _blood;
+
     enum estados
     {      //para la maquina de estados
         moviendose,
@@ -71,6 +73,8 @@ public class Prota : MonoBehaviour
 
         _panel = protaStatsUi.transform.Find("panel").GetComponent<Image>();
         _barraExp = protaStatsUi.transform.Find("exp_bar").GetComponent<Image>();
+
+        _blood = transform.Find("blood_splat").GetComponent<ParticleSystem>();
     }
     //-------------------------------------------------------------------------------------------
     void Update()
@@ -102,17 +106,23 @@ public class Prota : MonoBehaviour
             case estados.moviendose:
                 moverProta();
                 rotarProta();
-
+                _animations.ResetTrigger("Dodging");
                 if (_direccion.magnitude >= 1)
-                    _animations.Play("Armature|running_front");
+                {
+                    _animations.SetBool("Running", true);
+                }
                 else
-                    _animations.Play("Armature|iddle");
+                {
+                    _animations.SetBool("Running", false);
+                }
+
 
                 if (Stamina <= staminaBase && special == false)
                     recuperarStamina();
 
                 if (Input.GetKeyDown(KeyCode.Space) && Stamina > 20 && _estado != estados.hablando)
                 {
+                    _animations.SetTrigger("Dodging");
                     perderStamina(consumoDash);
                     _estado = estados.esquivando;
 
@@ -245,7 +255,7 @@ public class Prota : MonoBehaviour
         _barraStamina.fillAmount = (Stamina / staminaBase) * _stats._porcentajeActualBarraStamina;
     }
     //-------------------------------------------------------------------------------------------
-    public void estaHablando(bool hablando)
+    public void empezoAHablar(bool hablando)
     {
         if (hablando)
             _estado = estados.hablando;
@@ -254,6 +264,10 @@ public class Prota : MonoBehaviour
     public void terminoDeHablar()
     {
         _estado = estados.moviendose;
+    }
+
+    public bool estaHablando() {
+        return _estado == estados.hablando;
     }
     //-------------------------------------------------------------------------------------------
     public void fear()
@@ -269,6 +283,9 @@ public class Prota : MonoBehaviour
                 _estado = estados.muriendo;
 
             //_barraVida.fillAmount = _stats.VidaActual / _stats.health;
+            _blood.transform.LookAt(other.transform);
+            _blood.transform.Rotate(transform.up, 180f);
+            _blood.Play();
         }
     }
 
@@ -283,6 +300,10 @@ public class Prota : MonoBehaviour
             _estado = estados.explosion;
 
             _stats.applyDamage(20);
+
+            _blood.transform.LookAt(other.transform);
+            _blood.transform.Rotate(transform.up, 180f);
+            _blood.Play();
         }
     }
     //===============================================================================================

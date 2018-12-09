@@ -5,8 +5,8 @@ AvatarMask:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: prota
-  m_Mask: 00000000010000000100000000000000000000000100000001000000010000000100000000000000000000000100000001000000
+  m_Name: Prota
+  m_Mask: 00000000000000000000000000000000000000000100000001000000010000000100000000000000000000000000000000000000
   m_Elements:
   - m_Path: 
     m_Weight: 1
@@ -26,38 +26,38 @@ AvatarMask:
     m_Weight: 1
   - m_Path: Armature/base/cadera/columna/pecho/antebrazo.L/brazo.L/brazo.L_end
     m_Weight: 1
-  - m_Path: Armature/base/cadera/columna/pecho/antebrazo.R.001
+  - m_Path: Armature/base/cadera/columna/pecho/antebrazo.R
     m_Weight: 1
-  - m_Path: Armature/base/cadera/columna/pecho/antebrazo.R.001/brazo.R.001
+  - m_Path: Armature/base/cadera/columna/pecho/antebrazo.R/brazo.R
     m_Weight: 1
-  - m_Path: Armature/base/cadera/columna/pecho/antebrazo.R.001/brazo.R.001/brazo.R.001_end
+  - m_Path: Armature/base/cadera/columna/pecho/antebrazo.R/brazo.R/brazo.R_end
     m_Weight: 1
   - m_Path: Armature/base/cadera/columna/pecho/cuello
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/base/cadera/columna/pecho/cuello/cabeza
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/base/cadera/columna/pecho/cuello/cabeza/cabeza_end
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/base/cadera/muslo.L
     m_Weight: 0
   - m_Path: Armature/base/cadera/muslo.L/gemelo.L
     m_Weight: 0
   - m_Path: Armature/base/cadera/muslo.L/gemelo.L/gemelo.L_end
     m_Weight: 0
-  - m_Path: Armature/base/cadera/muslo.R.001
+  - m_Path: Armature/base/cadera/muslo.R
     m_Weight: 0
-  - m_Path: Armature/base/cadera/muslo.R.001/gemelo.R.001
+  - m_Path: Armature/base/cadera/muslo.R/gemelo.R
     m_Weight: 0
-  - m_Path: Armature/base/cadera/muslo.R.001/gemelo.R.001/gemelo.R.001_end
+  - m_Path: Armature/base/cadera/muslo.R/gemelo.R/gemelo.R_end
     m_Weight: 0
   - m_Path: Armature/base/codo.L
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/base/codo.L/codo.L_end
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/base/codo.R
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/base/codo.R/codo.R_end
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/base/mano.L
     m_Weight: 1
   - m_Path: Armature/base/mano.L/dedos_1.L
@@ -78,21 +78,21 @@ AvatarMask:
     m_Weight: 1
   - m_Path: Armature/base/mano.R
     m_Weight: 1
-  - m_Path: Armature/base/mano.R/dedos_1.R.001
+  - m_Path: Armature/base/mano.R/dedos_1.R
     m_Weight: 1
-  - m_Path: Armature/base/mano.R/dedos_1.R.001/dedos_2.R.001
+  - m_Path: Armature/base/mano.R/dedos_1.R/dedos_2.R
     m_Weight: 1
-  - m_Path: Armature/base/mano.R/dedos_1.R.001/dedos_2.R.001/dedos_3.R.001
+  - m_Path: Armature/base/mano.R/dedos_1.R/dedos_2.R/dedos_3.R
     m_Weight: 1
-  - m_Path: Armature/base/mano.R/dedos_1.R.001/dedos_2.R.001/dedos_3.R.001/dedos_3.R.001_end
+  - m_Path: Armature/base/mano.R/dedos_1.R/dedos_2.R/dedos_3.R/dedos_3.R_end
     m_Weight: 1
-  - m_Path: Armature/base/mano.R/pulgar_1.R.001
+  - m_Path: Armature/base/mano.R/pulgar_1.R
     m_Weight: 1
-  - m_Path: Armature/base/mano.R/pulgar_1.R.001/pulgar_2.R.001
+  - m_Path: Armature/base/mano.R/pulgar_1.R/pulgar_2.R
     m_Weight: 1
-  - m_Path: Armature/base/mano.R/pulgar_1.R.001/pulgar_2.R.001/pulgar_3.R.001
+  - m_Path: Armature/base/mano.R/pulgar_1.R/pulgar_2.R/pulgar_3.R
     m_Weight: 1
-  - m_Path: Armature/base/mano.R/pulgar_1.R.001/pulgar_2.R.001/pulgar_3.R.001/pulgar_3.R.001_end
+  - m_Path: Armature/base/mano.R/pulgar_1.R/pulgar_2.R/pulgar_3.R/pulgar_3.R_end
     m_Weight: 1
   - m_Path: Armature/base/pie.L
     m_Weight: 0
@@ -100,11 +100,11 @@ AvatarMask:
     m_Weight: 0
   - m_Path: Armature/base/pie.L/dedos_pie.L/dedos_pie.L_end
     m_Weight: 0
-  - m_Path: Armature/base/pie.R.001
+  - m_Path: Armature/base/pie.R
     m_Weight: 0
-  - m_Path: Armature/base/pie.R.001/dedos_pie.R.001
+  - m_Path: Armature/base/pie.R/dedos_pie.R
     m_Weight: 0
-  - m_Path: Armature/base/pie.R.001/dedos_pie.R.001/dedos_pie.R.001_end
+  - m_Path: Armature/base/pie.R/dedos_pie.R/dedos_pie.R_end
     m_Weight: 0
   - m_Path: Armature/rodilla.L
     m_Weight: 0

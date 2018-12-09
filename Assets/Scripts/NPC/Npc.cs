@@ -82,7 +82,7 @@ public class Npc : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         NpcAni.Play("Armature|Speaking");
-                        _prota.GetComponent<Prota>().estaHablando(true);
+                        _prota.GetComponent<Prota>().empezoAHablar(true);
                         _dialogoBoxImg.enabled = true;
                         _mensajeTxt.enabled = true;
                         _estado = estados.hablando;

@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameOptionsManager : MonoBehaviour {
     enum Options {
         journal,
+        skilltree,
         stats,
         options,
         inventory
@@ -23,12 +24,14 @@ public class GameOptionsManager : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.J))
             switchMenu(0);
-        /*if (Input.GetKeyDown(KeyCode.U))
+        if (Input.GetKeyDown(KeyCode.C))
             switchMenu(1);
-        if (Input.GetKeyDown(KeyCode.O))
+        /*if (Input.GetKeyDown(KeyCode.U))
             switchMenu(2);
+        if (Input.GetKeyDown(KeyCode.O))
+            switchMenu(3);
         if (Input.GetKeyDown(KeyCode.I))
-            switchMenu(3);*/
+            switchMenu(4);*/
 
         if (Input.GetKeyDown(KeyCode.Escape) && !_menuPausa.enabled) {
             _menuPausa.enabled = true;
@@ -42,6 +45,10 @@ public class GameOptionsManager : MonoBehaviour {
         {
             case Options.journal:
                     enableJournalMenu();
+                break;
+
+            case Options.skilltree:
+                enableSkillTreeMenu();
                 break;
 
             /*case Options.stats:
@@ -75,9 +82,19 @@ public class GameOptionsManager : MonoBehaviour {
     //----------------------------------------------------
     void enableJournalMenu() {
         menues[(int)Options.journal].SetActive(true);
-      //menues[(int)Options.stats].enabled = false;
-      //menues[(int)Options.options].enabled = false;
-      //menues[(int)Options.inventory].enabled = false;
+        menues[(int)Options.skilltree].SetActive(false);
+        //menues[(int)Options.stats].enabled = false;
+        //menues[(int)Options.options].enabled = false;
+        //menues[(int)Options.inventory].enabled = false;
+    }
+
+    void enableSkillTreeMenu()
+    {
+        menues[(int)Options.skilltree].SetActive(true);
+        menues[(int)Options.journal].SetActive(false);
+        //menues[(int)Options.stats].enabled = false;
+        //menues[(int)Options.options].enabled = false;
+        //menues[(int)Options.inventory].enabled = false;
     }
     //----------------------------------------------------
     /*void enableStatsMenu() {
@@ -103,6 +120,7 @@ public class GameOptionsManager : MonoBehaviour {
     //----------------------------------------------------
     void disableAll() {
         menues[(int)Options.journal].SetActive(false);
+        menues[(int)Options.skilltree].SetActive(false);
         //menues[(int)Options.stats].enabled = false;
         //menues[(int)Options.options].enabled = false;
         //menues[(int)Options.inventory].enabled = false;
