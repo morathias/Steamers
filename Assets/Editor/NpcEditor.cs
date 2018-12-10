@@ -406,6 +406,13 @@ public class NpcEditor : Editor
                 break;
 
             case TiposObjetivos.CazarBoss:
+                CazarBoss objectivoCB = (CazarBoss)objetivo.downCast();
+
+                if (objectivoCB == null) {
+                    return;
+                }
+
+                objectivoCB.boss = (GameObject)EditorGUILayout.ObjectField(objectivoCB.boss, typeof(GameObject), true);
                 break;
 
             case TiposObjetivos.EncontrarItem:

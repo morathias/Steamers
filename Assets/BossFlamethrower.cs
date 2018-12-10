@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 //===============================================================================================
@@ -73,9 +74,8 @@ public class BossFlamethrower : MonoBehaviour {
     private GameObject _fireRainFlamesObject;
     private float _fireRainTimer = 8f;
 
+    GameObject _bossLifeBar;
     private Image _lifeBarImage;
-
-    private float _iddleTimer = 3f;
 
     private ParticleSystem _blood;
 
@@ -84,6 +84,10 @@ public class BossFlamethrower : MonoBehaviour {
     private const string SHOOTING_TRIGGER = "Shooting";
     private const string TARGETING_TRIGGER = "Targeting";
     private const string JUMPING_TRIGGER = "Jumping";
+
+    public float distanceToFight = 50f;
+
+    public AudioSource theme;
     //----------------------------------------------------------------------------------
 	void Start () {
         _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
@@ -121,15 +125,15 @@ public class BossFlamethrower : MonoBehaviour {
         switch (_state)
         {
             case States.Iddle:
-                GameObject bossLifeBar = GameObject.Find("HUD").transform.Find("bossLifeBar").gameObject;
-                bossLifeBar.SetActive(true);
+                _bossLifeBar = GameObject.Find("HUD").transform.Find("bossLifeBar").gameObject;
 
-                _lifeBarImage = bossLifeBar.transform.GetChild(1).GetComponent<Image>();
+                _lifeBarImage = _bossLifeBar.transform.GetChild(1).GetComponent<Image>();
 
-                _iddleTimer -= Time.deltaTime;
-                if (_iddleTimer <= 0){
+                if ((_playerTransform.position - transform.position).magnitude <= distanceToFight){
                     _state = States.Moving;
                     _animator.SetTrigger(RUNNING_TRIGGER);
+                    theme.Play();
+                    _bossLifeBar.SetActive(true);
                 }
                 break;
 
@@ -177,9 +181,10 @@ public class BossFlamethrower : MonoBehaviour {
                 }
                 break;
             case States.Dying:
-                bossLifeBar = GameObject.Find("HUD").transform.Find("bossLifeBar").gameObject;
-                bossLifeBar.SetActive(false);
+                _bossLifeBar = GameObject.Find("HUD").transform.Find("bossLifeBar").gameObject;
+                _bossLifeBar.SetActive(false);
                 resetFlames();
+                StartCoroutine(startFadingOut());
                 break;
             default:
                 break;
@@ -200,6 +205,22 @@ public class BossFlamethrower : MonoBehaviour {
         _previousPlayerPosition = _playerTransform.position;
 
         calculateEmmisionRateTime();
+    }
+    //----------------------------------------------------------------------------------
+    IEnumerator startFadingOut(){
+        float timeStarted = Time.realtimeSinceStartup;
+
+        while (theme.volume > 0f){
+            float timeSinceStarted = Time.realtimeSinceStartup - timeStarted;
+            float percentage = timeSinceStarted / 3f;
+
+            theme.volume = Mathf.Lerp(0.1f, 0f, percentage);
+            yield return null;
+        }
+
+        theme.Stop();
+        //Esto es alta negrada, hay que cambiarla mas adelante
+        Destroy(gameObject);
     }
     //----------------------------------------------------------------------------------
     private bool shouldDoSpecialAttack(){
@@ -279,6 +300,13 @@ public class BossFlamethrower : MonoBehaviour {
     void OnParticleCollision(GameObject other){
         if (other.tag != "BalaPlayer")
             return;
+
+        if (_state == States.Iddle) {
+            _state = States.Moving;
+            _animator.SetTrigger(RUNNING_TRIGGER);
+            theme.Play();
+            _bossLifeBar.SetActive(true);
+        }
 
         applyDamage(other.GetComponent<DañoBalas>().getDaño());
         _blood.transform.localPosition = new Vector3(Random.Range(-0.1f, 0.3f), Random.Range(1.8f, 2.5f));

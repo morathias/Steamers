@@ -137,4 +137,9 @@ public class Skill : MonoBehaviour{
         _statesTransform.GetChild((int)States.Unlocked).gameObject.SetActive(false);
         _state = States.Available;
     }
+
+    void OnEnable() {
+        if(_state == States.Unlocked)
+            _rotatingAnimator.SetTrigger("isUnlocked");
+    }
 }

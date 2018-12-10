@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Escena/Prototipo.unity
     guid: 804b5dc1066d8424b86e676509140b00
-  - enabled: 1
+  - enabled: 0
     path: Assets/Escena/Prueba.unity
     guid: 20ae42f96b90be148accc399c3803529
+  - enabled: 1
+    path: Assets/Escena/Final.unity
+    guid: 7c232042dbd6a5040b14c4a835df5a57
   m_configObjects: {}
