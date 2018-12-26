@@ -30,6 +30,9 @@ public class DialogoBox : MonoBehaviour
     //----------------------------------------------------------------------------
     void Update()
     {
+        Quaternion lookDirection = Quaternion.LookRotation(transform.parent.position - Camera.main.transform.position);
+        transform.parent.rotation = Quaternion.Euler(0f, lookDirection.eulerAngles.y, 0f);
+
         if (_indexDialogo < _lineas.Length)
             _texto.text = _lineas[_indexDialogo];
 

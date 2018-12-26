@@ -59,6 +59,9 @@ public class Arma : MonoBehaviour
     //---------------------------------------------
     void Update()
     {
+        if (Time.timeScale == 0f)
+            return;
+
         _daño = statsComponent.damageFinal;
         _dañoBala.setDaño((int)_daño);
         if (_recargaPerfecta){
