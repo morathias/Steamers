@@ -19,6 +19,7 @@ TagManager:
   - EnemyS
   - Postprocessing
   - Boss
+  - FuegoPlayer
   layers:
   - Default
   - TransparentFX

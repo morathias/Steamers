@@ -136,8 +136,7 @@
      <Compile Include="Assets\Scripts\Globales\MisionCompletaFade.cs" />
      <Compile Include="Assets\Scripts\Globales\SaveLoad.cs" />
      <Compile Include="Assets\Scripts\Globales\SkillTree.cs" />
-     <Compile Include="Assets\Scripts\Globales\Tutorial.cs" />
-     <Compile Include="Assets\Scripts\Globales\TutorialLvlUp.cs" />
+     <Compile Include="Assets\Scripts\Globales\TutorialManager.cs" />
      <Compile Include="Assets\Scripts\Globales\Variables.cs" />
      <Compile Include="Assets\Scripts\Globales\WindForce.cs" />
      <Compile Include="Assets\Scripts\Items\ExpCube.cs" />

@@ -154,5 +154,9 @@ public class Arma : MonoBehaviour
         return false;
     }
     //---------------------------------------------
+    public bool isReloading() {
+        return _estado == estados.recargando;
+    }
+    //---------------------------------------------
 }
 //=================================================

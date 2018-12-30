@@ -26,6 +26,8 @@ public class Camara : MonoBehaviour {
 
     public LayerMask layerToFade;
 
+    private Vector3 _velocity = Vector3.zero;
+
     void Start() {
         _pivotPoint = new Vector3();
         _pivotPoint = transform.position;
@@ -48,8 +50,7 @@ public class Camara : MonoBehaviour {
                                   target.position.z + Mathf.Cos(_angle * Mathf.Deg2Rad) * distancia);
         _pivotPoint += cameraMouseOffset();
 
-        if((transform.position - _pivotPoint).magnitude > 0.05f)
-            transform.position = Vector3.Lerp(transform.position, _pivotPoint, Time.deltaTime * suavizado);
+        transform.position = Vector3.SmoothDamp(transform.position, _pivotPoint, ref _velocity, suavizado);
 
         clampAngle();
 
@@ -133,11 +134,7 @@ public class Camara : MonoBehaviour {
     }
     //----------------------------------------------------------------------------------------------------------
     void Panning(){
-        if (Input.GetKey(KeyCode.E))
-            _angle -= Time.deltaTime * angularVelocity;
-
-        if (Input.GetKey(KeyCode.Q))
-            _angle += Time.deltaTime * angularVelocity;
+        _angle += -Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime * angularVelocity * 10f;
     }
     //----------------------------------------------------------------------------------------------------------
     void clampAngle() {
