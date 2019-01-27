@@ -27,6 +27,8 @@ public class Camara : MonoBehaviour {
     public LayerMask layerToFade;
 
     private Vector3 _velocity = Vector3.zero;
+    private Vector2 _lastMousePosition = Vector2.zero;
+    private bool _isRotatingCamera = false;
 
     void Start() {
         _pivotPoint = new Vector3();
@@ -134,7 +136,19 @@ public class Camara : MonoBehaviour {
     }
     //----------------------------------------------------------------------------------------------------------
     void Panning(){
-        _angle += -Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime * angularVelocity * 10f;
+        if (Input.GetMouseButtonDown(2))
+        {
+            _isRotatingCamera = true;
+            _lastMousePosition = Input.mousePosition;
+        }
+        if (Input.GetMouseButtonUp(2))
+            _isRotatingCamera = false;
+
+        if (!_isRotatingCamera)
+            return;
+
+        Vector2 rotateDirection = (Vector2)Input.mousePosition - _lastMousePosition;
+        _angle += rotateDirection.normalized.x * Time.deltaTime * angularVelocity;
     }
     //----------------------------------------------------------------------------------------------------------
     void clampAngle() {
