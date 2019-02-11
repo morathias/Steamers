@@ -385,8 +385,7 @@ GameObject:
   - component: {fileID: 95191460490989474}
   - component: {fileID: 54049580904325730}
   - component: {fileID: 136836583917894330}
-  - component: {fileID: 114282181510056528}
-  - component: {fileID: 114564665117736512}
+  - component: {fileID: 114215806027692260}
   m_Layer: 9
   m_Name: rifleman_animado1
   m_TagString: EnemyS
@@ -1585,7 +1584,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1260036283284352}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.798153, y: -4.780125e-17, z: 2.152777}
+  m_LocalPosition: {x: 240.07965, y: 80.7349, z: 335.91373}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4896887399192866}
@@ -1781,7 +1780,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114282181510056528
+--- !u!114 &114215806027692260
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1789,14 +1788,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1260036283284352}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f6d2813e8cb51f47a096f07935c2f91, type: 3}
+  m_Script: {fileID: 11500000, guid: f9ae6c8e15d8142a8b4a6cba1a4f06db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
-  Potion: {fileID: 1000012904508556, guid: d907b4e1c141472439466638dd247860, type: 2}
-  XPerience: {fileID: 1000013435819682, guid: de96d0bcfbf623043b4afda9f7619624, type: 2}
-  dead: 0
-  totalhealth: 0
+  patroleSpeed: 1
+  chaseSpeed: 5
+  rotateSpeed: 45
+  health: 30
+  potionsToDrop: {fileID: 0}
+  experienceToDrop: {fileID: 0}
+  pathContainer: {fileID: 0}
 --- !u!114 &114408373074998950
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1808,25 +1809,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 392578cdb1a0f4540aee77c7838d62cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114564665117736512
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1260036283284352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a61fd4ec1fce00a4ca4008da9842ebce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _estado: 0
-  countdown: 6
-  "da\xF1o": 10
-  phase: 0
-  blood: {fileID: 198159125846065116}
-  Rango: 17
-  _balaE: {fileID: 198041093797644124}
-  isBoss: 0
 --- !u!136 &136836583917894330
 CapsuleCollider:
   m_ObjectHideFlags: 1
