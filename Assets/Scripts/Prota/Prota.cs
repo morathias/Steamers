@@ -305,6 +305,21 @@ public class Prota : MonoBehaviour
             _blood.transform.Rotate(transform.up, 180f);
             _blood.Play();
         }
+
+        if(other.tag == "Shield"){
+            Vector3 dir = transform.position - other.transform.parent.position;
+            dir.y = 0;
+            GetComponent<ImpactReceiver>().AddImpact(dir, 3000f);
+            other.gameObject.SetActive(false);
+
+            _estado = estados.explosion;
+
+            _stats.applyDamage(10);
+
+            _blood.transform.LookAt(other.transform);
+            _blood.transform.Rotate(transform.up, 180f);
+            _blood.Play();
+        }
     }
     //===============================================================================================
     public float Stamina

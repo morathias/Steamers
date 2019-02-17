@@ -383,9 +383,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4801708331994846}
   - component: {fileID: 95191460490989474}
-  - component: {fileID: 54049580904325730}
   - component: {fileID: 136836583917894330}
   - component: {fileID: 114215806027692260}
+  - component: {fileID: 195616009310688038}
   m_Layer: 9
   m_Name: rifleman_animado1
   m_TagString: EnemyS
@@ -788,22 +788,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1728526923187738
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4408772387317606}
-  - component: {fileID: 195764868866671064}
-  m_Layer: 9
-  m_Name: NavMesh
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1804896233995380
 GameObject:
   m_ObjectHideFlags: 1
@@ -1140,7 +1124,7 @@ Transform:
   m_LocalScale: {x: 0.49379027, y: 0.25677562, z: 0.69763935}
   m_Children: []
   m_Father: {fileID: 4801708331994846}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 186.271, z: 0}
 --- !u!4 &4336038585658990
 Transform:
@@ -1196,19 +1180,6 @@ Transform:
   - {fileID: 4243130057739248}
   m_Father: {fileID: 4619926779566304}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4408772387317606
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1728526923187738}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4801708331994846}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4434842625673838
 Transform:
@@ -1583,18 +1554,17 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1260036283284352}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 240.07965, y: 80.7349, z: 335.91373}
+  m_LocalRotation: {x: -0, y: -0.9669685, z: -0, w: 0.25489613}
+  m_LocalPosition: {x: 100.66, y: 98.04, z: 274.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4896887399192866}
   - {fileID: 4082244007950718}
   - {fileID: 4628469738689806}
-  - {fileID: 4408772387317606}
   - {fileID: 4308417742503910}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -150.46501, z: 0}
 --- !u!4 &4829979726961316
 Transform:
   m_ObjectHideFlags: 1
@@ -1747,21 +1717,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1229146187764828}
   m_Mesh: {fileID: 4300000, guid: 6b79a4191caf25940b3d7806cb3fb8f8, type: 3}
---- !u!54 &54049580904325730
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1260036283284352}
-  serializedVersion: 2
-  m_Mass: 100
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 80
-  m_CollisionDetection: 0
 --- !u!95 &95191460490989474
 Animator:
   serializedVersion: 3
@@ -1792,12 +1747,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patroleSpeed: 1
-  chaseSpeed: 5
+  chaseSpeed: 3
   rotateSpeed: 45
   health: 30
-  potionsToDrop: {fileID: 0}
-  experienceToDrop: {fileID: 0}
+  alarmRadius: 23
+  chasingRadius: 40
+  potionsToDrop: {fileID: 114000010426716338, guid: d907b4e1c141472439466638dd247860,
+    type: 2}
+  experienceToDrop: {fileID: 114000011753900864, guid: de96d0bcfbf623043b4afda9f7619624,
+    type: 2}
   pathContainer: {fileID: 0}
+  damage: 10
+  dodgingDistance: 23
+  isProtected: 0
 --- !u!114 &114408373074998950
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1905,20 +1867,20 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000065440545, y: 0.0050392505, z: -0.013113727}
     m_Extent: {x: 0.006335132, y: 0.008391241, z: 0.014680344}
   m_DirtyAABB: 0
---- !u!195 &195764868866671064
+--- !u!195 &195616009310688038
 NavMeshAgent:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1728526923187738}
+  m_GameObject: {fileID: 1260036283284352}
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_AngularSpeed: 0
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1933,7 +1895,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1657755197093182}
   serializedVersion: 5
-  lengthInSec: 0.1
+  lengthInSec: 10
   simulationSpeed: 1
   stopAction: 0
   looping: 0
@@ -2005,7 +1967,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 10
       minScalar: 5
       maxCurve:
         serializedVersion: 2
