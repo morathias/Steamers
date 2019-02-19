@@ -31,7 +31,8 @@ public class Overlord : MonoBehaviour
 
         stateMachine.relation((int)State.NORMAL, (int)Events.findGratmos, (int)State.AGGRESIVE);
         stateMachine.relation((int)State.AGGRESIVE, (int)Events.findGratmos, (int)State.AGGRESIVE);
-        stateMachine.relation((int)State.AGGRESIVE, (int)Events.loseGratmos, (int)State.NORMAL);
+        stateMachine.relation((int)State.STUNNED, (int)Events.recover, (int)State.AGGRESIVE);
+        stateMachine.relation((int)State.AGGRESIVE, (int)Events.blunted, (int)State.STUNNED);
         // stateMachine.relation((int)State.ALARM, (int)Events.findGratmos, (int)State.AGGRESIVE);
 
         stateMachine.relation((int)State.NORMAL, (int)Events.dead, (int)State.DEAD);
@@ -67,6 +68,7 @@ public class Overlord : MonoBehaviour
         if (playerDistance(objective) > 30)
         {
             _estado = stateMachine.setEvent((int)Events.loseGratmos);
+            _pattern = Pattern.MOVING;
             navigator.isStopped = true;
             return false;
         }

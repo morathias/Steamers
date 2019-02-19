@@ -7,7 +7,6 @@ public class Infantry : Overlord
     public int Rango = 10;
     float timeLeft = 0;
     Transform capitanPos;
-    bool onceAndDOne = false;
     GameObject Leader;
     Vector3 _posicionLider;
     Animator _animations;

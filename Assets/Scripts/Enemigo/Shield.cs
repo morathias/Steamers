@@ -1,8 +1,132 @@
-﻿//using UnityEngine;
-//using System.Collections;
+﻿using UnityEngine;
+using System.Collections;
 
-//public class Shield : Overlord
-//{
+public class Shield : Overlord
+{
+    public int Rango = 10;
+    float timeLeft = 0;
+    Transform capitanPos;
+    GameObject Leader;
+    Vector3 _posicionLider;
+    Animator _animations;
+    float speed;
+
+    override protected void Start()
+    {
+        base.Start();
+        _animations = GetComponent<Animator>();
+        _rigidBody = GetComponent<Rigidbody>();
+        navigator.stoppingDistance = 0;
+        navigator.speed = 0.8f;
+        _pattern = Pattern.MOVING;
+    }
+    override protected void Update()
+    {
+        base.Update();
+
+        switch (_estado)
+        {
+            case State.NORMAL:
+                break;
+            case State.ALARM:
+                break;
+            case State.AGGRESIVE:
+                timeLeft += Time.deltaTime * Time.timeScale;
+                switch (_pattern)
+                {
+
+                    case Pattern.ATTACK:
+                        _pattern = Pattern.MOVING;
+                        break;
+
+                    case Pattern.MOVING:
+                        _rigidBody.velocity = navigator.desiredVelocity;
+                        move();
+                        if (timeLeft > 3 && Vector3.Distance(transform.position, playerTf) < 70)
+                        {
+                            navigator.isStopped = true;
+                            timeLeft = 0;
+                            // animator.SetBool("Running", false);
+                            _pattern = Pattern.AIMING;
+                        }
+                      //  else if (reachedDestination())
+                        break;
+
+                    case Pattern.AIMING:
+                        transform.LookAt(playerTf);
+                        Debug.Log("Chaaarge");
+                        RaycastHit ICU;
+
+                        if (Physics.Raycast(transform.position, transform.forward, out ICU) && ICU.transform.tag == "Player")
+                        {
+                            _pattern = Pattern.FEAR;
+                        }
+                        break;
+
+                    case Pattern.FEAR:
+                        Debug.Log("Chaaarge2");
+                        Debug.Log("ChargetIME " + timeLeft);
+                        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+                        speed += 0.5f;
+                        if (timeLeft > 1)
+                        {
+                            stateMachine.setEvent((int)Events.blunted);
+                            _pattern = Pattern.MOVING;
+                            speed = 0;
+                            timeLeft = 0;
+                        }
+                        break;
+                }
+                break;
+            case State.DEAD:
+                break;
+            case State.STUNNED:
+                Debug.Log("stuned");
+                timeLeft += Time.deltaTime * Time.timeScale;
+                if (timeLeft > 1.5f)
+                {
+                    timeLeft = 0;
+                    stateMachine.setEvent((int)Events.recover);
+
+                }
+                break;
+            case State.FORMATION:
+                break;
+
+            default:
+                break;
+        }
+
+    }
+
+    private void move()
+    {
+        navigator.isStopped = false;
+        navigator.SetDestination(playerTf);
+
+    }
+    private bool reachedDestination()
+    {
+        if (!navigator.pathPending)
+        {
+            if (navigator.remainingDistance <= navigator.stoppingDistance)
+            {
+                if (!navigator.hasPath || navigator.velocity.sqrMagnitude == 0f)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public void setAttack()
+    {
+        if (_pattern == Pattern.MOVING)
+        {
+            _pattern = Pattern.ATTACK;
+        }
+    }
+}
 //    //public UnityEngine.AI.NavMeshAgent navigator { get; private set; }
 //    private Rigidbody _rigidBody;
 //    public int Rango = 1;
@@ -174,7 +298,7 @@
 //        }
 //        else
 //        {
-            
+
 //            return false;
 //        }
 //    }
@@ -223,7 +347,7 @@
 //                    Debug.Log(troop.status());
 //                    break;
 //                }
-               
+
 //            }
 
 //        }

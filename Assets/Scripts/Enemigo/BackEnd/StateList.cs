@@ -29,8 +29,8 @@ public enum Events
     //suspicious,
     loseGratmos,
     dead,
-    //  blunted,
-    // recover,
+    blunted,
+    recover,
     //capIsHere,
     countEvents
 }
