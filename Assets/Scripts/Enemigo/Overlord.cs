@@ -18,6 +18,8 @@ public class Overlord : MonoBehaviour
     public int id;
     protected Vector3 neededPos;
 
+    protected Collider _collider;
+
     protected virtual void Start()
     {
         _estado = State.NORMAL;
@@ -42,6 +44,8 @@ public class Overlord : MonoBehaviour
         //stateMachine.relation((int)State.ALARM, (int)Events.blunted, (int)State.STUNNED);
         //stateMachine.relation((int)State.AGGRESIVE, (int)Events.blunted, (int)State.STUNNED);
         //stateMachine.relation((int)State.STUNNED, (int)Events.recover, (int)State.ALARM);
+
+        _collider = GetComponent<Collider>();
     }
     public float playerDistance(Vector3 objective)
     {

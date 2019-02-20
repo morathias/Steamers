@@ -38,7 +38,7 @@ public class Infantry : Overlord
                 {
                     case Pattern.AIMING:
                         RaycastHit ICU;
-                        //animator.SetTrigger("aim"); inciar animacion de apuntado
+                        _animations.SetTrigger("aim"); //inciar animacion de apuntado
                         neededRotation = Quaternion.LookRotation(playerTf - transform.position);
                         neededRotation.x = 0;
                         neededRotation.z = 0;
@@ -47,9 +47,10 @@ public class Infantry : Overlord
 
                         if (timeLeft < 1.5)
                         {
+                            _animations.ResetTrigger("aim");
                             if (Physics.Raycast(transform.position, transform.forward, out ICU) && ICU.transform.tag == "Player")
                             {
-                                //animator.SetTrigger("Attack"); iniciar animacion de ataque
+                                _animations.SetTrigger("Attack"); //iniciar animacion de ataque
                                 _pattern = Pattern.ATTACK;
 
                             }
@@ -62,6 +63,7 @@ public class Infantry : Overlord
                     case Pattern.ATTACK:
                         _balaE.Emit(1);
                         timeLeft = 0;
+                        _animations.ResetTrigger("Attack");
                         move();
                         break;
 
@@ -71,18 +73,22 @@ public class Infantry : Overlord
                         {
                             navigator.isStopped = true;
                             timeLeft = 0;
-                            // animator.SetBool("Running", false);
+                            _animations.SetBool("Running", false);
                             _pattern = Pattern.AIMING;
                         }
-                        else if (reachedDestination())
+                        else if (reachedDestination()){
                             move();
+                        }
                         break;
 
                     case Pattern.SPEEDBOOST:
-                        // animator.SetBool("dodge", true); inicia animacino de esquivado, la animacion no debe ser mas de 0.8 seg.
+                        _collider.enabled = false;
+                        _animations.SetBool("dodge", true); //inicia animacino de esquivado, la animacion no debe ser mas de 0.8 seg.
                         transform.Translate(Vector3.forward * 15 * Time.deltaTime);
                         if (timeLeft > 0.8)
                         {
+                            _collider.enabled = true;
+                            _animations.SetBool("dodge", false);
                             _pattern = Pattern.AIMING;
                             timeLeft = 0;
                         }
@@ -106,6 +112,7 @@ public class Infantry : Overlord
 
     private void move()
     {
+        _animations.SetBool("Running", true);
         _pattern = Pattern.MOVING;
         if (Random.Range(1, 10)>5)
         {

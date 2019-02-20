@@ -11,6 +11,8 @@ public class Shield : Overlord
     Animator _animations;
     float speed;
 
+    public Collider _shieldCollider;
+
     override protected void Start()
     {
         base.Start();
@@ -47,7 +49,7 @@ public class Shield : Overlord
                         {
                             navigator.isStopped = true;
                             timeLeft = 0;
-                            // animator.SetBool("Running", false); // Detieene animacion de corrida
+                            _animations.SetBool("Running", false); // Detieene animacion de corrida
                             _pattern = Pattern.AIMING;
                         }
                       //  else if (reachedDestination())
@@ -85,7 +87,7 @@ public class Shield : Overlord
                 {
                     timeLeft = 0;
                     stateMachine.setEvent((int)Events.recover);
-                    // animator.SetBool("Running", true); //incia movimiento
+                    _animations.SetBool("Running", true); //incia movimiento
                 }
                 break;
             case State.FORMATION:
@@ -121,7 +123,7 @@ public class Shield : Overlord
     {
         if (_pattern == Pattern.MOVING)
         {
-            // animator.SetBool("Running", false); //detiene anim movimiento
+            _animations.SetBool("Running", false); //detiene anim movimiento
             _pattern = Pattern.ATTACK;
         }
     }
