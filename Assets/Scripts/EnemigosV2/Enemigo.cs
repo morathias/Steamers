@@ -11,7 +11,8 @@ public class Enemigo : MonoBehaviour {
 		Chasing,
 		Targeting,
 		Shooting,
-		Dying
+		Dying,
+		UnderOrders
 	}
 	protected States _state = States.Iddle;
 
@@ -98,6 +99,10 @@ public class Enemigo : MonoBehaviour {
 			Destroy (gameObject);
 			break;
 
+		case States.UnderOrders:
+				Debug.Log("under orders");
+			break;
+
 		default:
 			break;
 		}
@@ -156,5 +161,14 @@ public class Enemigo : MonoBehaviour {
 		Quaternion lookDirection = Quaternion.LookRotation(target - transform.position);
 		transform.rotation = Quaternion.Slerp(transform.rotation, lookDirection, rotateSpeed * Time.deltaTime);
 		transform.rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y, 0f);
+	}
+
+	public void moveInFormation(Vector3 position){
+		_agent.destination = position;
+		lookAtPosition(_playerTransform.position);
+	}
+
+	public void followOrders(){
+		_state = States.UnderOrders;
 	}
 }

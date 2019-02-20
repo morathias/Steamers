@@ -55,7 +55,7 @@ public class Escudero : Enemigo {
 				_chargeTimer = 2f;
 
 			_state = States.Targeting;
-			_agent.Stop();
+			_agent.isStopped = true;
 			_agent.ResetPath();
 		}
 	}
