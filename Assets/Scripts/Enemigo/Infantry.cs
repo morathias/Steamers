@@ -10,6 +10,7 @@ public class Infantry : Overlord
     GameObject Leader;
     Vector3 _posicionLider;
     Animator _animations;
+    
 
     override protected void Start()
     {
@@ -37,6 +38,7 @@ public class Infantry : Overlord
                 {
                     case Pattern.AIMING:
                         RaycastHit ICU;
+                        //animator.SetTrigger("aim"); inciar animacion de apuntado
                         neededRotation = Quaternion.LookRotation(playerTf - transform.position);
                         neededRotation.x = 0;
                         neededRotation.z = 0;
@@ -47,8 +49,7 @@ public class Infantry : Overlord
                         {
                             if (Physics.Raycast(transform.position, transform.forward, out ICU) && ICU.transform.tag == "Player")
                             {
-                                //animator.SetTrigger("Attack");
-                                //Attack.Play();
+                                //animator.SetTrigger("Attack"); iniciar animacion de ataque
                                 _pattern = Pattern.ATTACK;
 
                             }
@@ -76,6 +77,16 @@ public class Infantry : Overlord
                         else if (reachedDestination())
                             move();
                         break;
+
+                    case Pattern.SPEEDBOOST:
+                        // animator.SetBool("dodge", true); inicia animacino de esquivado, la animacion no debe ser mas de 0.8 seg.
+                        transform.Translate(Vector3.forward * 15 * Time.deltaTime);
+                        if (timeLeft > 0.8)
+                        {
+                            _pattern = Pattern.AIMING;
+                            timeLeft = 0;
+                        }
+                        break;
                     default:
                         break;
                 }
@@ -96,9 +107,17 @@ public class Infantry : Overlord
     private void move()
     {
         _pattern = Pattern.MOVING;
-        navigator.isStopped = false;
-        Vector3 newPos = RandomNavSphere(transform.position, 3, -1);
-        navigator.SetDestination(newPos);
+        if (Random.Range(1, 10)>5)
+        {
+            navigator.isStopped = false;
+            Vector3 newPos = RandomNavSphere(transform.position, 3, -1);
+            navigator.SetDestination(newPos);
+        }
+        else
+        {
+            _pattern = Pattern.SPEEDBOOST; // Dodge, logica que spamee adrede para ver, si no queres que lo haga, comenta solo esto!!
+        }
+
 
     }
     private bool reachedDestination()

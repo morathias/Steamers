@@ -5,7 +5,7 @@ public enum Pattern //Edit
     RELOAD,
     AIMING,
     ATTACK,
-    FEAR,
+    SPEEDBOOST,
     PROTECT,
     GUARD,
     PATROL,

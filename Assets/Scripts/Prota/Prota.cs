@@ -287,6 +287,17 @@ public class Prota : MonoBehaviour
             _blood.transform.Rotate(transform.up, 180f);
             _blood.Play();
         }
+
+        if (other.tag == "EnemyS" && _estado != estados.esquivando)
+        {
+            if (_stats.applyDamage(15))
+                _estado = estados.muriendo;
+
+            //_barraVida.fillAmount = _stats.VidaActual / _stats.health;
+            _blood.transform.LookAt(other.transform);
+            _blood.transform.Rotate(transform.up, 180f);
+            _blood.Play();
+        }
     }
 
     void OnTriggerEnter(Collider other)

@@ -36,6 +36,7 @@ public class Shield : Overlord
                 {
 
                     case Pattern.ATTACK:
+                        //EjecutarAnimacionDeBashAttack
                         _pattern = Pattern.MOVING;
                         break;
 
@@ -46,7 +47,7 @@ public class Shield : Overlord
                         {
                             navigator.isStopped = true;
                             timeLeft = 0;
-                            // animator.SetBool("Running", false);
+                            // animator.SetBool("Running", false); // Detieene animacion de corrida
                             _pattern = Pattern.AIMING;
                         }
                       //  else if (reachedDestination())
@@ -54,18 +55,15 @@ public class Shield : Overlord
 
                     case Pattern.AIMING:
                         transform.LookAt(playerTf);
-                        Debug.Log("Chaaarge");
                         RaycastHit ICU;
 
                         if (Physics.Raycast(transform.position, transform.forward, out ICU) && ICU.transform.tag == "Player")
                         {
-                            _pattern = Pattern.FEAR;
+                            _pattern = Pattern.SPEEDBOOST;
                         }
                         break;
 
-                    case Pattern.FEAR:
-                        Debug.Log("Chaaarge2");
-                        Debug.Log("ChargetIME " + timeLeft);
+                    case Pattern.SPEEDBOOST:
                         transform.Translate(Vector3.forward * speed * Time.deltaTime);
                         speed += 0.5f;
                         if (timeLeft > 1)
@@ -87,7 +85,7 @@ public class Shield : Overlord
                 {
                     timeLeft = 0;
                     stateMachine.setEvent((int)Events.recover);
-
+                    // animator.SetBool("Running", true); //incia movimiento
                 }
                 break;
             case State.FORMATION:
@@ -123,6 +121,7 @@ public class Shield : Overlord
     {
         if (_pattern == Pattern.MOVING)
         {
+            // animator.SetBool("Running", false); //detiene anim movimiento
             _pattern = Pattern.ATTACK;
         }
     }
