@@ -113,5 +113,9 @@ public class Mision {
     public bool getActiva() {
         return _activa;
     }
+
+    public bool isEnded(){
+        return objetivosCumplidos();
+    }
 }
 //==========================================

@@ -5,7 +5,7 @@ public class Overlord : MonoBehaviour
 {
     protected UnityEngine.AI.NavMeshAgent navigator;
     protected Vector3 playerTf;
-    protected EnemyHealth _stats;
+    public EnemyHealth _stats;
     protected State _estado;
     protected Pattern _pattern;
     protected Event _event;
