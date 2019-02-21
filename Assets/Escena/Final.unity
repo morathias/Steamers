@@ -35741,6 +35741,24 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a8f9a0964316b1941b8fc8612040fbb7, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &733106420 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000012179689656, guid: a8f9a0964316b1941b8fc8612040fbb7,
+    type: 2}
+  m_PrefabInternal: {fileID: 733106419}
+--- !u!114 &733106421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 733106420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2698a30c54bfc91469e5001fa1dfc8f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  finalMision: {fileID: 1167624065}
+  sceneManager: {fileID: 1830009819}
 --- !u!1001 &736126891
 Prefab:
   m_ObjectHideFlags: 0
@@ -48313,6 +48331,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4517966978772930, guid: 97ee07ba9290f0948bf4feab5dadb2df,
     type: 2}
   m_PrefabInternal: {fileID: 1167624063}
+--- !u!114 &1167624065 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114117695654917342, guid: 97ee07ba9290f0948bf4feab5dadb2df,
+    type: 2}
+  m_PrefabInternal: {fileID: 1167624063}
+  m_Script: {fileID: 11500000, guid: 05883a509f6f78c48aaa888d29cf5a76, type: 3}
 --- !u!1001 &1170545813
 Prefab:
   m_ObjectHideFlags: 0
@@ -57357,22 +57381,22 @@ Prefab:
     - target: {fileID: 137959271202398238, guid: 86fc01f70f6d6c0448560e51df85fc6f,
         type: 2}
       propertyPath: m_AABB.m_Center.z
-      value: -0.4878235
+      value: -0.48779297
       objectReference: {fileID: 0}
     - target: {fileID: 137959271202398238, guid: 86fc01f70f6d6c0448560e51df85fc6f,
         type: 2}
       propertyPath: m_AABB.m_Extent.z
-      value: 0.4495438
+      value: 0.44954374
       objectReference: {fileID: 0}
     - target: {fileID: 137907021966941030, guid: 86fc01f70f6d6c0448560e51df85fc6f,
         type: 2}
       propertyPath: m_AABB.m_Center.z
-      value: 0.007965088
+      value: 0.0079956055
       objectReference: {fileID: 0}
     - target: {fileID: 137907021966941030, guid: 86fc01f70f6d6c0448560e51df85fc6f,
         type: 2}
       propertyPath: m_AABB.m_Extent.z
-      value: 0.80118716
+      value: 0.8011871
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 86fc01f70f6d6c0448560e51df85fc6f, type: 2}
