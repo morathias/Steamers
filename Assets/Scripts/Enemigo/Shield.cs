@@ -49,31 +49,37 @@ public class Shield : Overlord
                         {
                             navigator.isStopped = true;
                             timeLeft = 0;
-                            _animations.SetBool("Running", false); // Detieene animacion de corrida
+                            _animations.SetBool("Range", false); // Detieene animacion de corrida
                             _pattern = Pattern.AIMING;
                         }
                       //  else if (reachedDestination())
                         break;
 
                     case Pattern.AIMING:
+                       
                         transform.LookAt(playerTf);
                         RaycastHit ICU;
 
                         if (Physics.Raycast(transform.position, transform.forward, out ICU) && ICU.transform.tag == "Player")
                         {
+                            _animations.SetBool("Range", true);
+                            _animations.speed *= 1.5f;
                             _pattern = Pattern.SPEEDBOOST;
                         }
                         break;
 
                     case Pattern.SPEEDBOOST:
+                        
                         transform.Translate(Vector3.forward * speed * Time.deltaTime);
                         speed += 0.5f;
                         if (timeLeft > 1)
                         {
-                            stateMachine.setEvent((int)Events.blunted);
-                            _pattern = Pattern.MOVING;
+                            _animations.speed /= 1.5f;
                             speed = 0;
                             timeLeft = 0;
+                            _animations.SetBool("Range", false);
+                            _pattern = Pattern.MOVING;
+                            stateMachine.setEvent((int)Events.blunted);
                         }
                         break;
                 }
@@ -81,13 +87,14 @@ public class Shield : Overlord
             case State.DEAD:
                 break;
             case State.STUNNED:
-                Debug.Log("stuned");
+                
                 timeLeft += Time.deltaTime * Time.timeScale;
-                if (timeLeft > 1.5f)
+                if (timeLeft > 2f)
                 {
+                    _animations.SetBool("Range", true);
                     timeLeft = 0;
                     stateMachine.setEvent((int)Events.recover);
-                    _animations.SetBool("Running", true); //incia movimiento
+                  
                 }
                 break;
             case State.FORMATION:
@@ -123,7 +130,7 @@ public class Shield : Overlord
     {
         if (_pattern == Pattern.MOVING)
         {
-            _animations.SetBool("Running", false); //detiene anim movimiento
+            _animations.SetBool("Ready", false); //detiene anim movimiento
             _pattern = Pattern.ATTACK;
         }
     }

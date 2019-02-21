@@ -38,7 +38,7 @@ public class Infantry : Overlord
                 {
                     case Pattern.AIMING:
                         RaycastHit ICU;
-                        _animations.SetTrigger("aim"); //inciar animacion de apuntado
+                        _animations.SetBool("aim", true); //inciar animacion de apuntado
                         neededRotation = Quaternion.LookRotation(playerTf - transform.position);
                         neededRotation.x = 0;
                         neededRotation.z = 0;
@@ -47,23 +47,27 @@ public class Infantry : Overlord
 
                         if (timeLeft < 1.5)
                         {
-                            _animations.ResetTrigger("aim");
+  
                             if (Physics.Raycast(transform.position, transform.forward, out ICU) && ICU.transform.tag == "Player")
                             {
+                                _animations.SetBool("aim", false);
                                 _animations.SetTrigger("Attack"); //iniciar animacion de ataque
                                 _pattern = Pattern.ATTACK;
 
                             }
                         }
                         else
-
+                        {
+                            _animations.SetBool("aim", false);
                             move();
+                        }
+
                         break;
 
                     case Pattern.ATTACK:
+                        _animations.ResetTrigger("Attack");
                         _balaE.Emit(1);
                         timeLeft = 0;
-                        _animations.ResetTrigger("Attack");
                         move();
                         break;
 
@@ -77,6 +81,8 @@ public class Infantry : Overlord
                             _pattern = Pattern.AIMING;
                         }
                         else if (reachedDestination()){
+                            _animations.SetBool("Running", false);
+                            navigator.isStopped = true;
                             move();
                         }
                         break;
@@ -114,16 +120,16 @@ public class Infantry : Overlord
     {
         _animations.SetBool("Running", true);
         _pattern = Pattern.MOVING;
-        if (Random.Range(1, 10)>5)
-        {
+        //if (Random.Range(1, 10)>9)
+       // {
             navigator.isStopped = false;
-            Vector3 newPos = RandomNavSphere(transform.position, 3, -1);
+            Vector3 newPos = RandomNavSphere(transform.position, 3.5f, -1);
             navigator.SetDestination(newPos);
-        }
-        else
+        //}
+       /* else
         {
-            _pattern = Pattern.SPEEDBOOST; // Dodge, logica que spamee adrede para ver, si no queres que lo haga, comenta solo esto!!
-        }
+           // _pattern = Pattern.SPEEDBOOST; // Dodge, logica que spamee adrede para ver, si no queres que lo haga, comenta solo esto!!
+        }*/
 
 
     }
