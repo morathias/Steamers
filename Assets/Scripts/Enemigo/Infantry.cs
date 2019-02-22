@@ -132,7 +132,7 @@ public class Infantry : Overlord
 
     private void move()
     {
-        if (Random.Range(1, 10) < 3 &&  playerStats.level < 8)
+        if (Random.Range(1, 10) < 3 &&  playerStats.level > 8)
         {
             timeLeft = 0;
             _animations.SetBool("Running", false);

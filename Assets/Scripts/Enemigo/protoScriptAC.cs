@@ -32,7 +32,6 @@ public class protoScriptAC : Overlord
         _pattern = Pattern.MOVING;
         unidades = new List<GameObject>();
 
-
     }
     override protected void Update()
     {
@@ -78,6 +77,7 @@ public class protoScriptAC : Overlord
 
                             if (Physics.Raycast(transform.position, transform.forward, out ICU) && ICU.transform.tag == "Player")
                             {
+                                _animations.SetTrigger("Attack");
                                 _balaE.Emit(1);
                                 timeLeft = 0;
                                 move();
@@ -94,7 +94,8 @@ public class protoScriptAC : Overlord
                     case Pattern.SPEEDBOOST:
                         Collider[] colliders = Physics.OverlapSphere(transform.position, 50);
                         shout.Emit(50);
-
+                        _animations.SetBool("Running", false);
+                        _animations.SetTrigger("Shout");
                         foreach (Collider hit in colliders)
                         {
                             if (hit.gameObject.tag == "EnemyS" && numeroSoldado < 6)
@@ -141,6 +142,7 @@ public class protoScriptAC : Overlord
 
                             _pattern = Pattern.MOVING;
                         }
+                        _animations.ResetTrigger("Shout");
                         numeroSoldado = 0;
                         numeroEscudo = 0;
                         Debug.Log(_pattern);
@@ -203,6 +205,8 @@ public class protoScriptAC : Overlord
     }
     private void move()
     {
+        _animations.ResetTrigger("Attack");
+        _animations.SetBool("Running", true);
         navigator.isStopped = false;
         navigator.destination = playerTf;
 
