@@ -29,6 +29,7 @@ public class Overlord : MonoBehaviour
         stateMachine.init((int)State.countState, (int)Events.countEvents); //Castear de nombre a int
         navigator.isStopped = true;
 
+
         _estado = (State)stateMachine.getState(); //pasar de int a numero con cast
 
         stateMachine.relation((int)State.NORMAL, (int)Events.findGratmos, (int)State.AGGRESIVE);
@@ -67,7 +68,7 @@ public class Overlord : MonoBehaviour
 
     public bool setDestination(Vector3 objective)
     {
-        navigator.isStopped = false;
+
 
         if (playerDistance(objective) > 30)
         {

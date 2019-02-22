@@ -72,7 +72,7 @@ public class Infantry : Overlord
                         break;
 
                     case Pattern.MOVING:
-                        _rigidBody.velocity = navigator.desiredVelocity;
+
                         if (timeLeft > 3 && Vector3.Distance(transform.position, playerTf) < 70)
                         {
                             navigator.isStopped = true;
@@ -80,7 +80,7 @@ public class Infantry : Overlord
                             _animations.SetBool("Running", false);
                             _pattern = Pattern.AIMING;
                         }
-                        else if (reachedDestination()){
+                        if (reachedDestination()){
                             _animations.SetBool("Running", false);
                             navigator.isStopped = true;
                             move();
@@ -91,12 +91,12 @@ public class Infantry : Overlord
                         _collider.enabled = false;
                         _animations.SetBool("dodge", true); //inicia animacino de esquivado, la animacion no debe ser mas de 0.8 seg.
                         transform.Translate(Vector3.forward * 15 * Time.deltaTime);
-                        if (timeLeft > 0.8)
+                        if (timeLeft > 0.3)
                         {
+                            timeLeft = 0;
                             _collider.enabled = true;
                             _animations.SetBool("dodge", false);
                             _pattern = Pattern.AIMING;
-                            timeLeft = 0;
                         }
                         break;
                     default:
@@ -118,18 +118,18 @@ public class Infantry : Overlord
 
     private void move()
     {
-        _animations.SetBool("Running", true);
-        _pattern = Pattern.MOVING;
-        //if (Random.Range(1, 10)>9)
-       // {
-            navigator.isStopped = false;
-            Vector3 newPos = RandomNavSphere(transform.position, 3.5f, -1);
-            navigator.SetDestination(newPos);
-        //}
-       /* else
+        if (Random.Range(1, 10) > 3)
         {
-           // _pattern = Pattern.SPEEDBOOST; // Dodge, logica que spamee adrede para ver, si no queres que lo haga, comenta solo esto!!
-        }*/
+            _pattern = Pattern.MOVING;
+            _animations.SetBool("Running", true);
+            navigator.isStopped = false;
+            navigator.destination = RandomNavSphere(transform.position, 5.0f, -1);
+        }
+         else
+         {
+            _animations.SetBool("Running", false);
+            _pattern = Pattern.SPEEDBOOST; // Dodge, logica que spamee adrede para ver, si no queres que lo haga, comenta solo esto!!
+         }
 
 
     }

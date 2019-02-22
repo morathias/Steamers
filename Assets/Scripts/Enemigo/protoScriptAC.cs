@@ -96,7 +96,7 @@ public class protoScriptAC : Overlord
     private void move()
     {
         navigator.isStopped = false;
-        navigator.SetDestination(playerTf);
+        navigator.destination = playerTf;
 
     }
     private bool reachedDestination()
