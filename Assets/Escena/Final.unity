@@ -834,6 +834,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4717468988983744, guid: 97ee07ba9290f0948bf4feab5dadb2df,
     type: 2}
   m_PrefabInternal: {fileID: 52471338}
+--- !u!114 &36255774 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114117695654917342, guid: 97ee07ba9290f0948bf4feab5dadb2df,
+    type: 2}
+  m_PrefabInternal: {fileID: 1956549519}
+  m_Script: {fileID: 11500000, guid: 05883a509f6f78c48aaa888d29cf5a76, type: 3}
 --- !u!1001 &36686135
 Prefab:
   m_ObjectHideFlags: 0
@@ -1095,6 +1101,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4801708331994846, guid: 7fe12d2ca166c2047a5419548d5b40c5,
     type: 2}
   m_PrefabInternal: {fileID: 1375969950}
+--- !u!114 &49693059 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114564665117736512, guid: 7fe12d2ca166c2047a5419548d5b40c5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1375969950}
+  m_Script: {fileID: 11500000, guid: a61fd4ec1fce00a4ca4008da9842ebce, type: 3}
 --- !u!1001 &51393144
 Prefab:
   m_ObjectHideFlags: 0
@@ -5836,6 +5848,54 @@ Transform:
   m_PrefabParentObject: {fileID: 4845157332479020, guid: ed374d80133c49b4086b8952cf48a06f,
     type: 2}
   m_PrefabInternal: {fileID: 408356480}
+--- !u!1 &196966567
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 196966569}
+  - component: {fileID: 196966568}
+  m_Layer: 0
+  m_Name: _cazar_enemigo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &196966568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 196966567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f82ebe7ac52c2640b972cccd294107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  informacion: kill the soliders
+  tipo: 0
+  tiposEnemigos:
+  - {fileID: 1670512805}
+  - {fileID: 49693059}
+  - {fileID: 1719029927}
+  esRandom: 0
+  cantidadACazar: 3
+--- !u!4 &196966569
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 196966567}
+  m_LocalRotation: {x: -0, y: 0.093060955, z: -0, w: 0.9956605}
+  m_LocalPosition: {x: -112.82404, y: -241.58, z: -54.231422}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1956549520}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &198668740
 Prefab:
   m_ObjectHideFlags: 0
@@ -17302,6 +17362,12 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.7519395, y: 8.47, z: 0.2684958}
   m_Center: {x: -1.7220688, y: 0.81478894, z: -0.13430499}
+--- !u!114 &361338758 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114117695654917342, guid: 97ee07ba9290f0948bf4feab5dadb2df,
+    type: 2}
+  m_PrefabInternal: {fileID: 1243376219}
+  m_Script: {fileID: 11500000, guid: 05883a509f6f78c48aaa888d29cf5a76, type: 3}
 --- !u!4 &362732722 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4980742614411850, guid: 97ee07ba9290f0948bf4feab5dadb2df,
@@ -34722,7 +34788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2698a30c54bfc91469e5001fa1dfc8f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finalMision: {fileID: 0}
+  finalMision: {fileID: 36255774}
   sceneManager: {fileID: 1830009819}
 --- !u!1001 &736126891
 Prefab:
@@ -39040,6 +39106,50 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 7b25c70e73112934bbbb5528fb47ff81, type: 3}
   m_PrefabInternal: {fileID: 902157993}
+--- !u!1 &902225254
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 902225256}
+  - component: {fileID: 902225255}
+  m_Layer: 0
+  m_Name: _hablar_npc
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &902225255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 902225254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca59a9e294084c4eb4e803060af08cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  informacion: speak to the man
+  tipo: 5
+  npcAHablar: {fileID: 361338758}
+  dialogoIndex: 1
+--- !u!4 &902225256
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 902225254}
+  m_LocalRotation: {x: -0, y: 0.093060955, z: -0, w: 0.9956605}
+  m_LocalPosition: {x: -112.82404, y: -241.58, z: -54.231422}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1956549520}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &903101404
 Prefab:
   m_ObjectHideFlags: 0
@@ -48915,6 +49025,50 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ed374d80133c49b4086b8952cf48a06f, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1221822624
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1221822626}
+  - component: {fileID: 1221822625}
+  m_Layer: 0
+  m_Name: _hablar_npc
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1221822625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1221822624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca59a9e294084c4eb4e803060af08cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  informacion: talkm to the mayor
+  tipo: 5
+  npcAHablar: {fileID: 2076790438}
+  dialogoIndex: 1
+--- !u!4 &1221822626
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1221822624}
+  m_LocalRotation: {x: -0, y: 0.093060955, z: -0, w: 0.9956605}
+  m_LocalPosition: {x: -112.82404, y: -241.58, z: -54.231422}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1956549520}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1222457852
 Prefab:
   m_ObjectHideFlags: 0
@@ -51608,6 +51762,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4974114661954350, guid: ca77e003e61ca2044923df59bab8b586,
     type: 2}
   m_PrefabInternal: {fileID: 396474273}
+--- !u!1 &1300291415 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1752824748775426, guid: 86fc01f70f6d6c0448560e51df85fc6f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1467855645}
 --- !u!1001 &1301862019
 Prefab:
   m_ObjectHideFlags: 0
@@ -56509,22 +56668,22 @@ Prefab:
     - target: {fileID: 137959271202398238, guid: 86fc01f70f6d6c0448560e51df85fc6f,
         type: 2}
       propertyPath: m_AABB.m_Center.z
-      value: -0.4878235
+      value: -0.48779297
       objectReference: {fileID: 0}
     - target: {fileID: 137959271202398238, guid: 86fc01f70f6d6c0448560e51df85fc6f,
         type: 2}
       propertyPath: m_AABB.m_Extent.z
-      value: 0.4495438
+      value: 0.44954374
       objectReference: {fileID: 0}
     - target: {fileID: 137907021966941030, guid: 86fc01f70f6d6c0448560e51df85fc6f,
         type: 2}
       propertyPath: m_AABB.m_Center.z
-      value: 0.007965088
+      value: 0.0079956055
       objectReference: {fileID: 0}
     - target: {fileID: 137907021966941030, guid: 86fc01f70f6d6c0448560e51df85fc6f,
         type: 2}
       propertyPath: m_AABB.m_Extent.z
-      value: 0.80118716
+      value: 0.8011871
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 86fc01f70f6d6c0448560e51df85fc6f, type: 2}
@@ -62075,6 +62234,49 @@ Transform:
   - {fileID: 1872923359}
   m_Father: {fileID: 0}
   m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1598644209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1598644211}
+  - component: {fileID: 1598644210}
+  m_Layer: 0
+  m_Name: _cazar_boss
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1598644210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1598644209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11e9ee958fb8d5f4e8342602aaf9a655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  informacion: kill the boss that destroyed the town
+  tipo: 1
+  boss: {fileID: 1300291415}
+--- !u!4 &1598644211
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1598644209}
+  m_LocalRotation: {x: -0, y: 0.093060955, z: -0, w: 0.9956605}
+  m_LocalPosition: {x: -112.82404, y: -241.58, z: -54.231422}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1956549520}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1600928931 stripped
 MonoBehaviour:
@@ -69757,6 +69959,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4801708331994846, guid: 7fe12d2ca166c2047a5419548d5b40c5,
     type: 2}
   m_PrefabInternal: {fileID: 290195385}
+--- !u!114 &1670512805 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114564665117736512, guid: 7fe12d2ca166c2047a5419548d5b40c5,
+    type: 2}
+  m_PrefabInternal: {fileID: 290195385}
+  m_Script: {fileID: 11500000, guid: a61fd4ec1fce00a4ca4008da9842ebce, type: 3}
 --- !u!4 &1671156942 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000012874284608, guid: 3f27eaa895cbb5241a2d3f8a83857646,
@@ -72194,6 +72402,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4801708331994846, guid: 7fe12d2ca166c2047a5419548d5b40c5,
     type: 2}
   m_PrefabInternal: {fileID: 1906810073}
+--- !u!114 &1719029927 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114564665117736512, guid: 7fe12d2ca166c2047a5419548d5b40c5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1906810073}
+  m_Script: {fileID: 11500000, guid: a61fd4ec1fce00a4ca4008da9842ebce, type: 3}
 --- !u!1001 &1719315422
 Prefab:
   m_ObjectHideFlags: 0
@@ -79284,25 +79498,45 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114117695654917342, guid: 97ee07ba9290f0948bf4feab5dadb2df,
         type: 2}
+      propertyPath: misiones.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114117695654917342, guid: 97ee07ba9290f0948bf4feab5dadb2df,
+        type: 2}
       propertyPath: dialogos.Array.data[1].lineas.Array.size
-      value: 10
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114117695654917342, guid: 97ee07ba9290f0948bf4feab5dadb2df,
+        type: 2}
+      propertyPath: dialogos.Array.data[0].lineas.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114117695654917342, guid: 97ee07ba9290f0948bf4feab5dadb2df,
+        type: 2}
+      propertyPath: misiones.Array.data[0].objetivos.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114117695654917342, guid: 97ee07ba9290f0948bf4feab5dadb2df,
         type: 2}
       propertyPath: dialogos.Array.data[1].sonLineasInteractivas.Array.size
-      value: 10
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114117695654917342, guid: 97ee07ba9290f0948bf4feab5dadb2df,
+        type: 2}
+      propertyPath: dialogos.Array.data[0].sonLineasInteractivas.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4517966978772930, guid: 97ee07ba9290f0948bf4feab5dadb2df, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 88.64
+      value: 100.82
       objectReference: {fileID: 0}
     - target: {fileID: 4517966978772930, guid: 97ee07ba9290f0948bf4feab5dadb2df, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 212.82
+      value: 241.58
       objectReference: {fileID: 0}
     - target: {fileID: 4517966978772930, guid: 97ee07ba9290f0948bf4feab5dadb2df, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 107.68
+      value: 74.2
       objectReference: {fileID: 0}
     - target: {fileID: 4517966978772930, guid: 97ee07ba9290f0948bf4feab5dadb2df, type: 2}
       propertyPath: m_LocalRotation.x
@@ -79327,18 +79561,14 @@ Prefab:
     - target: {fileID: 114117695654917342, guid: 97ee07ba9290f0948bf4feab5dadb2df,
         type: 2}
       propertyPath: dialogos.Array.data[0].lineas.Array.data[0]
-      value: 'Help me please!
+      value: 'Help me!
 
-        i don''t want to
-
-        die...'
+        save my brother!'
       objectReference: {fileID: 0}
     - target: {fileID: 114117695654917342, guid: 97ee07ba9290f0948bf4feab5dadb2df,
         type: 2}
       propertyPath: dialogos.Array.data[1].lineas.Array.data[0]
-      value: 'Oh!... thank you
-
-        good sir'
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 114117695654917342, guid: 97ee07ba9290f0948bf4feab5dadb2df,
         type: 2}
@@ -79436,9 +79666,65 @@ Prefab:
       propertyPath: dialogos.Array.data[1].dialogoInteractivo
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 114117695654917342, guid: 97ee07ba9290f0948bf4feab5dadb2df,
+        type: 2}
+      propertyPath: misiones.Array.data[0].objetivos.Array.data[0]
+      value: 
+      objectReference: {fileID: 196966568}
+    - target: {fileID: 114117695654917342, guid: 97ee07ba9290f0948bf4feab5dadb2df,
+        type: 2}
+      propertyPath: misiones.Array.data[0].objetivos.Array.data[1]
+      value: 
+      objectReference: {fileID: 902225255}
+    - target: {fileID: 114117695654917342, guid: 97ee07ba9290f0948bf4feab5dadb2df,
+        type: 2}
+      propertyPath: misiones.Array.data[0].objetivos.Array.data[2]
+      value: 
+      objectReference: {fileID: 1598644210}
+    - target: {fileID: 114117695654917342, guid: 97ee07ba9290f0948bf4feab5dadb2df,
+        type: 2}
+      propertyPath: misiones.Array.data[0].objetivos.Array.data[3]
+      value: 
+      objectReference: {fileID: 1221822625}
+    - target: {fileID: 114117695654917342, guid: 97ee07ba9290f0948bf4feab5dadb2df,
+        type: 2}
+      propertyPath: dialogos.Array.data[0].lineas.Array.data[1]
+      value: please!
+      objectReference: {fileID: 0}
+    - target: {fileID: 114117695654917342, guid: 97ee07ba9290f0948bf4feab5dadb2df,
+        type: 2}
+      propertyPath: dialogos.Array.data[0].dialogoInteractivo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114117695654917342, guid: 97ee07ba9290f0948bf4feab5dadb2df,
+        type: 2}
+      propertyPath: dialogos.Array.data[0].sonLineasInteractivas.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114117695654917342, guid: 97ee07ba9290f0948bf4feab5dadb2df,
+        type: 2}
+      propertyPath: misiones.Array.data[0].enEspera
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114117695654917342, guid: 97ee07ba9290f0948bf4feab5dadb2df,
+        type: 2}
+      propertyPath: misiones.Array.data[0].nombre
+      value: Save the town
+      objectReference: {fileID: 0}
+    - target: {fileID: 114117695654917342, guid: 97ee07ba9290f0948bf4feab5dadb2df,
+        type: 2}
+      propertyPath: misiones.Array.data[0].informacionGeneral
+      value: A group of soldiers attacked the little town, kill tehm all and save
+        it's people
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 97ee07ba9290f0948bf4feab5dadb2df, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &1956549520 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4517966978772930, guid: 97ee07ba9290f0948bf4feab5dadb2df,
+    type: 2}
+  m_PrefabInternal: {fileID: 1956549519}
 --- !u!1001 &1957862603
 Prefab:
   m_ObjectHideFlags: 0
@@ -82722,6 +83008,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4863835573780870, guid: d6e3b53626950804fb9d480e73358740,
     type: 2}
   m_PrefabInternal: {fileID: 2076200423}
+--- !u!114 &2076790438 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114117695654917342, guid: 97ee07ba9290f0948bf4feab5dadb2df,
+    type: 2}
+  m_PrefabInternal: {fileID: 1004556151}
+  m_Script: {fileID: 11500000, guid: 05883a509f6f78c48aaa888d29cf5a76, type: 3}
 --- !u!1 &2076795951
 GameObject:
   m_ObjectHideFlags: 0
