@@ -92,10 +92,13 @@ public class Skill : MonoBehaviour{
 
         _state = States.Unlocked;
         _statesTransform.GetChild((int)States.Available).gameObject.SetActive(false);
+        _statesTransform.GetChild((int)States.Unlocked).gameObject.SetActive(false);
         _rotatingAnimator.SetTrigger("isUnlocked");
 
-        for (int i = 0; i < _connectionActiveImgs.Count; i++)
+        for (int i = 0; i < _connectionActiveImgs.Count; i++){
+            _childs[i].makeAvailable();
             StartCoroutine(startFillingConnection(_connectionActiveImgs[i], _childs[i]));
+        }
     }
 
     protected virtual void addSkillToPlayer() {}
@@ -119,7 +122,7 @@ public class Skill : MonoBehaviour{
             yield return null;
         }
 
-        childToEnable.makeAvailable();
+        childToEnable.makeAvailableView();
     }
 
     public bool isUnlocked() {
@@ -133,16 +136,28 @@ public class Skill : MonoBehaviour{
         return _playerStats.stat > 0 && _parent.isUnlocked();
     }
 
-    public void makeAvailable() {
+    public void makeAvailableView(){
         _statesTransform.GetChild((int)States.Unlocked).gameObject.SetActive(false);
+    }
+    public void makeAvailable() {
         _state = States.Available;
     }
 
     void OnEnable() {
-        if (_state == States.Unlocked)
+        if (_state == States.Unlocked){
+            _statesTransform.GetChild((int)States.Unlocked).gameObject.SetActive(false);
+            _statesTransform.GetChild((int)States.Available).gameObject.SetActive(false);
             _rotatingAnimator.SetTrigger("isUnlocked");
+            for (int i = 0; i < _connectionActiveImgs.Count; i++){
+            _connectionActiveImgs[i].fillAmount = 1f;
+        }
+        }
         else if (_state == States.Available) {
             _statesTransform.GetChild((int)States.Unlocked).gameObject.SetActive(false);
         }
+    }
+    void OnDisable()
+    {
+        
     }
 }

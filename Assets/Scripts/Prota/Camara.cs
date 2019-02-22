@@ -135,7 +135,7 @@ public class Camara : MonoBehaviour {
         renderer.sharedMaterial = _sharedMaterials[key];
     }
     //----------------------------------------------------------------------------------------------------------
-    void Panning(){
+    public Vector2 Panning(){
         if (Input.GetMouseButtonDown(2))
         {
             _isRotatingCamera = true;
@@ -145,10 +145,12 @@ public class Camara : MonoBehaviour {
             _isRotatingCamera = false;
 
         if (!_isRotatingCamera)
-            return;
+            return Vector3.zero;
 
         Vector2 rotateDirection = (Vector2)Input.mousePosition - _lastMousePosition;
         _angle += rotateDirection.normalized.x * Time.deltaTime * angularVelocity;
+
+        return rotateDirection;
     }
     //----------------------------------------------------------------------------------------------------------
     void clampAngle() {

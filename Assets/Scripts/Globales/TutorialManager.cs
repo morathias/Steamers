@@ -119,7 +119,7 @@ public class TutorialManager : MonoBehaviour {
             _tutorialsObjects[(int)Tutorials.RotateCameraTutorial].SetActive(true);
         }
 
-        if (Input.GetAxis("Mouse ScrollWheel") != 0 && _tutorialsObjects[(int)Tutorials.RotateCameraTutorial].activeInHierarchy)
+        if (Camera.main.GetComponent<Camara>().Panning().magnitude != 0 && _tutorialsObjects[(int)Tutorials.RotateCameraTutorial].activeInHierarchy)
         {
             Time.timeScale = 1f;
             _tutorialsObjects[(int)Tutorials.RotateCameraTutorial].SetActive(false);
