@@ -1108,17 +1108,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4801708331994846, guid: 7fe12d2ca166c2047a5419548d5b40c5,
     type: 2}
   m_PrefabInternal: {fileID: 2119795853}
---- !u!114 &49693058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 49693052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a37202b63637b14ea0f6e52e4b9c805, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &51393144
 Prefab:
   m_ObjectHideFlags: 0
@@ -17526,6 +17515,11 @@ Prefab:
         type: 2}
       propertyPath: "da\xF1o"
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 54240887235683942, guid: ca8ba08265439c147a39987467fa808f,
+        type: 2}
+      propertyPath: m_UseGravity
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca8ba08265439c147a39987467fa808f, type: 2}
