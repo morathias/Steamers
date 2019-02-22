@@ -316,6 +316,13 @@ public class Prota : MonoBehaviour
             _blood.transform.Rotate(transform.up, 180f);
             _blood.Play();
         }
+        if (other.tag == "CQC")
+        {
+            Debug.Log("Hola");
+            _blood.Play();
+            other.gameObject.GetComponent<detectEnemy>().Bash();
+            _stats.applyDamage(0.5f);
+        }
     }
     //===============================================================================================
     public float Stamina

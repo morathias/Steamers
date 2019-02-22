@@ -5,12 +5,19 @@ public class protoScriptAC : Overlord
 {
     public int Rango = 10;
     float timeLeft = 0;
+    float timeCap = 0;
     Transform capitanPos;
     GameObject Leader;
     Vector3 _posicionLider;
-    Animator _animations;
     float speed;
+    private Shield sTroop;
+    public ParticleSystem shout;
+    private Infantry troop;
     public Collider _shieldCollider;
+    private int numeroSoldado;
+    private int numeroEscudo;
+    public float shootTime;
+    private List<GameObject> unidades;
 
     override protected void Start()
     {
@@ -23,11 +30,15 @@ public class protoScriptAC : Overlord
         navigator.speed = 0.8f;
         navigator.updateRotation = false;
         _pattern = Pattern.MOVING;
+        unidades = new List<GameObject>();
+
+
     }
     override protected void Update()
     {
         base.Update();
 
+        Debug.Log(_estado);
         switch (_estado)
         {
             case State.NORMAL:
@@ -35,7 +46,8 @@ public class protoScriptAC : Overlord
             case State.ALARM:
                 break;
             case State.AGGRESIVE:
-                timeLeft += Time.deltaTime * Time.timeScale;
+                timeCap += timeLeft += Time.deltaTime * Time.timeScale;
+                Debug.Log(_pattern);
                 switch (_pattern)
                 {
 
@@ -45,18 +57,24 @@ public class protoScriptAC : Overlord
                         break;
 
                     case Pattern.MOVING:
-                        _rigidBody.velocity = navigator.desiredVelocity;
+                        Debug.Log("oving");
                         move();
+                        //_rigidBody.velocity = navigator.desiredVelocity;
 
+                        neededRotation = Quaternion.LookRotation(playerTf - transform.position);
+                        neededRotation.x = 0;
+                        neededRotation.z = 0;
+                        transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 2f);
+
+                        if (Random.Range(1, 30) < 1 && playerStats.level>8)
+                        {
+                            timeCap = 0;
+                            _pattern = Pattern.SPEEDBOOST;
+                        }
                         if (timeLeft > 3 && Vector3.Distance(transform.position, playerTf) < 70)
                         {
-
+                            transform.LookAt(playerTf);
                             RaycastHit ICU;
-                            neededRotation = Quaternion.LookRotation(playerTf - transform.position);
-                            neededRotation.x = 0;
-                            neededRotation.z = 0;
-                            Debug.Log("Cap attack!");
-                            transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 3f);
 
                             if (Physics.Raycast(transform.position, transform.forward, out ICU) && ICU.transform.tag == "Player")
                             {
@@ -67,7 +85,6 @@ public class protoScriptAC : Overlord
                             }
 
                         }
-                        //  else if (reachedDestination())
                         break;
 
                     case Pattern.AIMING:
@@ -75,16 +92,84 @@ public class protoScriptAC : Overlord
                         break;
 
                     case Pattern.SPEEDBOOST:
+                        Collider[] colliders = Physics.OverlapSphere(transform.position, 50);
+                        shout.Emit(50);
 
+                        foreach (Collider hit in colliders)
+                        {
+                            if (hit.gameObject.tag == "EnemyS" && numeroSoldado < 6)
+                            {
+                                troop = hit.gameObject.GetComponent<Infantry>();
+                                Debug.Log("name hit" + hit.name);
+                                if (troop.setPointMan(gameObject, numeroSoldado))
+                                {
+                                    unidades.Add(troop.gameObject);
+                                    numeroSoldado++;
+                                }
+
+                            }
+
+                            if (hit.gameObject.tag == "ArmoredE" && numeroEscudo < 2)
+                            {
+                                sTroop = hit.gameObject.GetComponent<Shield>();
+                                if (sTroop.setPointMan(gameObject, numeroSoldado))
+                                {
+                                    unidades.Add(sTroop.gameObject);
+                                    numeroEscudo++;
+                                }
+                            }
+
+                        }
+                        Debug.Log(unidades.Count);
+                        if (unidades.Count > 2)
+                        {
+                            for (int i = 0; i < unidades.Count; i++)
+                            {
+                                unidades[i].GetComponent<Overlord>().setEvent(Events.capIsHere);
+
+                            }
+                            setEvent(Events.capIsOut);
+                        }
+                        else
+                        {
+                            for (int i = 0; i < unidades.Count; i++)
+                            {
+                                unidades[i].GetComponent<Overlord>().setEvent(Events.blunted);
+                                
+
+                            }
+
+                            _pattern = Pattern.MOVING;
+                        }
+                        numeroSoldado = 0;
+                        numeroEscudo = 0;
+                        Debug.Log(_pattern);
                         break;
                 }
-                break;
-            case State.DEAD:
-                break;
-            case State.STUNNED:
 
                 break;
             case State.FORMATION:
+                timeCap += Time.deltaTime * Time.timeScale;
+                move();
+                neededRotation = Quaternion.LookRotation(playerTf - transform.position);
+                neededRotation.x = 0;
+                neededRotation.z = 0;
+
+                transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 2.5f);
+
+                if (timeCap > 2)
+                {
+                    RaycastHit ICU;
+
+                    if (Physics.Raycast(transform.position, transform.forward, out ICU) && ICU.transform.tag == "Player")
+                    {
+                        timeCap = 0;
+                        _balaE.Emit(1);
+                        move();
+
+                    }
+                }
+                checkAmout();
                 break;
 
             default:
@@ -92,7 +177,30 @@ public class protoScriptAC : Overlord
         }
 
     }
+    private void checkAmout()
+    {
+        Debug.Log(unidades.Count + "unidade 2s");
+        if (unidades.Count < 3)
+        {
+            for (int i = 0; i < unidades.Count; i++)
+            {
+                unidades[i].GetComponent<Overlord>().setEvent(Events.blunted);
+            }
+        }
+    }
 
+    override protected void disarm()
+    {
+        for (int i = 0; i < unidades.Count; i++)
+        {
+            unidades[i].GetComponent<Overlord>().setEvent(Events.blunted);
+        }
+    }
+
+    public void removeFromList(GameObject unit)
+    {
+        unidades.Remove(unit);
+    }
     private void move()
     {
         navigator.isStopped = false;
@@ -335,172 +443,3 @@ public class protoScriptAC : Overlord
 //    }
 //}
 
-
-///////
-
-////          if (dead)
-////        {
-////            Destroy(gameObject);
-////        }
-////        switch (_estado)
-////        {
-////            case estados.brag:
-////                if (bossSat()=="1")
-////                {
-
-////                    limite += Time.deltaTime* Time.timeScale;
-
-////                    if (limite>3 && transform.position != specific)
-////                    {
-////                        transform.position = Vector3.MoveTowards(transform.position, specific, 3 * Time.deltaTime);
-////                    }
-////                    if (transform.position == specific)
-////                    {
-////                        _animations.Play("Armature|shouting");
-////                        limite = 0;
-////                        _estado = estados.normal;
-////                    }
-////                }
-////                break;
-
-////            case estados.normal:
-////                _animations.Play("Armature|idle");
-////                limite += Time.deltaTime* Time.timeScale;
-////                if (range)
-////                {
-////                    if (Vector3.Distance(transform.position, fichador.position) < Rango)
-////                    {
-////                        neededRotation = Quaternion.LookRotation(fichador.transform.position - transform.position);
-////                        neededRotation.x = 0;
-////                        neededRotation.z = 0;
-////                        transform.LookAt(fichador);
-////                        _animations.Play("Armature|shooting");
-////                        //	transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 2.3f);
-
-////                        if (limite > random)
-////                            fire();
-
-////                    }
-////                    else
-////                        _animations.Play("Armature|idle");
-
-////                }
-////                else
-////                {
-////                    if (Vector3.Distance(transform.position, Target.position) < RangoBusqueda)
-////                    {
-////                        _animations.Play("Armature|running");
-////                        transform.LookAt(Target.position);
-////                        transform.Translate(Vector3.forward* 3 * Time.deltaTime);
-////                    }
-////                    else
-////                        _animations.Play("Armature|idle");
-
-////                    if (Vector3.Distance(transform.position, Target.position) < RangoRush && limite > 1)
-////                    {
-////                        limite = 0;
-////                        _animations.Play("Armature|idle");
-////                        _estado = estados.apuntando;
-////                    }
-
-////                }  
-
-////                break;
-
-////            case estados.rage:
-////                _animations.Play("Armature|running");
-////                transform.Translate(Vector3.forward* velocidad * Time.deltaTime);
-////limite += Time.deltaTime* Time.timeScale;
-////velocidad += 1;
-////                if (limite > 0.8)
-////                {
-////                    velocidad = 0;
-////                    limite = 0;
-////                    cool = 1;
-////                    _estado = estados.Durazno;
-////                }
-
-////                break;
-
-////            case estados.Durazno:
-////                _animations.Play("Armature|idle");
-////                limite += Time.deltaTime* Time.timeScale;
-////random2 = Random.Range(1, 10);
-////                if (random2 > 5)
-////                {
-////                    range = true;
-////                }
-////                else
-////                    range = false;
-////                if (limite > cool)
-////                {
-////                    limite = 0;
-////                    _estado = estados.normal;
-////                }
-////                random = Random.Range(0.5f, 1.5f);
-
-////                break;
-
-////            case estados.apuntando:
-////                transform.LookAt(Target.position);
-
-////                RaycastHit ICU;
-
-////                if (Physics.Raycast(transform.position, transform.forward, out ICU) && ICU.transform.tag == "Player")
-////                    _estado = estados.rage;
-////                Debug.Log("Bollocks");
-////                break;
-
-
-////            case estados.recarga:
-////                cool++;
-////                Debug.Log("Relaad!");
-////                //if (random2 > 5)
-////                //{
-////                //    range = true;
-////                //}
-////                //else
-////                    range = false;
-////                if (cool > 90)
-////                {
-////                    cartucho = 0;
-////                    cool = 0;
-////                    limite = 0;
-////                    _estado = estados.normal;
-////                    random = Random.Range(40, 90);
-////                }
-////                break;
-////        }
-////    }
-
-
-////    void fire()
-////{
-////    if (Time.time >= prox && cartucho < 20)
-////    {
-
-////        prox = Time.time + intervalo;
-////        _balaE.startLifetime = Rango / _balaE.startSpeed;
-////        //_balaE.transform.position = transform.position;
-////        _balaE.transform.LookAt(objective.transform);
-////        _balaE.Emit(1);
-////        cartucho++;
-////        Debug.Log(cartucho);
-////    }
-
-////    if (cartucho >= 20)
-////        _estado = estados.recarga;
-
-////}
-
-////void OnCollisionEnter(Collision collision)
-////{
-////    if (collision.gameObject.tag == "Player")
-////    {
-
-////        Stats healthComponent = collision.gameObject.GetComponent<Stats>();
-////        healthComponent.applyDamage(daño);
-
-////        stayput = true;
-////    }
-////}

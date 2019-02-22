@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\BossFlamethrower.cs" />
     <Compile Include="Assets\BossShield.cs" />
+    <Compile Include="Assets\detectEnemy.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />
@@ -239,6 +240,12 @@
     <None Include="Assets\PostProcessing\Resources\Shaders\ColorGrading.cginc" />
     <None Include="Assets\PostProcessing\Resources\Shaders\AmbientOcclusion.cginc" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\WaveformCompute.compute" />
+    <Reference Include="Unity.ProBuilder.AddOns.Editor">
+      <HintPath>C:/Users/ale_a/OneDrive/Documents/GitHub/Steamers/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.StandardEvents">
+      <HintPath>C:/Users/ale_a/OneDrive/Documents/GitHub/Steamers/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
       <HintPath>C:/Users/ale_a/OneDrive/Documents/GitHub/Steamers/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
@@ -247,12 +254,6 @@
     </Reference>
     <Reference Include="Unity.Postprocessing.Runtime">
       <HintPath>C:/Users/ale_a/OneDrive/Documents/GitHub/Steamers/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProBuilder.AddOns.Editor">
-      <HintPath>C:/Users/ale_a/OneDrive/Documents/GitHub/Steamers/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/Users/ale_a/OneDrive/Documents/GitHub/Steamers/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/UnityOld/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

@@ -7,10 +7,11 @@ public class Squad : MonoBehaviour
 {
     public List<GameObject> soldiers = new List<GameObject>();
     public int id;
+    DecisionMaker DM;
     // Use this for initialization
     void Start()
     {
-
+        DM = gameObject.GetComponentInParent<DecisionMaker>();
     }
 
     // Update is called once per frame
@@ -36,11 +37,11 @@ public class Squad : MonoBehaviour
         this.enabled = false;
     }
 
-    public bool setDestination(Vector3 Objective)
+    public bool Update()
     {
         for (int i = 0; i < soldiers.Count; i++)
         {
-            if (soldiers[i].GetComponent<Overlord>().setDestination(Objective) == false)
+            if (soldiers[i].GetComponent<Overlord>().setDestination(DM.getPos()) == false)
             {
                 return false;
             }

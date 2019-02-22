@@ -7,9 +7,9 @@ public class Overlord : MonoBehaviour
     protected Vector3 playerTf;
     public EnemyHealth _stats;
     protected State _estado;
-    protected Pattern _pattern;
+    public Pattern _pattern;
     protected Event _event;
-    protected int ordenPos;
+    protected int positionFormation;
     public int daño;
     protected Quaternion neededRotation;
     protected Rigidbody _rigidBody;
@@ -17,9 +17,11 @@ public class Overlord : MonoBehaviour
     protected ESMachine stateMachine;
     public int id;
     protected Vector3 neededPos;
-
+    protected GameObject pointMan;
     protected Collider _collider;
-
+    protected Animator _animations;
+    public bool onlyOnce = false;
+    protected Stats playerStats;
     protected virtual void Start()
     {
         _estado = State.NORMAL;
@@ -29,14 +31,20 @@ public class Overlord : MonoBehaviour
         stateMachine.init((int)State.countState, (int)Events.countEvents); //Castear de nombre a int
         navigator.isStopped = true;
 
-
+        playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<Stats>();
         _estado = (State)stateMachine.getState(); //pasar de int a numero con cast
 
         stateMachine.relation((int)State.NORMAL, (int)Events.findGratmos, (int)State.AGGRESIVE);
-        stateMachine.relation((int)State.AGGRESIVE, (int)Events.findGratmos, (int)State.AGGRESIVE);
+        stateMachine.relation((int)State.AGGRESIVE, (int)Events.loseGratmos, (int)State.NORMAL);
+
         stateMachine.relation((int)State.STUNNED, (int)Events.recover, (int)State.AGGRESIVE);
         stateMachine.relation((int)State.AGGRESIVE, (int)Events.blunted, (int)State.STUNNED);
-        // stateMachine.relation((int)State.ALARM, (int)Events.findGratmos, (int)State.AGGRESIVE);
+
+        stateMachine.relation((int)State.NORMAL, (int)Events.capIsHere, (int)State.FORMATION);
+        stateMachine.relation((int)State.AGGRESIVE, (int)Events.capIsHere, (int)State.FORMATION);
+        stateMachine.relation((int)State.STUNNED, (int)Events.capIsHere, (int)State.FORMATION);
+        stateMachine.relation((int)State.FORMATION, (int)Events.capIsOut, (int)State.AGGRESIVE);
+
 
         stateMachine.relation((int)State.NORMAL, (int)Events.dead, (int)State.DEAD);
         stateMachine.relation((int)State.AGGRESIVE, (int)Events.dead, (int)State.DEAD);
@@ -69,21 +77,19 @@ public class Overlord : MonoBehaviour
     public bool setDestination(Vector3 objective)
     {
 
+        if (playerDistance(objective) < 30)
+        {
+            _estado = stateMachine.setEvent((int)Events.findGratmos);
 
-        if (playerDistance(objective) > 30)
+            playerTf = objective;
+            return true;
+        }
+        else 
         {
             _estado = stateMachine.setEvent((int)Events.loseGratmos);
             _pattern = Pattern.MOVING;
             navigator.isStopped = true;
             return false;
-        }
-        else
-        {
-            _estado = stateMachine.setEvent((int)Events.findGratmos);
-            Debug.Log(stateMachine.getState());
-
-            playerTf = objective;
-            return true;
         }
 
     }
@@ -91,27 +97,23 @@ public class Overlord : MonoBehaviour
     public void reset()
     {
         stateMachine.setEvent((int)Events.loseGratmos);
+        navigator.isStopped = true;
+        _animations.SetBool("Running", false);
+        _pattern = Pattern.MOVING;
     }
 
-    public void fear()
+    public void setEvent(Events newEvent)
     {
-        // _estado = AttackPattern.FEAR;
+        stateMachine.setEvent((int)newEvent);
+        if ( _estado == State.FORMATION)
+        {
+            _animations.SetBool("Running", true);
+        }
     }
-
-    //protected virtual void moveIt(float chaos)
-    //{
-    //    neededRotation = Quaternion.LookRotation(playerTf - transform.position);
-    //    neededRotation *= Quaternion.Euler(0, Random.Range(90.0f, 270.0f), 0);
-    //    neededRotation.x = 0;
-    //    neededRotation.z = 0;
-    //    transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 5f);
-
-    //    neededPos.x = playerTf.x + Random.Range(10, 20.0f) * Random.Range(-1, 1);
-    //    neededPos.z = playerTf.z + Random.Range(10, 20.0f) * Random.Range(-1, 1);
-    //    navigator.SetDestination(neededPos);
-    //    navigator.transform.position = transform.position;
-    //    _rigidBody.velocity = navigator.desiredVelocity;
-    //}
+    public virtual bool setPointMan(GameObject PM, int order)
+    {
+        return true;
+    }
 
     public int status()
     {
@@ -121,6 +123,10 @@ public class Overlord : MonoBehaviour
     {
         if (_stats.isDead())
         {
+            if (_estado == State.FORMATION)
+            {
+                disarm();
+            }
             GetComponentInParent<Squad>().removeUnit(gameObject);
             this.navigator.isStopped = true;
             navigator.enabled = false;
@@ -128,36 +134,14 @@ public class Overlord : MonoBehaviour
 
         }
     }
-    protected Vector3 setPosition(int order, Vector3 _posicionLider, Transform capitanPos)
+
+    public State getState()
     {
-        ordenPos = order;
-        switch (ordenPos)
-        {
-            case 0:
-                _posicionLider = new Vector3(capitanPos.transform.position.x, capitanPos.transform.position.y, capitanPos.transform.position.z) - (capitanPos.forward * 3);
-                break;
-            case 1:
-                _posicionLider = new Vector3(capitanPos.transform.position.x, capitanPos.transform.position.y, capitanPos.transform.position.z) - (capitanPos.forward * 3) - (capitanPos.right * 3);
+        return _estado;
+    }
+    protected virtual void disarm()
+    {
 
-                break;
-            case 2:
-                _posicionLider = new Vector3(capitanPos.transform.position.x, capitanPos.transform.position.y, capitanPos.transform.position.z) - (capitanPos.forward * 3) - (capitanPos.right * -3);
-
-                break;
-            case 3:
-                _posicionLider = new Vector3(capitanPos.transform.position.x, capitanPos.transform.position.y, capitanPos.transform.position.z) - (capitanPos.forward * 6);
-
-                break;
-            case 4:
-                _posicionLider = new Vector3(capitanPos.transform.position.x, capitanPos.transform.position.y, capitanPos.transform.position.z) - (capitanPos.forward * 6) - (capitanPos.right * 3);
-
-                break;
-            case 5:
-                _posicionLider = new Vector3(capitanPos.transform.position.x, capitanPos.transform.position.y, capitanPos.transform.position.z) - (capitanPos.forward * 6) - (capitanPos.right * -3);
-                break;
-
-        }
-        return _posicionLider;
     }
 }
 

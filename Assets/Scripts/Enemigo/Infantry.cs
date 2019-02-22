@@ -9,7 +9,6 @@ public class Infantry : Overlord
     Transform capitanPos;
     GameObject Leader;
     Vector3 _posicionLider;
-    Animator _animations;
     
 
     override protected void Start()
@@ -98,6 +97,7 @@ public class Infantry : Overlord
                             _animations.SetBool("dodge", false);
                             _pattern = Pattern.AIMING;
                         }
+                        _collider.enabled = true;
                         break;
                     default:
                         break;
@@ -107,7 +107,21 @@ public class Infantry : Overlord
                 break;
             case State.STUNNED:
                 break;
+
             case State.FORMATION:
+                timeLeft += Time.deltaTime * Time.timeScale;
+                neededRotation = Quaternion.LookRotation(playerTf - transform.position);
+                neededRotation.x = 0;
+                neededRotation.z = 0;
+
+                transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 2.5f);
+
+                transform.position = setPosition(positionFormation, pointMan.transform);
+
+                if (timeLeft > 2)
+                {
+                    fire();
+                }
                 break;
 
             default:
@@ -118,20 +132,47 @@ public class Infantry : Overlord
 
     private void move()
     {
-        if (Random.Range(1, 10) > 3)
+        if (Random.Range(1, 10) < 3 &&  playerStats.level < 8)
         {
+            timeLeft = 0;
+            _animations.SetBool("Running", false);
+            _pattern = Pattern.SPEEDBOOST;
+        }
+         else
+         {
             _pattern = Pattern.MOVING;
             _animations.SetBool("Running", true);
             navigator.isStopped = false;
             navigator.destination = RandomNavSphere(transform.position, 5.0f, -1);
-        }
-         else
-         {
-            _animations.SetBool("Running", false);
-            _pattern = Pattern.SPEEDBOOST; // Dodge, logica que spamee adrede para ver, si no queres que lo haga, comenta solo esto!!
          }
 
 
+    }
+
+    public void fire()
+    {
+        _animations.SetTrigger("Attack");
+        transform.LookAt(playerTf);
+        _balaE.Emit(1);
+        timeLeft = 0;
+        _animations.ResetTrigger("Attack");
+    }
+    override public bool setPointMan(GameObject PM, int order)
+    {
+        if (order < 6 && _estado != State.FORMATION)
+        {
+            positionFormation = order;
+            pointMan = PM;
+            return true;
+
+        }
+        else
+            return false;
+
+    }
+    override protected void disarm()
+    {
+        pointMan.gameObject.GetComponent<protoScriptAC>().removeFromList(this.gameObject);
     }
     private bool reachedDestination()
     {
@@ -146,6 +187,43 @@ public class Infantry : Overlord
             }
         }
         return false;
+    }
+
+    public Vector3 setPosition(int order, Transform capitanPos)
+    {
+
+        Vector3 _posicionLider;
+        switch (order)
+        {
+            case 0:
+                _posicionLider = new Vector3(capitanPos.position.x, capitanPos.position.y, capitanPos.position.z) - (capitanPos.forward * 3);
+                break;
+            case 1:
+                _posicionLider = new Vector3(capitanPos.position.x, capitanPos.position.y, capitanPos.position.z) - (capitanPos.forward * 3) - (capitanPos.right * 3);
+
+                break;
+            case 2:
+                _posicionLider = new Vector3(capitanPos.position.x, capitanPos.position.y, capitanPos.position.z) - (capitanPos.forward * 3) - (capitanPos.right * -3);
+
+                break;
+            case 3:
+                _posicionLider = new Vector3(capitanPos.position.x, capitanPos.position.y, capitanPos.position.z) - (capitanPos.forward * 6);
+
+                break;
+            case 4:
+                _posicionLider = new Vector3(capitanPos.position.x, capitanPos.position.y, capitanPos.position.z) - (capitanPos.forward * 6) - (capitanPos.right * 3);
+
+                break;
+            case 5:
+                _posicionLider = new Vector3(capitanPos.position.x, capitanPos.position.y, capitanPos.position.z) - (capitanPos.forward * 6) - (capitanPos.right * -3);
+                break;
+
+            default:
+                _posicionLider = new Vector3(0, 0, 0);
+                break;
+
+        }
+        return _posicionLider;
     }
 }
 //using UnityEngine;
@@ -255,26 +333,26 @@ public class Infantry : Overlord
 //                switch (ordenPos)
 //                {
 //                    case 0:
-//                        _posicionLider = new Vector3(capitanPos.transform.position.x, capitanPos.transform.position.y, capitanPos.transform.position.z) - (capitanPos.forward * 3);
+//                        _posicionLider = new Vector3(capitanPos.position.x, capitanPos.position.y, capitanPos.position.z) - (capitanPos.forward * 3);
 //                        break;
 //                    case 1:
-//                        _posicionLider = new Vector3(capitanPos.transform.position.x, capitanPos.transform.position.y, capitanPos.transform.position.z) - (capitanPos.forward * 3) - (capitanPos.right * 3);
+//                        _posicionLider = new Vector3(capitanPos.position.x, capitanPos.position.y, capitanPos.position.z) - (capitanPos.forward * 3) - (capitanPos.right * 3);
 
 //                        break;
 //                    case 2:
-//                        _posicionLider = new Vector3(capitanPos.transform.position.x, capitanPos.transform.position.y, capitanPos.transform.position.z) - (capitanPos.forward * 3) - (capitanPos.right * -3);
+//                        _posicionLider = new Vector3(capitanPos.position.x, capitanPos.position.y, capitanPos.position.z) - (capitanPos.forward * 3) - (capitanPos.right * -3);
 
 //                        break;
 //                    case 3:
-//                        _posicionLider = new Vector3(capitanPos.transform.position.x, capitanPos.transform.position.y, capitanPos.transform.position.z) - (capitanPos.forward * 6);
+//                        _posicionLider = new Vector3(capitanPos.position.x, capitanPos.position.y, capitanPos.position.z) - (capitanPos.forward * 6);
 
 //                        break;
 //                    case 4:
-//                        _posicionLider = new Vector3(capitanPos.transform.position.x, capitanPos.transform.position.y, capitanPos.transform.position.z) - (capitanPos.forward * 6) - (capitanPos.right * 3);
+//                        _posicionLider = new Vector3(capitanPos.position.x, capitanPos.position.y, capitanPos.position.z) - (capitanPos.forward * 6) - (capitanPos.right * 3);
 
 //                        break;
 //                    case 5:
-//                        _posicionLider = new Vector3(capitanPos.transform.position.x, capitanPos.transform.position.y, capitanPos.transform.position.z) - (capitanPos.forward * 6) - (capitanPos.right * -3);
+//                        _posicionLider = new Vector3(capitanPos.position.x, capitanPos.position.y, capitanPos.position.z) - (capitanPos.forward * 6) - (capitanPos.right * -3);
 //                        break;
 
 //                }

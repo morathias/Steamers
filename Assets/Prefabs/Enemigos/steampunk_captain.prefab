@@ -405,9 +405,10 @@ GameObject:
   - component: {fileID: 114533768412606604}
   - component: {fileID: 195742275761718134}
   - component: {fileID: 114572216284476126}
+  - component: {fileID: 114823365462751666}
   m_Layer: 9
   m_Name: steampunk_captain
-  m_TagString: Untagged
+  m_TagString: Capitan
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -437,22 +438,6 @@ GameObject:
   - component: {fileID: 4625712869620000}
   m_Layer: 9
   m_Name: pulgar_3.R.001
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1539312882066488
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4864331988327848}
-  - component: {fileID: 195266923419172324}
-  m_Layer: 9
-  m_Name: NavMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1157,7 +1142,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4944227020939690}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &4241220208244850
 Transform:
@@ -1197,7 +1182,7 @@ Transform:
   m_LocalScale: {x: 0.49379027, y: 0.25677562, z: 0.69763935}
   m_Children: []
   m_Father: {fileID: 4944227020939690}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 186.271, z: 0}
 --- !u!4 &4285442274584338
 Transform:
@@ -1600,19 +1585,6 @@ Transform:
   m_Father: {fileID: 4241220208244850}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4864331988327848
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1539312882066488}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.067, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4944227020939690}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4892512412543664
 Transform:
   m_ObjectHideFlags: 1
@@ -1708,12 +1680,11 @@ Transform:
   - {fileID: 4503270125705770}
   - {fileID: 4506752965319598}
   - {fileID: 4933077873556192}
-  - {fileID: 4864331988327848}
   - {fileID: 4278637466466112}
   - {fileID: 4236723051305060}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -155.00601, z: 0}
 --- !u!4 &4963023986070818
 Transform:
   m_ObjectHideFlags: 1
@@ -1790,7 +1761,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1484771241023378}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -1854,10 +1825,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa858df147c71a64c93ad7cc3059ba6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stats: {fileID: 0}
   "da\xF1o": 15
   id: 1
+  onlyOnce: 0
   Rango: 1
+  shout: {fileID: 198264792073363000}
   _shieldCollider: {fileID: 0}
+  shootTime: 0
 --- !u!114 &114452903116262966
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1895,6 +1870,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a37202b63637b14ea0f6e52e4b9c805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114823365462751666
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1484771241023378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 392578cdb1a0f4540aee77c7838d62cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!136 &136480507141956948
@@ -1993,27 +1979,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00008381205, y: 0.002850689, z: -0.013759038}
     m_Extent: {x: 0.009345861, y: 0.003647115, z: 0.014582998}
   m_DirtyAABB: 0
---- !u!195 &195266923419172324
-NavMeshAgent:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1539312882066488}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!195 &195742275761718134
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -2034,7 +1999,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 2
+  m_ObstacleAvoidanceType: 0
 --- !u!198 &198092436581251004
 ParticleSystem:
   m_ObjectHideFlags: 1

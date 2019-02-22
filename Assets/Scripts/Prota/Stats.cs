@@ -9,7 +9,7 @@ public class Stats : MonoBehaviour
     public float _porcentajeActualBarraStamina = 0.365f;
     public float exp;
     public int healthPool = 100;
-    private int level;
+    public int level;
     public float damage;
     public float damageFinal;
     public float damageBase = 10;
@@ -26,7 +26,7 @@ public class Stats : MonoBehaviour
 
     public float timerRage = 0f;
 
-    public bool applyDamage(int damage)
+    public bool applyDamage(float damage)
     {
         _vidaActual -= damage;
         if (_vidaActual <= 0)
