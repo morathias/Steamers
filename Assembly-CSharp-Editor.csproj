@@ -57,9 +57,6 @@
      <Compile Include="Assets\Editor\VertexColorToAlpha.cs" />
      <None Include="Assets\FbxExporters\Editor\FbxSdk\LICENSE.txt" />
      <None Include="Assets\FbxExporters\Editor\FbxSdk\README.txt" />
- <Reference Include="Unity.ProBuilder.AddOns.Editor">
- <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
- </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
@@ -68,12 +65,6 @@
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
  <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Postprocessing.Editor">
- <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Postprocessing.Runtime">
- <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
  <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
@@ -332,27 +323,6 @@
  </Reference>
  <Reference Include="Unity.Analytics.Tracker">
  <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
- </Reference>
- <Reference Include="AssetIdRemapUtility">
- <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/PackageCache/com.unity.probuilder@3.0.9/ProBuilder/AssetIdRemapUtility/Editor/AssetIdRemapUtility.dll</HintPath>
- </Reference>
- <Reference Include="ProBuilderCore">
- <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/PackageCache/com.unity.probuilder@3.0.9/ProBuilder/Classes/ProBuilderCore.dll</HintPath>
- </Reference>
- <Reference Include="ProBuilderMeshOps">
- <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/PackageCache/com.unity.probuilder@3.0.9/ProBuilder/Classes/ProBuilderMeshOps.dll</HintPath>
- </Reference>
- <Reference Include="KdTreeLib">
- <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/PackageCache/com.unity.probuilder@3.0.9/ProBuilder/Classes/ClassesLib/KdTreeLib.dll</HintPath>
- </Reference>
- <Reference Include="pb_Stl">
- <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/PackageCache/com.unity.probuilder@3.0.9/ProBuilder/Classes/ClassesLib/pb_Stl.dll</HintPath>
- </Reference>
- <Reference Include="Poly2Tri">
- <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/PackageCache/com.unity.probuilder@3.0.9/ProBuilder/Classes/ClassesLib/Poly2Tri.dll</HintPath>
- </Reference>
- <Reference Include="ProBuilderEditor">
- <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/PackageCache/com.unity.probuilder@3.0.9/ProBuilder/Editor/ProBuilderEditor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Purchasing">
  <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll</HintPath>

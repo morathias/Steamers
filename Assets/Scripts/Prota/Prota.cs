@@ -330,8 +330,9 @@ public class Prota : MonoBehaviour
             _blood.transform.LookAt(other.transform);
             _blood.transform.Rotate(transform.up, 180f);
             _blood.Play();
-        if (other.tag == "CQC")
-        {
+        }
+        
+        if (other.tag == "CQC"){
             Debug.Log("Hola");
             _blood.Play();
             other.gameObject.GetComponent<detectEnemy>().Bash();

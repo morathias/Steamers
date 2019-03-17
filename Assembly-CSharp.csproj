@@ -78,6 +78,10 @@
      <Compile Include="Assets\Scripts\Enemigo\Spotter.cs" />
      <Compile Include="Assets\Scripts\Enemigo\Trooper.cs" />
      <Compile Include="Assets\Scripts\Enemigo\WalkingMine.cs" />
+     <Compile Include="Assets\Scripts\EnemigosV2\Capitan.cs" />
+     <Compile Include="Assets\Scripts\EnemigosV2\Enemigo.cs" />
+     <Compile Include="Assets\Scripts\EnemigosV2\Escudero.cs" />
+     <Compile Include="Assets\Scripts\EnemigosV2\Infanteria.cs" />
      <Compile Include="Assets\Scripts\Globales\AnimacionArbol.cs" />
      <Compile Include="Assets\Scripts\Globales\Canvus.cs" />
      <Compile Include="Assets\Scripts\Globales\CualquierTecla.cs" />
@@ -146,9 +150,6 @@
      <None Include="Assets\FbxExporters\README.txt" />
      <None Include="Assets\Shaders\StandardDoubleSided.shader" />
      <None Include="Assets\FbxExporters\LICENSE.txt" />
- <Reference Include="Unity.ProBuilder.AddOns.Editor">
- <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
- </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
@@ -157,12 +158,6 @@
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
  <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Postprocessing.Editor">
- <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Postprocessing.Runtime">
- <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
  <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
@@ -382,21 +377,6 @@
  </Reference>
  <Reference Include="Unity.Analytics.Tracker">
  <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
- </Reference>
- <Reference Include="ProBuilderCore">
- <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/PackageCache/com.unity.probuilder@3.0.9/ProBuilder/Classes/ProBuilderCore.dll</HintPath>
- </Reference>
- <Reference Include="ProBuilderMeshOps">
- <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/PackageCache/com.unity.probuilder@3.0.9/ProBuilder/Classes/ProBuilderMeshOps.dll</HintPath>
- </Reference>
- <Reference Include="KdTreeLib">
- <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/PackageCache/com.unity.probuilder@3.0.9/ProBuilder/Classes/ClassesLib/KdTreeLib.dll</HintPath>
- </Reference>
- <Reference Include="pb_Stl">
- <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/PackageCache/com.unity.probuilder@3.0.9/ProBuilder/Classes/ClassesLib/pb_Stl.dll</HintPath>
- </Reference>
- <Reference Include="Poly2Tri">
- <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/PackageCache/com.unity.probuilder@3.0.9/ProBuilder/Classes/ClassesLib/Poly2Tri.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>
