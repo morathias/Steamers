@@ -29,10 +29,9 @@ public class ESMachine : MonoBehaviour
     public State setEvent(int checkEvent)
     {
         int eventTS = stateGrid[currentState, checkEvent]; //CargarValorDeEvent
-        Debug.Log("event" + eventTS);
+
         if (eventTS != -1) //Si el valor de evento no es vacio, cargar como actual.
         {
-            Debug.Log("Aca estoy en State");
             currentState = eventTS;
 
         }

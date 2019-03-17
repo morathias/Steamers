@@ -55,6 +55,7 @@
   <ItemGroup>
      <Compile Include="Assets\BossFlamethrower.cs" />
      <Compile Include="Assets\BossShield.cs" />
+     <Compile Include="Assets\detectEnemy.cs" />
      <Compile Include="Assets\Scripts\Armas\Arma.cs" />
      <Compile Include="Assets\Scripts\Armas\DañoBalas.cs" />
      <Compile Include="Assets\Scripts\Armas\DuoRevolver.cs" />

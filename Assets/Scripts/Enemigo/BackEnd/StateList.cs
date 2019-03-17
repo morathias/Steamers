@@ -31,6 +31,7 @@ public enum Events
     dead,
     blunted,
     recover,
-    //capIsHere,
+    capIsHere,
+    capIsOut,
     countEvents
 }

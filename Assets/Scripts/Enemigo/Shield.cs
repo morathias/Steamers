@@ -5,10 +5,6 @@ public class Shield : Overlord
 {
     public int Rango = 10;
     float timeLeft = 0;
-    Transform capitanPos;
-    GameObject Leader;
-    Vector3 _posicionLider;
-    Animator _animations;
     float speed;
 
     public Collider _shieldCollider;
@@ -22,6 +18,18 @@ public class Shield : Overlord
         navigator.speed = 0.8f;
         _pattern = Pattern.MOVING;
     }
+    override protected void disarm()
+    {
+        pointMan.gameObject.GetComponent<protoScriptAC>().removeFromList(this.gameObject);
+    }
+
+    public void Attack()
+    {
+        _animations.SetTrigger("Attack");
+        _pattern = Pattern.MOVING;
+        setEvent(Events.blunted);
+    }
+
     override protected void Update()
     {
         base.Update();
@@ -45,18 +53,18 @@ public class Shield : Overlord
                     case Pattern.MOVING:
                         _rigidBody.velocity = navigator.desiredVelocity;
                         move();
-                        if (timeLeft > 3 && Vector3.Distance(transform.position, playerTf) < 70)
+                        if (timeLeft > 5 && Vector3.Distance(transform.position, playerTf) < 70 && playerStats.level > 8)
                         {
                             navigator.isStopped = true;
                             timeLeft = 0;
                             _animations.SetBool("Range", false); // Detieene animacion de corrida
                             _pattern = Pattern.AIMING;
                         }
-                      //  else if (reachedDestination())
+                        //  else if (reachedDestination())
                         break;
 
                     case Pattern.AIMING:
-                       
+
                         transform.LookAt(playerTf);
                         RaycastHit ICU;
 
@@ -69,12 +77,12 @@ public class Shield : Overlord
                         break;
 
                     case Pattern.SPEEDBOOST:
-                        
+
                         transform.Translate(Vector3.forward * speed * Time.deltaTime);
                         speed += 0.5f;
                         if (timeLeft > 1)
                         {
-                            _animations.speed /= 1.5f;
+                            _animations.speed -= 0.5f;
                             speed = 0;
                             timeLeft = 0;
                             _animations.SetBool("Range", false);
@@ -87,17 +95,27 @@ public class Shield : Overlord
             case State.DEAD:
                 break;
             case State.STUNNED:
-                
+
                 timeLeft += Time.deltaTime * Time.timeScale;
-                if (timeLeft > 2f)
+                if (timeLeft > 1f)
                 {
+                    _animations.ResetTrigger("Attack");
                     _animations.SetBool("Range", true);
                     timeLeft = 0;
                     stateMachine.setEvent((int)Events.recover);
-                  
+
                 }
                 break;
             case State.FORMATION:
+                transform.position = setPosition(positionFormation, pointMan.transform);
+
+                neededRotation = Quaternion.LookRotation(playerTf - transform.position);
+                neededRotation.x = 0;
+                neededRotation.z = 0;
+
+                transform.rotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * 3f);
+
+                transform.position = setPosition(positionFormation, pointMan.transform);
                 break;
 
             default:
@@ -108,6 +126,7 @@ public class Shield : Overlord
 
     private void move()
     {
+        _animations.SetBool("Range", true);
         navigator.isStopped = false;
         navigator.destination = playerTf;
 
@@ -126,15 +145,30 @@ public class Shield : Overlord
         }
         return false;
     }
-    public void setAttack()
+
+    public Vector3 setPosition(int pos, Transform pointMan)
     {
-        if (_pattern == Pattern.MOVING)
+        if (positionFormation > 0)
+            return new Vector3(pointMan.position.x, pointMan.position.y, pointMan.position.z) - (pointMan.right * 3);
+        else
+            return new Vector3(pointMan.position.x, pointMan.position.y, pointMan.position.z) - (pointMan.right * -3);
+
+    }
+    override public bool setPointMan(GameObject PM, int order)
+    {
+        if (order < 2 && _estado != State.FORMATION)
         {
-            _animations.SetBool("Ready", false); //detiene anim movimiento
-            _pattern = Pattern.ATTACK;
+            positionFormation = order;
+            pointMan = PM;
+            return true;
+
         }
+        else
+            return false;
+
     }
 }
+
 //    //public UnityEngine.AI.NavMeshAgent navigator { get; private set; }
 //    private Rigidbody _rigidBody;
 //    public int Rango = 1;
@@ -270,10 +304,10 @@ public class Shield : Overlord
 //                switch (ordenPos)
 //                {
 //                    case 0:
-//                        _posicionLider = new Vector3(capitanPos.transform.position.x, capitanPos.transform.position.y, capitanPos.transform.position.z) - (capitanPos.right * 3);
+//                        _posicionLider = new Vector3(PointMan.position.x, PointMan.position.y, PointMan.position.z) - (capitanPos.right * 3);
 //                        break;
 //                    case 1:
-//                        _posicionLider = new Vector3(capitanPos.transform.position.x, capitanPos.transform.position.y, capitanPos.transform.position.z) - (capitanPos.right * -3);
+//                        _posicionLider = new Vector3(PointMan.position.x, PointMan.position.y, PointMan.position.z) - (capitanPos.right * -3);
 
 //                        break;
 
