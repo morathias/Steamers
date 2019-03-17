@@ -11,6 +11,23 @@ public class EnemyHealth : MonoBehaviour
     public bool dead = false;
     public int totalhealth;
     private Stats prota;
+    public ParticleSystem blood;
+
+    protected virtual void OnParticleCollision(GameObject other)
+    {
+        if (other.transform.tag == "BalaPlayer")
+        {
+
+            applyDamage(other.GetComponent<DañoBalas>().getDaño());
+
+        }
+
+        if (other.transform.tag == "FuegoPlayer")
+        {
+            applyDamage(other.GetComponent<flameDamage>().getDaño());
+        }
+        blood.Emit(1);
+    }
 
     void Start()
     {
@@ -48,6 +65,7 @@ public class EnemyHealth : MonoBehaviour
         health += damage;
 
     }
+
     public bool isDead()
     {
         return dead;
@@ -58,4 +76,3 @@ public class EnemyHealth : MonoBehaviour
         return (health / totalhealth) * 100;
     }
 }
-

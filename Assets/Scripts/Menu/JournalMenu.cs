@@ -172,8 +172,11 @@ public class JournalMenu : MonoBehaviour {
             if (i == 0)
                 _uiElements[_uiElements.ElementAt(i).Key].transform.localPosition = new Vector2(9f, -36 - (18 * i));
             else{
-                float yPos = -36 - (18 * (_uiElements[_uiElements.ElementAt(i - 1).Key].transform.childCount));
-                _uiElements[_uiElements.ElementAt(i).Key].transform.localPosition = new Vector2(9f, yPos);
+                Transform prevUiElement = _uiElements[_uiElements.ElementAt(i - 1).Key].transform;
+                Transform uiElement =  _uiElements[_uiElements.ElementAt(i).Key].transform;
+                uiElement.transform.localPosition = prevUiElement.localPosition;
+                float yPos = -36 - (10 * (prevUiElement.childCount));
+                uiElement.localPosition = new Vector2(9f, uiElement.localPosition.y + yPos);
             }
         }
     }

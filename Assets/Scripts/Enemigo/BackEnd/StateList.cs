@@ -5,10 +5,11 @@ public enum Pattern //Edit
     RELOAD,
     AIMING,
     ATTACK,
-    FEAR,
+    SPEEDBOOST,
     PROTECT,
-    Guard,
-    Patrol,
+    GUARD,
+    PATROL,
+    MOVING,
 }
 
 public enum State
@@ -25,10 +26,12 @@ public enum State
 public enum Events
 {
     findGratmos,
-    suspicious,
-    loseEnemy,
+    //suspicious,
+    loseGratmos,
+    dead,
     blunted,
     recover,
     capIsHere,
+    capIsOut,
     countEvents
 }

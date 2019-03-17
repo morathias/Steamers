@@ -70,7 +70,7 @@ public class CazarEnemigos : Objetivo {
     //-------------------------------------------------------------------------
     public void seMatoEnemigo(Overlord enemigo){
         if (activo){
-            if (enemigo == null){
+            if (enemigo._stats.health <= 0){
                 _cantidadCazada++;
                 tiposEnemigos.Remove(enemigo);
             }

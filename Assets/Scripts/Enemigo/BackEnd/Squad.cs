@@ -3,50 +3,49 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Squad : MonoBehaviour {
+public class Squad : MonoBehaviour
+{
     public List<GameObject> soldiers = new List<GameObject>();
-	// Use this for initialization
-	void Start () {
-        if (soldiers.Count == 0)
-        {
-            foreach (GameObject unit in soldiers)
-            {
-                unit.GetComponent<Overlord>().id = soldiers.IndexOf(unit);
-            }
-        }
+    public int id;
+    DecisionMaker DM;
+    // Use this for initialization
+    void Start()
+    {
+        DM = gameObject.GetComponentInParent<DecisionMaker>();
+    }
 
-	}
-	
-	// Update is called once per frame
+    // Update is called once per frame
     public void registerUnit(GameObject newUnit)
     {
         soldiers.Add(newUnit);
         newUnit.GetComponent<Overlord>().id = soldiers.IndexOf(newUnit);
     }
 
-    public void removeUnit(int id)
+    public void removeUnit(GameObject id)
     {
-        soldiers.Remove(soldiers[id]);
+        soldiers.Remove(id);
         if (soldiers.Count == 0)
         {
-            soldiers = null;
+            emptySquad();
         }
     }
     public void emptySquad()
     {
         soldiers.Clear();
         soldiers = null;
+        GetComponentInParent<DecisionMaker>().removeSquad(gameObject.GetComponent<Squad>());
+        this.enabled = false;
     }
 
-    public void setDestination(Vector3 Objective)
+    public bool Update()
     {
-        if (soldiers[0].GetComponent<Overlord>().setDestination(Objective))
+        for (int i = 0; i < soldiers.Count; i++)
         {
-            foreach (GameObject unit in soldiers.Skip(1))
+            if (soldiers[i].GetComponent<Overlord>().setDestination(DM.getPos()) == false)
             {
-                unit.GetComponent<Overlord>().setDestination(Objective);
+                return false;
             }
         }
-
+        return false;
     }
 }
