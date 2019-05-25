@@ -92,32 +92,43 @@ public class Escudero : Enemigo {
 
 	private Transform findAllyToCover(){
 		Collider[] hitColliders = Physics.OverlapSphere(transform.position, shearchRadius, layers);
-		if (hitColliders.Length == 2) {
+
+		List<Infanteria> alliesToCover = new List<Infanteria>();
+		for (int i = 0; i < hitColliders.Length; i++){
+			if(hitColliders[i].transform.tag == "EnemyS"){
+				alliesToCover.Add(hitColliders [i].transform.GetComponent<Infanteria> ());
+			}
+		}
+
+		if (alliesToCover.Count == 0) {
 			_alliesNearby = false;
 			_chargeTimer = 2f;
 			return null;
 		}
 
 		float minDistance = float.MaxValue;
-		int index = 0;
-		Infanteria ally;
-		for (int i = 0; i < hitColliders.Length; i++) {
-			ally = hitColliders [i].transform.GetComponent<Infanteria> ();
-
-			if (ally == null || ally.isProtected) {
+		int index = -1;
+		for (int i = 0; i < alliesToCover.Count; i++) {
+			if (alliesToCover[i].isProtected) {
 				continue;
 			}
 
-			float distance = (hitColliders [i].transform.position - transform.position).magnitude;
+			float distance = (alliesToCover[i].transform.position - transform.position).magnitude;
 			if (distance < minDistance) {
 				minDistance = distance;
 				index = i;
 			}
 		}
-		ally = hitColliders [index].transform.GetComponent<Infanteria> ();
-		ally.isProtected = true;
 
-		return hitColliders [index].transform;
+		if(index == -1){
+			_alliesNearby = false;
+			_chargeTimer = 2f;
+			return null;
+		}
+
+		alliesToCover[index].isProtected = true;
+
+		return alliesToCover [index].transform;
 	}
 
 	void OnDrawGizmosSelected()

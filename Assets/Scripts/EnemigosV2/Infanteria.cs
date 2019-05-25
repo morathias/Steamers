@@ -38,7 +38,7 @@ public class Infanteria : Enemigo {
 
 	protected override void chasing ()
 	{
-		_animations.Play ("Armature|running");
+		_animations.SetBool("Running", true);
 
 		lookAtPosition (_playerTransform.position);
 
@@ -51,21 +51,19 @@ public class Infanteria : Enemigo {
 
 		float distance = (_playerTransform.position - this.transform.position).magnitude;
 		if (distance > dodgingDistance) {
-			//_agent.destination = _playerTransform.position;
 			_agent.velocity = transform.forward * chaseSpeed;
 		}
 		else if (distance < dodgingDistance / 2f) {
-			//_agent.destination = transform.position + ((transform.forward + transform.right * _randomDirection).normalized * -10f);
 			_agent.velocity = (transform.forward + transform.right * _randomDirection).normalized * -chaseSpeed;
 		}
 		else {
-			//_agent.destination = transform.position + (transform.right * _randomDirection * 10);
 			_agent.velocity = (transform.right * _randomDirection).normalized * chaseSpeed;
 		}
 			
 		_targetTime -= Time.deltaTime;
 		if (_targetTime <= 0) {
 			_targetTime = Random.Range (3f, 6f);
+			_animations.SetBool("Running", false);
 
 			_state = States.Targeting;
 		}
@@ -75,23 +73,27 @@ public class Infanteria : Enemigo {
 
 	protected override void Shooting ()
 	{
-		_animations.Play ("Armature|shoot");
+		_animations.SetTrigger("Attack");
 
 		_bullet.transform.LookAt (_playerTransform.position);
-		_bullet.Emit (1);
+	}
 
+	public void finishedShooting(){
+		_animations.ResetTrigger("Attack");
 		_state = States.Chasing;
 	}
 
 	protected override void targeting ()
 	{
-		_animations.Play ("Armature|apuntando");
+		_animations.SetBool("aim", true);
 
 		lookAtPosition (_playerTransform.position);
 
 		_shootTime -= Time.deltaTime;
 		if (_shootTime <= 0f) {
 			_shootTime = 1.2f;
+			_animations.SetBool("aim", false);
+			_bullet.Emit (1);
 
 			_state = States.Shooting;
 		}

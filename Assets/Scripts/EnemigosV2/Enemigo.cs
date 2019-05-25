@@ -44,6 +44,12 @@ public class Enemigo : MonoBehaviour {
 
 	protected Animator _animations;
 
+	public GameObject ragdoll;
+	private GameObject _model;
+	public GameObject weapon;
+	public Transform weaponPosition;
+	private Vector3 _damageDirection = Vector3.zero;
+
 	// Use this for initialization
 	protected virtual void Start () {
 		_playerTransform = GameObject.FindGameObjectWithTag ("Player").transform;
@@ -95,8 +101,12 @@ public class Enemigo : MonoBehaviour {
 			}
 
 			Instantiate(experienceToDrop, transform.position, Quaternion.identity);
-
-			Destroy (gameObject);
+			
+			instatiateRagdoll();
+			if(weapon != null){
+				Instantiate(weapon, weaponPosition.position, weaponPosition.rotation);
+			}
+			Destroy(gameObject);
 			break;
 
 		case States.UnderOrders:
@@ -110,6 +120,13 @@ public class Enemigo : MonoBehaviour {
 
 	bool moveToObjective(){
 		return true;
+	}
+
+	void instatiateRagdoll(){
+		if(ragdoll == null){
+			return;	
+		}
+		GameObject ragObject = Instantiate(ragdoll, transform.position, transform.rotation);
 	}
 
 	protected virtual void chasing(){
@@ -130,9 +147,6 @@ public class Enemigo : MonoBehaviour {
 	}
 
 	protected virtual void OnParticleCollision(GameObject other){
-
-
-
 		if (other.transform.tag == "BalaPlayer"){
 			_currentHealth -= other.GetComponent<DañoBalas>().getDaño();
 
@@ -140,6 +154,8 @@ public class Enemigo : MonoBehaviour {
 				_state = States.Chasing;
 			
 			_blood.Emit(1);
+
+			_damageDirection = transform.position - other.transform.position;
 		}
 
 		if (other.transform.tag == "FuegoPlayer"){
@@ -149,8 +165,6 @@ public class Enemigo : MonoBehaviour {
 				_state = States.Chasing;
 			_blood.Emit(1);
 		}
-
-
 
 		if (_currentHealth <= 0) {
 			_state = States.Dying;

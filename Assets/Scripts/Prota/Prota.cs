@@ -46,6 +46,8 @@ public class Prota : MonoBehaviour
 
     private ParticleSystem _blood;
 
+    public Material grass;
+
     enum estados
     {      //para la maquina de estados
         moviendose,
@@ -56,7 +58,7 @@ public class Prota : MonoBehaviour
     }
     estados _estado = estados.moviendose;
 
-    float _timerEsquivar = 0.2f;
+    float _timerEsquivar = 0.25f;
 
     //-------------------------------------------------------------------------------------------
     void Start()
@@ -169,7 +171,7 @@ public class Prota : MonoBehaviour
                 if (_timerEsquivar <= 0)
                 {
                     _estado = estados.moviendose;
-                    _timerEsquivar = 0.4f;
+                    _timerEsquivar = 0.25f;
                 }
                 break;
 
@@ -193,6 +195,8 @@ public class Prota : MonoBehaviour
                 this.enabled = false;
                 break;
         }
+
+        grass.SetVector("_PlayerPos",this.transform.position);
     }
     //-------------------------------------------------------------------------------------------
     void updateBars() {

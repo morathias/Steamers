@@ -145,11 +145,19 @@
      <Compile Include="Assets\Scripts\Skills\Skill.cs" />
      <Compile Include="Assets\Scripts\Skills\SkillTreeManager.cs" />
      <Compile Include="Assets\shiedAux.cs" />
+     <None Include="Assets\Shaders\Vegetation.shader" />
      <None Include="Assets\Shaders\Trees.shader" />
      <None Include="Assets\FbxExporters\RELEASE_NOTES.txt" />
+     <None Include="Assets\Shaders\grass_pbr.shader" />
      <None Include="Assets\FbxExporters\README.txt" />
      <None Include="Assets\Shaders\StandardDoubleSided.shader" />
      <None Include="Assets\FbxExporters\LICENSE.txt" />
+ <Reference Include="Cinemachine">
+ <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
+ <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/ScriptAssemblies/Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
@@ -158,6 +166,18 @@
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
  <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Postprocessing.Editor">
+ <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Postprocessing.Runtime">
+ <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+ </Reference>
+ <Reference Include="com.unity.cinemachine.editor">
+ <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.ProBuilder.AddOns.Editor">
+ <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
  <HintPath>D:/Documentos/Proyectos de unity/Steamers/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>

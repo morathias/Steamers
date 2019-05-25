@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Escena/Final.unity
     guid: 7c232042dbd6a5040b14c4a835df5a57
+  - enabled: 1
+    path: Assets/Escena/EndMenu.unity
+    guid: 9ed3e22f9afde724ca3d11e34f02242a
   m_configObjects: {}
