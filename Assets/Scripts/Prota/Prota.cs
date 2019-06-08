@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 //===============================================================================================
 public class Prota : MonoBehaviour
 {
@@ -109,6 +110,19 @@ public class Prota : MonoBehaviour
                 moverProta();
                 rotarProta();
                 _animations.ResetTrigger("Dodging");
+
+                Vector2 dir = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+                Vector2 view = new Vector2(_posicionDelMouse.x, _posicionDelMouse.y);
+                view.Normalize();
+                float dotViewDir = Vector2.Dot(dir, view);
+                float dotViewUp = Vector2.Dot(view, Vector2.up);
+                float dotViewRight = Vector2.Dot(view, Vector2.right);
+
+                dotViewUp *= dir.x;
+                dotViewRight *= dir.y;
+                _animations.SetFloat("MoveDirY", dotViewDir);
+                _animations.SetFloat("MoveDirX", dotViewUp - dotViewRight);
+
                 if (_direccion.magnitude >= 1)
                 {
                     _animations.SetBool("Running", true);
@@ -117,7 +131,6 @@ public class Prota : MonoBehaviour
                 {
                     _animations.SetBool("Running", false);
                 }
-
 
                 if (Stamina <= staminaBase && special == false)
                     recuperarStamina();
@@ -197,6 +210,11 @@ public class Prota : MonoBehaviour
         }
 
         grass.SetVector("_PlayerPos",this.transform.position);
+    }
+
+    private void LateUpdate()
+    {
+        _animations.gameObject.transform.localPosition = new Vector3(0f, _animations.gameObject.transform.localPosition.y, 0f);
     }
     //-------------------------------------------------------------------------------------------
     void updateBars() {

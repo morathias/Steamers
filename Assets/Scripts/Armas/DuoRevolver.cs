@@ -44,14 +44,14 @@ public class DuoRevolver : Arma {
                 _smoke.Play();
                 _sparks.Play();
                 if (_cambiarArma == 0){
-                    protaAnimations.Play("shoot_R");
+                    protaAnimations.Play("shoot_l",1);
                     _cambiarArma = 1;
                     _bala.transform.localPosition = _revolverDerecho;
                     _smoke.transform.localPosition = _revolverDerecho;
                     _sparks.transform.localPosition = _revolverDerecho;
                 }
                 else {
-                    protaAnimations.Play("shoot_L");
+                    protaAnimations.Play("shoot_r",1);
                     _cambiarArma = 0;
                     _bala.transform.localPosition = _revolverIzquierdo;
                     _smoke.transform.localPosition = _revolverIzquierdo;

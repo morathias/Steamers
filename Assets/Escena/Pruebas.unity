@@ -103,8 +103,8 @@ NavMeshSettings:
     agentHeight: 2
     agentSlope: 45
     agentClimb: 0.4
-    ledgeDropHeight: 0
-    maxJumpAcrossDistance: 0
+    ledgeDropHeight: 20
+    maxJumpAcrossDistance: 20
     minRegionArea: 2
     manualCellSize: 0
     cellSize: 0.16666667
@@ -33032,19 +33032,24 @@ PrefabInstance:
       objectReference: {fileID: 1294316051}
     - target: {fileID: 114000012328686802, guid: 251b675202aa2344eb3f21b140e61bae,
         type: 3}
-      propertyPath: barraRecargaVacia
-      value: 
-      objectReference: {fileID: 2127851308}
-    - target: {fileID: 114000012328686802, guid: 251b675202aa2344eb3f21b140e61bae,
-        type: 3}
       propertyPath: barraRecarga
       value: 
       objectReference: {fileID: 896443636}
     - target: {fileID: 114000012328686802, guid: 251b675202aa2344eb3f21b140e61bae,
         type: 3}
+      propertyPath: barraRecargaVacia
+      value: 
+      objectReference: {fileID: 2127851308}
+    - target: {fileID: 114000012328686802, guid: 251b675202aa2344eb3f21b140e61bae,
+        type: 3}
       propertyPath: barraRecargaPunto
       value: 
       objectReference: {fileID: 1388275839}
+    - target: {fileID: 114000012328686802, guid: 251b675202aa2344eb3f21b140e61bae,
+        type: 3}
+      propertyPath: protaAnimations
+      value: 
+      objectReference: {fileID: 1639216495}
     - target: {fileID: 114000014253440028, guid: 251b675202aa2344eb3f21b140e61bae,
         type: 3}
       propertyPath: stats
@@ -33052,14 +33057,14 @@ PrefabInstance:
       objectReference: {fileID: 239911507}
     - target: {fileID: 114000014253440028, guid: 251b675202aa2344eb3f21b140e61bae,
         type: 3}
-      propertyPath: rageText
-      value: 
-      objectReference: {fileID: 211677808}
-    - target: {fileID: 114000014253440028, guid: 251b675202aa2344eb3f21b140e61bae,
-        type: 3}
       propertyPath: levelsT
       value: 
       objectReference: {fileID: 1963138711}
+    - target: {fileID: 114000014253440028, guid: 251b675202aa2344eb3f21b140e61bae,
+        type: 3}
+      propertyPath: rageText
+      value: 
+      objectReference: {fileID: 211677808}
     - target: {fileID: 114000013485816930, guid: 251b675202aa2344eb3f21b140e61bae,
         type: 3}
       propertyPath: protaStatsUi
@@ -33075,41 +33080,51 @@ PrefabInstance:
       propertyPath: muertoReset
       value: 
       objectReference: {fileID: 1998134791}
-    - target: {fileID: 114000013485816930, guid: 251b675202aa2344eb3f21b140e61bae,
-        type: 3}
-      propertyPath: grass
-      value: 
-      objectReference: {fileID: 2100000, guid: b7c1679cc9f57fa40bf3af3dca7c7763, type: 2}
-    - target: {fileID: 114000013485816930, guid: 251b675202aa2344eb3f21b140e61bae,
-        type: 3}
-      propertyPath: consumoDash
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 137542318184908396, guid: 251b675202aa2344eb3f21b140e61bae,
         type: 3}
       propertyPath: m_AABB.m_Center.y
-      value: -0.54854107
+      value: -0.548542
       objectReference: {fileID: 0}
     - target: {fileID: 137542318184908396, guid: 251b675202aa2344eb3f21b140e61bae,
         type: 3}
       propertyPath: m_AABB.m_Center.z
-      value: -0.0539093
+      value: -0.05393982
+      objectReference: {fileID: 0}
+    - target: {fileID: 137542318184908396, guid: 251b675202aa2344eb3f21b140e61bae,
+        type: 3}
+      propertyPath: m_AABB.m_Extent.x
+      value: 0.69236636
       objectReference: {fileID: 0}
     - target: {fileID: 137542318184908396, guid: 251b675202aa2344eb3f21b140e61bae,
         type: 3}
       propertyPath: m_AABB.m_Extent.y
-      value: 0.5800917
+      value: 0.6786243
       objectReference: {fileID: 0}
     - target: {fileID: 137542318184908396, guid: 251b675202aa2344eb3f21b140e61bae,
         type: 3}
       propertyPath: m_AABB.m_Extent.z
-      value: 0.268219
+      value: 0.60179687
       objectReference: {fileID: 0}
-    - target: {fileID: 108000011922160466, guid: 251b675202aa2344eb3f21b140e61bae,
+    - target: {fileID: 137542318184908396, guid: 251b675202aa2344eb3f21b140e61bae,
         type: 3}
-      propertyPath: m_Enabled
+      propertyPath: m_AABB.m_Center.x
+      value: -0.0007019043
+      objectReference: {fileID: 0}
+    - target: {fileID: 2114756851774829115, guid: 251b675202aa2344eb3f21b140e61bae,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 183972214083856586, guid: 251b675202aa2344eb3f21b140e61bae,
+        type: 3}
+      propertyPath: m_CapsuleColliders.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 183972214083856586, guid: 251b675202aa2344eb3f21b140e61bae,
+        type: 3}
+      propertyPath: m_CapsuleColliders.Array.data[5]
+      value: 
+      objectReference: {fileID: 1036042342}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 251b675202aa2344eb3f21b140e61bae, type: 3}
 --- !u!4 &765735839 stripped
@@ -36433,7 +36448,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh10982
+  m_Name: pb_Mesh11040
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -44323,6 +44338,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: b7c1679cc9f57fa40bf3af3dca7c7763, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4db855e9b55ed44f852321bb4cd288c, type: 3}
+--- !u!136 &1036042342 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 7355584964050575214, guid: 251b675202aa2344eb3f21b140e61bae,
+    type: 3}
+  m_PrefabInstance: {fileID: 764140100}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1036125411 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: c4db855e9b55ed44f852321bb4cd288c,
@@ -56390,6 +56411,29 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1362173610}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1293039220 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 18ccb5074725e1c48adae188d64e4d75,
+    type: 3}
+  m_PrefabInstance: {fileID: 677127442}
+  m_PrefabAsset: {fileID: 0}
+--- !u!191 &1293039223
+OffMeshLink:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293039220}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_AreaIndex: 0
+  m_AgentTypeID: 0
+  m_Start: {fileID: 0}
+  m_End: {fileID: 0}
+  m_CostOverride: -1
+  m_BiDirectional: 1
+  m_Activated: 1
+  m_AutoUpdatePositions: 0
 --- !u!4 &1294124403 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: c4db855e9b55ed44f852321bb4cd288c,
@@ -72722,6 +72766,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1683444990}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1639216495 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2114756851774829115, guid: 251b675202aa2344eb3f21b140e61bae,
+    type: 3}
+  m_PrefabInstance: {fileID: 764140100}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1639487025
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79201,7 +79251,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh10564
+  m_Name: pb_Mesh10596
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
